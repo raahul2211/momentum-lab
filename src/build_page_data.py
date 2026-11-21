@@ -53,7 +53,7 @@ def tests(R, league):
                       est=bm["excess"] * 100, ci=[v * 100 for v in ci(bm["excess"], bm["null_sd"])], mde=bm["mde80"] * 100, p=bm["p"])
     sg = R["stakes_crowd"]["stakes_gap"]
     out["stakes"] = dict(label="High stakes vs low stakes", unit="pts", kind="secondary", direction="+",
-                         note="Carryover after the top 20% of pre-snap leverage minus the bottom 20%.",
+                         note="Carryover after the 20% of snaps with the most at stake minus the 20% with the least.",
                          est=sg["excess"] * 100, ci=[v * 100 for v in ci(sg["excess"], sg["null_sd"])], mde=2.8 * sg["null_sd"] * 100, p=sg["p"])
     ha = R["stakes_crowd"]["home_minus_away"]
     out["crowd"] = dict(label="Home offense vs away offense", unit="pts", kind="secondary", direction="+",
