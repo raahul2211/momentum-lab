@@ -120,6 +120,7 @@ def main():
         qbs=r(qb.to_dict(orient="records"), 3), qb_rel=E["qb_reliability"],
         broncos=E["broncos"], close_persistence=E["close_persistence"],
         giants=tl(E["giants_broncos"], "DEN"), sb47=tl(E["sb47"], "SF"),
+        stress=load("stress_nfl"),
     )
     (DOCS / "data.json").write_text(json.dumps(r(data, 4), separators=(",", ":")))
     print("data.json", round((DOCS / "data.json").stat().st_size / 1024), "KB")
