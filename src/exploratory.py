@@ -119,16 +119,26 @@ def broncos_close_games(n_sim=200000, seed=9):
             i = int(w.idxmax())
             best.append(dict(team=team, best18=int(w.max()), end=x.loc[i, "gameday"], start=x.loc[x.index[x.index.get_loc(i) - 17], "gameday"]))
     best = pd.DataFrame(best).sort_values("best18", ascending=False)
+    # Pregame odds overstate favorites once we condition on the game being close, so we
+    # calibrate: logistic fit of close-game wins on the spread, using games before Oct 2025.
+    import statsmodels.api as sm
+    hist = close[close.gameday < "2025-10-01"]
+    fit = sm.Logit(hist.win, sm.add_constant(hist.spread_for)).fit(disp=0)
+    close["wp_close"] = fit.predict(sm.add_constant(close.spread_for))
     den = close[(close.team == "DEN") & (close.gameday >= "2025-10-01")].copy()
     rng = np.random.default_rng(seed)
-    sims = (rng.random((n_sim, len(den))) < den.wp_pre.values).sum(1)
+    sims = (rng.random((n_sim, len(den))) < den.wp_close.values).sum(1)
+    sims_pre = (rng.random((n_sim, len(den))) < den.wp_pre.values).sum(1)
     # How often does SOME team, somewhere since 1999, have an 18-game close-game stretch this good?
     # Estimate under each game's pregame odds.
     return dict(
-        den_games=den[["game_id", "gameday", "margin", "spread_for", "wp_pre", "win"]].to_dict(orient="records"),
+        den_games=den[["game_id", "gameday", "margin", "spread_for", "wp_pre", "wp_close", "win"]].to_dict(orient="records"),
         den_record=[int(den.win.sum()), int(len(den) - den.win.sum())],
-        den_expected_wins=float(den.wp_pre.sum()),
+        den_expected_wins=float(den.wp_close.sum()),
+        den_expected_wins_pregame=float(den.wp_pre.sum()),
         p_at_least=float((sims >= den.win.sum()).mean()),
+        p_at_least_pregame=float((sims_pre >= den.win.sum()).mean()),
+        close_fit=dict(const=float(fit.params["const"]), slope=float(fit.params["spread_for"])),
         sim_hist=np.bincount(sims, minlength=len(den) + 1).tolist(),
         league_best18=best.head(15).to_dict(orient="records"),
         n_teams_17plus=int((best.best18 >= 17).sum()),

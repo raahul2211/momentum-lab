@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum Lab entry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE stadium broadcast package: a serious study told like a game-night graphic
+   IDEA the scoreboard and the telestrator: every section is a board you can poke
+   PICTURE the hero board drains 4.3 points of "momentum" down to zero, row by row
+   COLOUR Broncos navy ground, orange for what really happened, ice blue for chance
+   TYPE Barlow Condensed for digits and heads, Barlow for reading
+   LAYOUT full-width navy bands, 1180px content, boards stack to one column under 720px */
+:root{color-scheme:dark;--bg:#0a2343;--deep:#061933;--panel:#0e2b50;--panel2:#123562;--line:rgba(255,255,255,.12);--ink:#f3f6fb;--mute:#a3b4cc;--dim:#6f86a6;--or:#fb4f14;--or2:#ff8a5c;--ice:#7cc4ff;--ice2:#3b8fd9;--good:#7cc4ff}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Barlow,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3,.dig{font-family:"Barlow Condensed",Barlow,sans-serif}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-.01em;margin:0 0 14px;font-weight:800;text-wrap:balance}
+h2{font-size:clamp(30px,4vw,44px);line-height:1.05;margin:0 0 10px;font-weight:800;text-wrap:balance}
+h3{font-size:22px;line-height:1.1;margin:0 0 6px;font-weight:700}
+p{margin:0 0 12px;max-width:68ch}
+a{color:var(--ice)}
+.wrap{max-width:1180px;margin:0 auto}
+.band{padding:clamp(36px,5vw,72px) max(5vw,16px)}
+.band.alt{background:var(--deep)}
+.lede{font-size:clamp(17px,1.6vw,20px);color:#dfe7f2;max-width:62ch}
+.mute{color:var(--mute)}
+.small{font-size:14px;color:var(--mute)}
+.nav{position:sticky;top:0;z-index:20;background:rgba(6,25,51,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;gap:4px;align-items:center;overflow-x:auto;padding:0 max(5vw,16px);scrollbar-width:none}
+.nav a{flex:none;color:var(--mute);text-decoration:none;font:600 15px "Barlow Condensed";padding:14px 10px;border-bottom:3px solid transparent;transition:color .2s,border-color .2s}
+.nav a:hover,.nav a.on{color:var(--ink);border-color:var(--or)}
+.nav .brand{color:var(--ink);font-weight:800;margin-right:10px}
+.nav .brand b{color:var(--or)}
+.board{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:clamp(16px,2.4vw,28px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 18px 40px rgba(0,0,0,.25);position:relative;overflow:hidden}
+.board::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1.2px) 0 0/6px 6px;pointer-events:none}
+.board>*{position:relative}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.chip{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--mute);font:600 15px "Barlow Condensed";padding:10px 14px;min-height:44px;border-radius:999px;cursor:pointer;transition:all .18s}
+.chip:hover{color:var(--ink);border-color:rgba(255,255,255,.3);transform:translateY(-1px)}
+.chip[aria-pressed=true]{background:var(--or);border-color:var(--or);color:#fff}
+.chip:focus-visible,.btn:focus-visible,input:focus-visible{outline:3px solid var(--ice);outline-offset:2px}
+.btn{appearance:none;border:0;background:var(--or);color:#fff;font:700 17px "Barlow Condensed";padding:12px 20px;min-height:44px;border-radius:10px;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(251,79,20,.35)}
+.btn:active{transform:translateY(0)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{box-shadow:none;border-color:var(--ice)}
+.cells{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:var(--line);border-radius:10px;overflow:hidden;margin-bottom:22px}
+.cell{background:var(--deep);padding:14px 16px}
+.cell .k{font-size:14px;color:var(--mute);line-height:1.25;min-height:2.5em}
+.cell .v{font:800 clamp(40px,5.4vw,66px)/1 "Barlow Condensed";font-variant-numeric:tabular-nums;letter-spacing:-.01em;margin-top:6px}
+.cell .s{font-size:13px;color:var(--dim);margin-top:4px}
+.cell.hot .v{color:var(--or)}
+.wf{display:grid;gap:10px}
+.wfrow{display:grid;grid-template-columns:minmax(150px,240px) minmax(0,1fr) 70px;gap:12px;align-items:center}
+.wfrow .lab{font-size:15px;color:#dbe4f0;line-height:1.2}
+.wfrow .val{font:700 20px "Barlow Condensed";text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.track{position:relative;height:30px;background:rgba(255,255,255,.04);border-radius:6px}
+.track .zero{position:absolute;top:-4px;bottom:-4px;width:2px;background:rgba(255,255,255,.5)}
+.seg{position:absolute;top:4px;bottom:4px;border-radius:4px;transition:left .9s cubic-bezier(.2,.8,.2,1),width .9s cubic-bezier(.2,.8,.2,1)}
+.whisk{position:absolute;top:50%;height:2px;background:var(--or);transition:all .9s cubic-bezier(.2,.8,.2,1)}
+.dot{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--or);box-shadow:0 0 0 4px rgba(251,79,20,.25);transition:left .9s cubic-bezier(.2,.8,.2,1)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:start}
+.fig{position:relative;min-height:300px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+svg text{font:500 13px Barlow,sans-serif;fill:var(--mute)}
+svg .lbl{fill:var(--ink);font-weight:600}
+svg .halo{paint-order:stroke;stroke:var(--deep);stroke-width:4px}
+.lane{position:relative;height:46px;margin:6px 0}
+.lane .name{position:absolute;left:0;top:0;bottom:0;width:48px;display:flex;align-items:center;font:800 18px "Barlow Condensed"}
+.tiles{position:absolute;left:52px;right:0;top:0;bottom:0}
+.tile{position:absolute;top:3px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;font:700 13px "Barlow Condensed";color:#fff;transition:left .7s cubic-bezier(.3,.9,.2,1),transform .2s;cursor:default;border:1px solid rgba(255,255,255,.15)}
+.tile:hover{transform:translateY(-3px) scale(1.06);z-index:3}
+.half{position:absolute;top:0;bottom:0;width:2px;background:rgba(255,255,255,.35)}
+.readout{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+.stat{background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.stat .k{font-size:13px;color:var(--mute)}
+.stat .v{font:800 30px/1.05 "Barlow Condensed";font-variant-numeric:tabular-nums}
+.stat .v.or{color:var(--or)}
+.stat .v.ice{color:var(--ice)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.guide{border-left:3px solid var(--or);padding:6px 0 6px 12px;color:#e7edf6;margin:14px 0;font-size:15px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px 12px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);border-color:rgba(251,79,20,.6);box-shadow:0 14px 30px rgba(0,0,0,.3)}
+.card .top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.card .t{font:700 18px/1.15 "Barlow Condensed"}
+.pill{font:700 12px Barlow;padding:3px 8px;border-radius:999px;white-space:nowrap;background:rgba(124,196,255,.15);color:var(--ice)}
+.pill.hint{background:rgba(251,79,20,.18);color:var(--or2)}
+.pill.sig{background:var(--or);color:#fff}
+.card .big{font:800 34px/1 "Barlow Condensed";margin:8px 0 2px;font-variant-numeric:tabular-nums}
+.card .u{font-size:13px;color:var(--mute)}
+.card svg{width:100%;height:46px;display:block;margin:6px 0}
+.card .n{font-size:13.5px;color:var(--mute);line-height:1.35}
+.tip{position:fixed;pointer-events:none;background:#04122a;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;line-height:1.35;z-index:50;opacity:0;transition:opacity .12s;max-width:240px}
+.tip b{font:700 16px "Barlow Condensed";color:var(--ink)}
+input[type=search]{font:16px Barlow;background:var(--deep);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;width:220px}
+.games{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.g{background:var(--deep);border:1px solid var(--line);border-radius:8px;padding:6px 6px 5px;text-align:center;transition:transform .35s,background .35s}
+.g .o{font:700 15px "Barlow Condensed"}
+.g .m{font:800 18px/1 "Barlow Condensed"}
+.g .p{font-size:12px;color:var(--dim)}
+.g.w{border-color:rgba(251,79,20,.55)}
+.g.w .m{color:var(--or)}
+.g.l .m{color:var(--ice)}
+.g.flip{transform:rotateX(360deg)}
+.lb{width:100%;border-collapse:collapse;font-size:15px}
+.lb td{padding:8px 6px;border-bottom:1px solid var(--line)}
+.lb td.n{text-align:right;font:800 20px "Barlow Condensed";font-variant-numeric:tabular-nums}
+.lb tr.den td{color:var(--or)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.step h3{font-size:20px}
+.step code{font-size:13px;color:var(--ice);background:rgba(0,0,0,.25);padding:2px 5px;border-radius:4px}
+.src li{margin-bottom:6px;color:var(--mute)}
+details{border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:rgba(0,0,0,.15);margin-top:14px}
+summary{cursor:pointer;font:700 17px "Barlow Condensed"}
+footer{padding:28px max(5vw,16px);color:var(--dim);font-size:14px;border-top:1px solid var(--line)}
+.hist{display:flex;align-items:flex-end;gap:2px;height:120px}
+.hist i{flex:1;background:var(--ice2);border-radius:2px 2px 0 0;opacity:.8;transition:height .5s}
+.hist i.hit{background:var(--or);opacity:1}
+@media(max-width:860px){.grid2{grid-template-columns:minmax(0,1fr)}.cells{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.tile{font-size:0}.wfrow{grid-template-columns:minmax(0,1fr) 62px}.wfrow .track{grid-column:1/-1;grid-row:2}.games{grid-template-columns:repeat(3,minmax(0,1fr))}.readout{grid-template-columns:minmax(0,1fr)}.lane .name{width:40px;font-size:15px}.tiles{left:42px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="#answer">Momentum <b>Lab</b></a>
+<a href="#answer">The answer</a><a href="#shuffle">Shuffle a comeback</a><a href="#test">Test the test</a><a href="#every">Every test</a><a href="#who">Who's streaky</a><a href="#broncos">Broncos 17–1</a><a href="#breaks">Breaks &amp; blackouts</a><a href="#college">College</a><a href="#method">Method</a>
+</div></nav>
+
+<section class="band" id="answer"><div class="wrap">
+<h1>Momentum isn't in the next play</h1>
+<p class="lede" id="lede">Loading the numbers…</p>
+<div class="board" style="margin-top:22px">
+<div class="chips" id="sampleChips" role="group" aria-label="Sample"></div>
+<div class="cells" id="cells"></div>
+<div class="wf" id="wf"></div>
+<p class="small" style="margin:14px 0 0" id="wfNote"></p>
+</div>
+</div></section>
+
+<section class="band alt" id="shuffle"><div class="wrap">
+<h2>Shuffle a comeback and it still looks like momentum</h2>
+<p class="lede">Momentum is a claim about order: this drive happened because of the last one. So keep every drive exactly as it was and only change the order inside each half. If the real order were special, shuffled games would look tamer. They don't.</p>
+<div class="board" style="margin-top:18px">
+<div class="chips" id="gameChips" role="group" aria-label="Game"></div>
+<div class="fig" id="wpFig" style="min-height:210px"><svg id="wpSvg" role="img" aria-label="Win probability through the game"></svg></div>
+<div id="lanes" style="margin-top:8px"></div>
+<p class="small" style="margin:4px 0 0">Each tile is a drive. Orange beat its expected points, blue fell short; the number is points over expected.</p>
+<div class="readout">
+<div class="stat"><div class="k" id="rk1">Real hottest 3-drive stretch</div><div class="v or" id="r1">–</div></div>
+<div class="stat"><div class="k">This shuffle</div><div class="v ice" id="r2">–</div></div>
+<div class="stat"><div class="k">Shuffles at least as hot</div><div class="v" id="r3">–</div></div>
+</div>
+<div class="row"><button class="btn" id="shufBtn">Shuffle drives</button><button class="btn ghost" id="manyBtn">Shuffle 1,000 times</button><button class="btn ghost" id="realBtn">Real order</button></div>
+<div class="hist" id="shufHist" style="margin-top:16px" aria-hidden="true"></div>
+<p class="small" id="shufCap" style="margin:6px 0 0"></p>
+<p class="guide" id="shufGuide">Try it: hit shuffle five times and watch the orange tiles. Hot runs land somewhere almost every time, because a team that had a great half has great drives to stack.</p>
+</div>
+</div></section>
+
+<section class="band" id="test"><div class="wrap grid2">
+<div>
+<h2>Would we see momentum if it were there?</h2>
+<p>We built fake NFL seasons on the real down, distance, score and clock of 2009–2018 plays, where we decide the truth. Teams still have good and bad halves. Then we planted momentum of a set size and ran the exact same test.</p>
+<div class="chips" id="simChips" role="group" aria-label="Planted momentum"></div>
+<button class="chip" id="driftChip" aria-pressed="false">Add injury-style swings mid-half</button>
+<div class="readout">
+<div class="stat"><div class="k">Planted</div><div class="v" id="s1">–</div></div>
+<div class="stat"><div class="k">Test found, on average</div><div class="v or" id="s2">–</div></div>
+<div class="stat"><div class="k">Flagged as real</div><div class="v ice" id="s3">–</div></div>
+</div>
+<p class="guide" id="simGuide"></p>
+</div>
+<div class="board"><div class="fig" id="simFig" style="min-height:330px"><svg id="simSvg" role="img" aria-label="Simulated test results"></svg></div>
+<p class="small" style="margin:6px 0 0">Each dot is one fake season. The grey band is what chance alone produces. The orange line is the real NFL answer.</p></div>
+</div></section>
+
+<section class="band alt" id="every"><div class="wrap">
+<h2>We looked everywhere momentum is supposed to live</h2>
+<p class="lede">Four tests were written down before we touched 2019–2025. Five more check the stories fans tell: big moments, high stakes, the crowd, empty stadiums, halftime. Each card shows the estimate, its 95% range, and the shaded zone the test could not see into.</p>
+<div class="chips" id="testChips" role="group" aria-label="Sample" style="margin-top:16px"></div>
+<div class="cards" id="cards"></div>
+<p class="small" style="margin-top:12px">The arrow on each card points where momentum predicts the dot should land. "Signal" means it survives the pre-registered correction for running four tests. "Hint" means p &lt; .05 without that correction.</p>
+</div></section>
+
+<section class="band" id="who"><div class="wrap">
+<h2>No team or quarterback plays with momentum</h2>
+<p class="lede" id="whoLede"></p>
+<div class="board" style="margin-top:16px">
+<div class="row" style="margin-bottom:12px;justify-content:space-between">
+<div class="chips" id="whoChips" style="margin:0" role="group" aria-label="Unit"></div>
+<input type="search" id="whoSearch" placeholder="Find: DEN 2025, T.Brady" list="whoList" aria-label="Find a team-season or quarterback"><datalist id="whoList"></datalist>
+</div>
+<div class="chips" id="pickChips" style="margin-bottom:6px"></div>
+<div class="fig" id="funFig" style="min-height:400px"><svg id="funSvg" role="img" aria-label="Funnel plot of momentum index"></svg></div>
+<p class="small" style="margin:6px 0 0">Up means the next play beat expectations more after a success than after a failure. The funnel is what chance gives for that many plays. Hover any dot.</p>
+</div>
+</div></section>
+
+<section class="band alt" id="broncos"><div class="wrap">
+<h2>The Broncos are 17–1 in one-score games, and it isn't momentum</h2>
+<p class="lede" id="denLede"></p>
+<div class="grid2" style="margin-top:18px">
+<div class="board">
+<h3>Every one-score game since October 2025</h3>
+<div class="games" id="games" style="margin:12px 0"></div>
+<div class="row"><button class="btn" id="flipBtn">Flip these 18 games with fair odds</button><span class="small" id="flipOut"></span></div>
+<h3 style="margin-top:18px">Wins out of 18, in 200,000 fair replays</h3>
+<div class="hist" id="denHist"></div>
+<div class="row small" style="justify-content:space-between"><span>0</span><span>9</span><span>18</span></div>
+</div>
+<div>
+<div class="board">
+<h3>Best 18-game close-game stretch, any team since 1999</h3>
+<table class="lb"><tbody id="lb"></tbody></table>
+</div>
+<div class="readout" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+<div class="stat"><div class="k">2025 Broncos momentum index, of 893 team-seasons</div><div class="v ice" id="denRank">–</div></div>
+<div class="stat"><div class="k">Year-to-year correlation of close-game luck</div><div class="v" id="denYoy">–</div></div>
+</div>
+<p class="guide">Read it like a scout: the run is real and rare. What it isn't is one play feeding the next. The 2025 Broncos sit dead center on the momentum funnel.</p>
+</div>
+</div>
+</div></section>
+
+<section class="band" id="breaks"><div class="wrap grid2">
+<div>
+<h2>Halftime, quarter breaks, even a blackout don't reset anything in the NFL</h2>
+<p>If momentum were a feeling that builds, a break should drain it. In Super Bowl XLVII the Superdome lost power for about half an hour with the Ravens up 28–6. The 49ers scored 17 straight points after it, and that game became the textbook momentum swing. Pick it in the shuffle board above and look at the 49ers' tiles.</p>
+<p>One game is a story. Here is the test across every drive pair: how much a drive's points over expected carry to the same offense's next drive, split by what sat between them.</p>
+<p class="guide" id="breakGuide"></p>
+</div>
+<div class="board"><div class="fig" id="brFig" style="min-height:300px"><svg id="brSvg" role="img" aria-label="Carryover by break type"></svg></div>
+<p class="small" style="margin:6px 0 0">Dot = carryover beyond the shuffle; line = 95% range. NFL 2019–2025 and college 2019–2021.</p></div>
+</div></section>
+
+<section class="band alt" id="college"><div class="wrap">
+<h2>College is the one place something shows up, and it's tiny</h2>
+<div class="grid2" style="margin-top:10px">
+<div><p class="lede" id="cfbLede"></p></div>
+<div class="cards" id="cfbCards"></div>
+</div>
+</div></section>
+
+<section class="band" id="method"><div class="wrap">
+<h2>How we did it</h2>
+<p class="lede">The video's own criteria, each turned into a step, with the method borrowed from the paper that solved the same problem somewhere else.</p>
+<div class="steps" style="margin-top:16px">
+<div class="step"><h3>1. Score every play against its situation</h3><p class="small">A boosted model predicts the chance each snap succeeds (EPA &gt; 0) from down, distance, field, clock, score, timeouts, first play of the drive, pass or run, the betting spread and total, and each team's form from earlier games. It never sees earlier plays from the same game, and each season is predicted by a model that never saw it. Residual <code>r = success − expected</code>. Borrowed from the basketball hot-hand work that controls for shot difficulty (Bocskocsky, Ezekowitz &amp; Stein 2014).</p></div>
+<div class="step"><h3>2. Hold "better that day" fixed</h3><p class="small">Momentum says <code>r<sub>t</sub> = α + ρ·r<sub>t−1</sub> + ε</code>: α is a good day, ρ is momentum. We shuffle each offense's plays inside each half 2,000 times. That keeps α in the chance baseline and also removes the streak-selection bias that flipped the original hot-hand finding (Miller &amp; Sanjurjo 2018). Whatever survives is about order.</p></div>
+<div class="step"><h3>3. Drives as sums, not averages</h3><p class="small">Our first fumble result showed momentum at p &lt; .001. It was an artifact: averaging residuals within a drive is biased by drive length. Summed residuals have mean zero whatever the length, so we use points over expected and summed residuals. Drive tests shuffle whole drives and control for how long the last drive took, because long drives tire defenses.</p></div>
+<div class="step"><h3>4. Find shocks that luck hands out</h3><p class="small">Who recovers a fumble is close to a coin flip once you know the fumble type (fumble recovery has no year-to-year skill). We compare bounces that went to the defense with bounces that stayed with the offense, inside type × forced strata, and check balance: pre-fumble form doesn't predict the bounce (p = .37 and .95, 2019–2025).</p></div>
+<div class="step"><h3>5. Write it down, then look</h3><p class="small">Everything was built on 1999–2018, the four main tests were committed to the repo's PREREG.md, and only then run once on 2019–2025 and again on 2026 weeks to date. Four tests share a Holm correction. The simulation check above ran before the holdout too.</p></div>
+<div class="step"><h3>6. Check the test can see</h3><p class="small">With no momentum the play test flagged 3 of 30 fake seasons, close to the 5% you'd expect; planted +0.5, +1 and +2 points were caught 80%, 100% and 100% of the time. Its blind spot is slow drift inside a half, like an injury, which can fake a positive. The real answer came out near zero, so drift isn't hiding anything here.</p></div>
+</div>
+<details><summary>Sources and data</summary>
+<ul class="src">
+<li>Play-by-play: <a href="https://github.com/nflverse/nflverse-data">nflverse</a> (the data behind nflfastR), 1999–2026; college from <a href="https://github.com/sportsdataverse/cfbfastR-data">cfbfastR-data</a>, FBS games with a line, 2014–2021. Brian Burke's 2002–2012 files and the Kaggle 2017–2023 scores are subsets of nflverse.</li>
+<li>Gilovich, Vallone &amp; Tversky (1985), The hot hand in basketball, Cognitive Psychology 17.</li>
+<li>Miller &amp; Sanjurjo (2018), <a href="https://doi.org/10.3982/ECTA14943">Surprised by the hot hand fallacy?</a>, Econometrica 86(6).</li>
+<li>Bocskocsky, Ezekowitz &amp; Stein (2014), <a href="https://ssrn.com/abstract=2481494">Heat check: new evidence on the hot hand in basketball</a>.</li>
+<li>Fry &amp; Shukairy (2012), <a href="https://ideas.repec.org/a/bpj/jqsprt/v8y2012i1n8.html">Searching for momentum in the NFL</a>, Journal of Quantitative Analysis in Sports 8.</li>
+<li>Roebber, Burlingame &amp; deWinter (2022), On the existence of momentum in professional football, PLOS ONE 17(6); rebuilt in <a href="https://thesidequest.com/posts/momentum-lab/">The Side Quest explainer</a>.</li>
+<li>Adler (1981) and Markman &amp; Guenther (2007): psychological momentum as velocity × mass, which is why we test high-stakes moments (<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2019.01019/pdf">review in Briki &amp; Zoudji 2019</a>).</li>
+<li>Freedman &amp; Lane (1983), permutation tests with covariates, Journal of Business &amp; Economic Statistics 1(4). Nickell (1981), bias in dynamic panels, Econometrica 49(6).</li>
+<li>Fumble recovery as luck: <a href="https://footballperspective.com/2013-fumble-recovery-data-has-jets-cowboys-at-extremes">Football Perspective</a>. Empty-stadium home advantage: <a href="https://core.ac.uk/download/387554353.pdf">Ehrlich, Potter &amp; Sanders (2021)</a>.</li>
+<li>Close-game odds: spread to win chance with a normal curve (SD 13.45 points, after Stern 1991), recalibrated on close games from 1999 to September 2025.</li>
+</ul></details>
+</div></section>
+
+<footer><div class="wrap">Entry for The Side Quest's "Can you find momentum?" challenge. Every chart and computed figure loads from the analysis repo's results files; the few numbers written into the prose were checked against the same files.</div></footer>
+<div class="tip" id="tip"></div>
+
+<script>
+{
+const $ = s => document.querySelector(s);
+const M = "−";
+const sg = (v, d = 1) => { const a = Math.abs(v).toFixed(d); return +a === 0 ? a : (v < 0 ? M : "+") + a; };
+const fx = (v, d = 1) => { const a = Math.abs(v).toFixed(d); return +a === 0 ? a : (v < 0 ? M : "") + a; };
+const tip = $("#tip");
+const showTip = (e, html) => { tip.innerHTML = html; tip.style.opacity = 1; const x = Math.min(e.clientX + 14, innerWidth - 250); tip.style.left = x + "px"; tip.style.top = (e.clientY + 14) + "px"; };
+const hideTip = () => { tip.style.opacity = 0; };
+const chipRow = (el, items, cur, onPick) => {
+  el.innerHTML = items.map(([k, l]) => `<button class="chip" data-k="${k}" aria-pressed="${k === cur}">${l}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(b => b.onclick = () => { el.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === b)); onPick(b.dataset.k); });
+};
+const observe = (el, fn) => { const ro = new ResizeObserver(fn); ro.observe(el); return ro; };
+
+fetch("data.json").then(r => r.json()).then(D => {
+
+  /* ---------------- hero waterfall ---------------- */
+  const SAMPLES = [["holdout_nfl", "NFL 2019–25 · pre-registered"], ["discovery_nfl", "NFL 1999–2018"], ["fresh_nfl", "NFL 2026 so far"], ["holdout_cfb", "College 2019–21"]];
+  const cells = $("#cells"), wf = $("#wf");
+  wf.innerHTML = ["a", "b", "c", "d"].map(k => `<div class="wfrow"><div class="lab" id="wl${k}"></div><div class="track"><div class="zero" id="wz${k}"></div><div class="seg" id="ws${k}"></div>${k === "d" ? '<div class="whisk" id="wwd"></div><div class="dot" id="wdd"></div>' : ""}</div><div class="val" id="wv${k}"></div></div>`).join("");
+  const hero = key => {
+    const w = D.waterfall[key];
+    const nfl = key.includes("nfl");
+    const lo = Math.min(0, w.order_ci[0], w.raw - w.situation) - 0.4, hi = Math.max(w.raw, w.raw - w.situation) + 0.3;
+    const X = v => (v - lo) / (hi - lo) * 100;
+    const afterSit = w.raw - w.situation;
+    const rows = [
+      ["a", "After a good play, the next one is more likely to work", 0, w.raw, "#e9eef6", sg(w.raw)],
+      ["b", "Explained by down, distance, field, score and clock", afterSit, w.raw, "#5a7396", sg(-w.situation)],
+      ["c", "Explained by who was better that half", w.order, afterSit, "#3b8fd9", sg(-w.team, 2)],
+      ["d", "Left for momentum (order)", w.order, w.order, "var(--or)", sg(w.order, 2)]];
+    rows.forEach(([k, lab, a, b, col, val]) => {
+      $("#wl" + k).textContent = lab; $("#wv" + k).textContent = val;
+      $("#wz" + k).style.left = X(0) + "%";
+      const s = $("#ws" + k); s.style.left = X(Math.min(a, b)) + "%"; s.style.width = Math.max(0, X(Math.max(a, b)) - X(Math.min(a, b))) + "%"; s.style.background = col;
+    });
+    $("#wwd").style.left = X(w.order_ci[0]) + "%"; $("#wwd").style.width = (X(w.order_ci[1]) - X(w.order_ci[0])) + "%";
+    $("#wdd").style.left = X(w.order) + "%";
+    $("#wvd").style.color = "var(--or)";
+    const yrs = w.seasons.length > 1 ? `${w.seasons[0]}–${w.seasons[w.seasons.length - 1]}` : `${w.seasons[0]} weeks to date`;
+    cells.innerHTML = [
+      ["After a good play", sg(w.raw), `${w.after_success.toFixed(1)}% vs ${w.after_fail.toFixed(1)}% next-play success`],
+      ["Down, distance, score, clock", sg(-w.situation), "the situation a good play leaves you in"],
+      ["Better that half", sg(-w.team, 2), "a team having a good day"],
+      ["Left for momentum", sg(w.order, 2), `95% range ${sg(w.order_ci[0], 2)} to ${sg(w.order_ci[1], 2)}`]
+    ].map(([k, v, s], i) => `<div class="cell${i === 3 ? " hot" : ""}"><div class="k">${k}</div><div class="v dig">${v}</div><div class="s">${s}</div></div>`).join("");
+    $("#lede").innerHTML = `Across <b>${w.n_plays.toLocaleString()}</b> ${nfl ? "NFL" : "college"} plays from ${yrs}${key === "holdout_nfl" ? ", tested only after we locked the rules" : ""}, a successful play makes the next one <b>${w.raw.toFixed(1)} points</b> likelier to succeed. The situation it leaves you in explains ${w.situation.toFixed(1)} of that. Who was better that half explains ${w.team.toFixed(2)}. What's left for momentum is <b style="color:var(--or)">${sg(w.order, 2)}</b>, give or take ${((w.order_ci[1] - w.order_ci[0]) / 2).toFixed(2)}.`;
+    $("#wfNote").textContent = key === "holdout_cfb"
+      ? "College runs slightly below zero: after a success, the next play does a bit worse than order alone predicts. Recorded ball spots carry error, and an error on one spot pushes two neighbouring plays in opposite directions, so we don't read this as anti-momentum."
+      : "Points are percentage points of next-play success. The orange dot is the only part momentum can claim; its line is the 95% range from 2,000 shuffles.";
+  };
+  chipRow($("#sampleChips"), SAMPLES, "holdout_nfl", hero);
+  hero("holdout_nfl");
+
+  /* ---------------- shuffle a comeback ---------------- */
+  const GAMES = { giants: { g: D.giants, focus: "DEN", title: "Giants at Broncos, Oct 19 2025", note: "Down 19–0 entering the 4th" }, sb47: { g: D.sb47, focus: "SF", title: "Super Bowl XLVII, Feb 3 2013", note: "Lights out" } };
+  let gk = "giants", order = null, tally = null;
+  const wpSvg = $("#wpSvg");
+  const drawWP = () => {
+    const G = GAMES[gk].g, W = wpSvg.clientWidth, H = wpSvg.clientHeight, m = { l: 34, r: 12, t: 16, b: 24 };
+    const pts = G.wp; const n = pts.length;
+    const x = i => m.l + i / (n - 1) * (W - m.l - m.r), y = v => m.t + (1 - v) * (H - m.t - m.b);
+    let s = `<rect x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${(H - m.t - m.b) / 2}" fill="rgba(251,79,20,.07)"/>`;
+    s += [0, .5, 1].map(v => `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="rgba(255,255,255,${v === .5 ? .35 : .1})" stroke-dasharray="${v === .5 ? "4 4" : ""}"/><text x="${m.l - 6}" y="${y(v) + 4}" text-anchor="end">${v * 100}%</text>`).join("");
+    let q = 0; pts.forEach((p, i) => { if (p.qtr !== q && p.qtr <= 4) { q = p.qtr; s += `<text x="${x(i) + 4}" y="${H - 6}">Q${q}</text><line x1="${x(i)}" x2="${x(i)}" y1="${m.t}" y2="${H - m.b}" stroke="rgba(255,255,255,.08)"/>`; } });
+    const line = pts.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.vegas_home_wp).toFixed(1)}`).join("");
+    s += `<path d="${line}L${x(n - 1)},${y(0)}L${x(0)},${y(0)}Z" fill="rgba(251,79,20,.18)"/><path d="${line}" fill="none" stroke="var(--or)" stroke-width="2.5"/>`;
+    const bi = pts.findIndex(p => p.blackout);
+    if (bi >= 0) s += `<line x1="${x(bi)}" x2="${x(bi)}" y1="${m.t}" y2="${H - m.b}" stroke="var(--ice)" stroke-width="2" stroke-dasharray="3 3"/><text class="lbl halo" x="${x(bi) + 6}" y="${m.t + 14}">Lights out, about 30 minutes</text>`;
+    s += `<text class="lbl halo" x="${m.l + 6}" y="${m.t + 14}">${GAMES[gk].focus} win chance</text>`;
+    const last = pts[n - 1]; s += `<text class="lbl halo" x="${W - m.r - 4}" y="${H - m.b - 8}" text-anchor="end">Final ${G.home} ${last.total_home_score}, ${G.away} ${last.total_away_score}</text>`;
+    wpSvg.innerHTML = s;
+  };
+  observe(wpSvg, drawWP);
+  const lanesEl = $("#lanes");
+  const colorFor = v => { const a = Math.min(1, Math.abs(v) / 5); return v >= 0 ? `rgba(251,79,20,${.25 + .75 * a})` : `rgba(59,143,217,${.25 + .75 * a})`; };
+  const abbr = r => ({ Touchdown: "TD", "Field goal": "FG", Punt: "Punt", Turnover: "TO", "Turnover on downs": "Downs", "Missed field goal": "Miss", "End of half": "Half", Safety: "Saf", "Opp touchdown": "Pick6" }[r] || r);
+  const drives = () => GAMES[gk].g.drives;
+  const best3 = vals => { let b = -Infinity; for (let i = 0; i + 2 < vals.length; i++) b = Math.max(b, vals[i] + vals[i + 1] + vals[i + 2]); return b; };
+  const focusIdx = () => drives().map((d, i) => [d, i]).filter(([d]) => d.posteam === GAMES[gk].focus).map(([, i]) => i);
+  const shuffleWithinHalf = (idx) => {
+    const ds = drives(); const out = idx.slice();
+    [1, 2].forEach(h => { const pos = idx.map((i, j) => [i, j]).filter(([i]) => (ds[i].qtr <= 2 ? 1 : 2) === h).map(([, j]) => j); const vals = pos.map(j => idx[j]); for (let i = vals.length - 1; i > 0; i--) { const k = Math.floor(Math.random() * (i + 1)); [vals[i], vals[k]] = [vals[k], vals[i]]; } pos.forEach((j, t) => out[j] = vals[t]); });
+    return out;
+  };
+  const renderLanes = () => {
+    const ds = drives(), F = GAMES[gk].focus, fi = focusIdx(); const n = ds.length;
+    const slotOf = {}; fi.forEach((orig, j) => slotOf[order[j]] = orig);
+    const firstH2 = ds.findIndex(d => d.qtr >= 3);
+    const teams = [F, F === GAMES[gk].g.home ? GAMES[gk].g.away : GAMES[gk].g.home];
+    lanesEl.innerHTML = teams.map(t => `<div class="lane"><div class="name" style="color:${t === F ? "var(--or)" : "var(--ice)"}">${t}</div><div class="tiles" data-t="${t}"><div class="half" style="left:calc(${firstH2 / n * 100}% - 3px)"></div>${ds.map((d, i) => d.posteam === t ? `<div class="tile" data-i="${i}" style="left:calc(${(t === F ? slotOf[i] : i) / n * 100}% + 1px);width:calc(${100 / n}% - 3px);background:${colorFor(d.poe)}">${sg(d.poe, 1)}</div>` : "").join("")}</div></div>`).join("");
+    lanesEl.querySelectorAll(".tile").forEach(el => { const d = ds[+el.dataset.i]; el.onmousemove = e => showTip(e, `<b>${d.posteam} · Q${d.qtr} ${d.time}</b><br>${abbr(d.result)}, ${d.points} pts vs ${d.pts_hat.toFixed(1)} expected<br>${d.n_plays} plays`); el.onmouseleave = hideTip; });
+  };
+  const moveTiles = () => {
+    const ds = drives(), n = ds.length, fi = focusIdx(); const slotOf = {}; fi.forEach((orig, j) => slotOf[order[j]] = orig);
+    lanesEl.querySelectorAll(`.tiles[data-t="${GAMES[gk].focus}"] .tile`).forEach(el => { el.style.left = `calc(${slotOf[+el.dataset.i] / n * 100}% + 1px)`; });
+    const vals = order.map(i => ds[i].poe); $("#r2").textContent = sg(best3(vals), 1);
+  };
+  const realBest = () => best3(focusIdx().map(i => drives()[i].poe));
+  const resetGame = k => {
+    gk = k; order = focusIdx(); tally = null; drawWP(); renderLanes();
+    $("#rk1").textContent = `Real hottest 3-drive stretch, ${GAMES[k].focus}`;
+    $("#r1").textContent = sg(realBest(), 1); $("#r2").textContent = sg(realBest(), 1); $("#r3").textContent = "–"; $("#shufHist").innerHTML = ""; $("#shufCap").textContent = "";
+  };
+  chipRow($("#gameChips"), Object.entries(GAMES).map(([k, v]) => [k, v.title]), "giants", resetGame);
+  $("#shufBtn").onclick = () => { order = shuffleWithinHalf(focusIdx()); moveTiles(); };
+  $("#realBtn").onclick = () => { order = focusIdx(); moveTiles(); };
+  $("#manyBtn").onclick = () => {
+    const ds = drives(), real = realBest(), res = [];
+    for (let t = 0; t < 1000; t++) res.push(best3(shuffleWithinHalf(focusIdx()).map(i => ds[i].poe)));
+    const share = res.filter(v => v >= real - 1e-9).length / 10;
+    $("#r3").textContent = share.toFixed(0) + "%";
+    const lo = Math.min(...res), hi = Math.max(...res), B = 24, h = Array(B).fill(0);
+    res.forEach(v => h[Math.min(B - 1, Math.floor((v - lo) / (hi - lo + 1e-9) * B))]++);
+    const mx = Math.max(...h);
+    $("#shufHist").innerHTML = h.map((c, i) => `<i class="${lo + (i + 1) * (hi - lo) / B > real ? "hit" : ""}" style="height:${c / mx * 100}%"></i>`).join("");
+    $("#shufCap").textContent = `Hottest 3-drive stretch in each of 1,000 shuffles, from ${sg(lo, 1)} to ${sg(hi, 1)} points over expected. Orange bars are at least as hot as the real game.`;
+    $("#shufGuide").innerHTML = `In <b>${share.toFixed(0)}%</b> of 1,000 shuffles, ${GAMES[gk].focus} had a 3-drive stretch at least as hot as the real one (orange bars). The real order isn't special; the half was.`;
+  };
+  resetGame("giants");
+
+  /* ---------------- test the test ---------------- */
+  const sims = D.sims; const none = sims.find(s => s.planted === 0 && !/shift/.test(s.setting)), drift = sims.find(s => /shift/.test(s.setting));
+  const planted = sims.filter(s => s.planted > 0);
+  let simK = "0", driftOn = false;
+  const sdNone = Math.sqrt(none.est.reduce((a, v) => a + v * v, 0) / none.est.length);
+  const realNFL = D.waterfall.discovery_nfl.order;
+  const simSvg = $("#simSvg");
+  const curSim = () => simK === "0" ? (driftOn ? drift : none) : planted.find(s => String(s.planted) === simK);
+  const drawSim = () => {
+    const S = curSim(), W = simSvg.clientWidth, H = simSvg.clientHeight, m = { l: 16, r: 16, t: 24, b: 40 };
+    const lo = -1, hi = 2.6, x = v => m.l + (v - lo) / (hi - lo) * (W - m.l - m.r);
+    let s = `<rect x="${x(-1.96 * sdNone)}" y="${m.t}" width="${x(1.96 * sdNone) - x(-1.96 * sdNone)}" height="${H - m.t - m.b}" fill="rgba(255,255,255,.08)" rx="6"/>`;
+    for (let v = -1; v <= 2.5; v += 0.5) s += `<line x1="${x(v)}" x2="${x(v)}" y1="${H - m.b}" y2="${H - m.b + 5}" stroke="rgba(255,255,255,.3)"/><text x="${x(v)}" y="${H - m.b + 20}" text-anchor="middle">${sg(v, 1)}</text>`;
+    s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 4}" text-anchor="middle">momentum found, points of next-play success</text>`;
+    s += `<line x1="${x(realNFL)}" x2="${x(realNFL)}" y1="${m.t - 10}" y2="${H - m.b}" stroke="var(--or)" stroke-width="3"/><text class="lbl halo" x="${x(realNFL) + 6}" y="${m.t + 2}">Real NFL</text>`;
+    if (S.planted > 0) s += `<line x1="${x(S.planted)}" x2="${x(S.planted)}" y1="${m.t}" y2="${H - m.b}" stroke="var(--ice)" stroke-dasharray="5 4" stroke-width="2"/><text class="lbl halo" x="${x(S.planted) + 6}" y="${m.t + 20}" fill="var(--ice)">Planted</text>`;
+    const rows = S.est.length, span = H - m.t - m.b - 30;
+    s += S.est.map((v, i) => `<circle cx="${x(v)}" cy="${m.t + 30 + (i / (rows - 1)) * span}" r="6" fill="${S.planted > 0 ? "var(--ice)" : "#e9eef6"}" opacity=".85"><title>${sg(v, 2)}</title></circle>`).join("");
+    simSvg.innerHTML = s;
+    const mean = S.est.reduce((a, v) => a + v, 0) / S.est.length;
+    $("#s1").textContent = S.planted ? sg(S.planted, 1) : "None"; $("#s2").textContent = sg(mean, 2); $("#s3").textContent = Math.round(S.reject * S.est.length) + " of " + S.est.length;
+    $("#simGuide").innerHTML = S.planted
+      ? `Plant <b>${sg(S.planted, 1)}</b> and the test finds <b>${sg(mean, 2)}</b>, flagging it ${Math.round(S.reject * 100)}% of the time. The real NFL answer sits at ${sg(realNFL, 2)}, back in the grey with the no-momentum seasons.`
+      : driftOn
+        ? `Honest weak spot: when a team's level jumps midway through a half (an injury, an adjustment), the test flags ${Math.round(S.reject * 100)}% of seasons with no momentum at all. That fakes momentum; it can't hide it. The real NFL answer still came out at zero.`
+        : `No momentum planted: the test flags ${Math.round(S.reject * S.est.length)} of ${S.est.length} seasons, about what chance allows. Meanwhile the naive "next play after a success" gap reads <b>${sg(S.raw, 1)}</b> points in these same fake seasons. That's the illusion, built from situation and good days alone.`;
+  };
+  chipRow($("#simChips"), [["0", "No momentum"], ...planted.map(s => [String(s.planted), "Plant " + sg(s.planted, 1)])], "0", k => { simK = k; drawSim(); });
+  $("#driftChip").onclick = e => { driftOn = !driftOn; e.currentTarget.setAttribute("aria-pressed", driftOn); if (driftOn) { simK = "0"; $("#simChips").querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.k === "0")); } drawSim(); };
+  observe(simSvg, drawSim);
+
+  /* ---------------- every test ---------------- */
+  const ORDER = ["P1", "P2", "P3", "P4", "big", "stakes", "crowd", "empty", "halftime"];
+  const verdict = t => {
+    const wrongWay = (t.direction === "+" && t.est < 0) || (t.direction === "−" && t.est > 0);
+    if (t.kind === "primary" && t.holm != null && t.holm < .05) return wrongWay ? ["Opposite", "hint"] : ["Signal", "sig"];
+    if (t.p < .05) return wrongWay ? ["Hint, opposite way", "hint"] : ["Hint", "hint"];
+    return ["No momentum", ""];
+  };
+  const miniTrack = t => {
+    const R = Math.max(Math.abs(t.ci[0]), Math.abs(t.ci[1]), t.mde) * 1.25, W = 240, X = v => 12 + (v + R) / (2 * R) * (W - 24);
+    const arrowX = t.direction === "+" ? W - 14 : 14, ad = t.direction === "+" ? 1 : -1;
+    return `<svg viewBox="0 0 ${W} 46" preserveAspectRatio="none" aria-hidden="true"><rect x="${X(-t.mde)}" y="10" width="${X(t.mde) - X(-t.mde)}" height="22" fill="rgba(255,255,255,.07)" rx="4"/><line x1="${X(0)}" x2="${X(0)}" y1="6" y2="36" stroke="rgba(255,255,255,.5)"/><line x1="${X(t.ci[0])}" x2="${X(t.ci[1])}" y1="21" y2="21" stroke="var(--or)" stroke-width="3" stroke-linecap="round"/><circle cx="${X(t.est)}" cy="21" r="6" fill="var(--or)"/><path d="M${arrowX - 8 * ad},40 L${arrowX},40 M${arrowX - 4 * ad},37 L${arrowX},40 L${arrowX - 4 * ad},43" stroke="var(--ice)" stroke-width="1.6" fill="none"/></svg>`;
+  };
+  const card = t => { const [v, c] = verdict(t); return `<div class="card"><div class="top"><div class="t">${t.label}</div><span class="pill ${c}">${v}</span></div><div class="big dig">${sg(t.est, t.unit === "pts" ? 2 : 3)} <span class="u">${t.unit}</span></div>${miniTrack(t)}<div class="n">${t.note} 95% range ${sg(t.ci[0], 2)} to ${sg(t.ci[1], 2)}; p = ${t.p < .001 ? "<.001" : t.p.toFixed(2)}${t.holm != null ? `, corrected ${t.holm.toFixed(2)}` : ""}.</div></div>`; };
+  const renderCards = k => { const T = D.tests[k]; $("#cards").innerHTML = ORDER.filter(o => T[o]).map(o => card(T[o])).join(""); };
+  chipRow($("#testChips"), [["holdout_nfl", "NFL 2019–25 · pre-registered"], ["discovery_nfl", "NFL 1999–2018"], ["fresh_nfl", "NFL 2026 so far"], ["holdout_cfb", "College 2019–21"]], "holdout_nfl", renderCards);
+  renderCards("holdout_nfl");
+
+  /* ---------------- who's streaky ---------------- */
+  const funSvg = $("#funSvg");
+  let unit = "team", hi = new Set(["DEN 2025"]);
+  const keyOf = d => unit === "team" ? `${d.posteam} ${d.season}` : d.passer_player_name;
+  const units = () => unit === "team" ? D.team_seasons : D.qbs;
+  const PICKS = { team: ["DEN 2025", "DEN 2013", "NE 2007", "KC 2019", "PHI 2017", "ARI 2010", "BUF 2021"], qb: ["E.Manning", "T.Romo", "T.Brady", "P.Manning", "P.Mahomes", "A.Rodgers", "M.Ryan"] };
+  const setLede = () => {
+    const R = unit === "team" ? D.team_rel : D.qb_rel, n = units().length;
+    $("#whoLede").innerHTML = unit === "team"
+      ? `We gave all ${n} NFL team-seasons since 1999 a momentum index: the play-to-play test run on that team alone. If some teams truly played with momentum, many would fall outside the chance funnel and repeat year to year. ${(R.share_outside_95 * 100).toFixed(1)}% fall outside, against 5% from chance, and a team's index predicts next year's at r = ${R.yoy_corr_momentum.toFixed(2)}.`
+      : `Same test for the ${n} quarterbacks with 50 or more starts since 1999. ${(R.share_outside_95 * 100).toFixed(1)}% fall outside the funnel, against 5% from chance: about ${Math.round(R.share_outside_95 * n)} quarterbacks where chance predicts ${Math.round(.05 * n)}. Eli Manning, the league's streakiest reputation, leans that way at +1.8 standard errors, inside the funnel.`;
+  };
+  const drawFun = () => {
+    const U = units(), W = funSvg.clientWidth, H = funSvg.clientHeight, m = { l: 46, r: 16, t: 14, b: 36 };
+    const logx = unit === "qb";
+    const xs = U.map(d => d.n_pairs), xmin = Math.min(...xs) * .95, xmax = Math.max(...xs) * 1.03;
+    const tx = v => logx ? Math.log(v) : v;
+    const x = v => m.l + (tx(v) - tx(xmin)) / (tx(xmax) - tx(xmin)) * (W - m.l - m.r);
+    const ylim = unit === "team" ? 13 : 4.5, y = v => m.t + (ylim - v) / (2 * ylim) * (H - m.t - m.b);
+    const ks = U.map(d => d.null_sd * Math.sqrt(d.n_pairs)).sort((a, b) => a - b), k = ks[Math.floor(ks.length / 2)];
+    let up = "", dn = "";
+    for (let i = 0; i <= 60; i++) { const v = logx ? Math.exp(tx(xmin) + i / 60 * (tx(xmax) - tx(xmin))) : xmin + i / 60 * (xmax - xmin); const sd = 1.96 * k / Math.sqrt(v); up += `${i ? "L" : "M"}${x(v).toFixed(1)},${y(sd).toFixed(1)}`; dn = `L${x(v).toFixed(1)},${y(-sd).toFixed(1)}` + dn; }
+    let s = `<path d="${up}${dn.replace(/^L/, "L")}Z" fill="rgba(124,196,255,.08)" stroke="rgba(124,196,255,.35)"/>`;
+    const step = unit === "team" ? 5 : 2;
+    for (let v = -Math.floor(ylim / step) * step; v <= ylim; v += step) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="rgba(255,255,255,${v === 0 ? .4 : .07})"/><text x="${m.l - 6}" y="${y(v) + 4}" text-anchor="end">${sg(v, 0)}</text>`;
+    s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 6}" text-anchor="middle">${unit === "team" ? "plays in the season" : "plays in the career (log scale)"}</text>`;
+    s += U.map((d, i) => { const key = keyOf(d), h = hi.has(key), den = unit === "team" && d.posteam === "DEN"; return `<circle data-i="${i}" cx="${x(d.n_pairs).toFixed(1)}" cy="${y(Math.max(-ylim, Math.min(ylim, d.excess))).toFixed(1)}" r="${h ? 7 : 3.6}" fill="${h ? "var(--or)" : den ? "rgba(251,79,20,.7)" : "rgba(214,226,242,.55)"}" stroke="${h ? "#fff" : "none"}" stroke-width="1.5"/>`; }).join("");
+    U.forEach(d => { if (hi.has(keyOf(d))) { const cx = x(d.n_pairs), cy = y(Math.max(-ylim, Math.min(ylim, d.excess))); const right = cx < W * .7; s += `<text class="lbl halo" x="${cx + (right ? 11 : -11)}" y="${cy + 4}" text-anchor="${right ? "start" : "end"}">${keyOf(d)} ${sg(d.excess, 1)}</text>`; } });
+    funSvg.innerHTML = s;
+    funSvg.querySelectorAll("circle").forEach(c => { const d = U[+c.dataset.i]; c.onmousemove = e => showTip(e, `<b>${keyOf(d)}</b><br>Momentum index ${sg(d.excess, 2)} pts (${sg(d.z, 1)} SE)<br>Overall vs expected ${sg(d.level, 1)} pts<br>${d.n_pairs.toLocaleString()} play pairs${d.games ? `, ${d.games} starts` : ""}`); c.onmouseleave = hideTip; c.onclick = () => { const kk = keyOf(d); hi.has(kk) ? hi.delete(kk) : hi.add(kk); drawFun(); }; });
+  };
+  const renderPicks = () => { $("#pickChips").innerHTML = PICKS[unit].map(p => `<button class="chip" data-p="${p}" aria-pressed="${hi.has(p)}">${p}</button>`).join(""); $("#pickChips").querySelectorAll(".chip").forEach(b => b.onclick = () => { const p = b.dataset.p; hi.has(p) ? hi.delete(p) : hi.add(p); b.setAttribute("aria-pressed", hi.has(p)); drawFun(); }); $("#whoList").innerHTML = units().map(d => `<option value="${keyOf(d)}">`).join(""); };
+  chipRow($("#whoChips"), [["team", "Team-seasons"], ["qb", "Quarterbacks"]], "team", k => { unit = k; hi = new Set(k === "team" ? ["DEN 2025"] : ["E.Manning"]); setLede(); renderPicks(); drawFun(); });
+  $("#whoSearch").oninput = e => { const v = e.target.value.trim().toUpperCase(); const hit = units().find(d => keyOf(d).toUpperCase() === v); if (hit) { hi.add(keyOf(hit)); renderPicks(); drawFun(); } };
+  setLede(); renderPicks(); observe(funSvg, drawFun);
+
+  /* ---------------- Broncos ---------------- */
+  const B = D.broncos;
+  const den25 = D.team_seasons.find(d => d.posteam === "DEN" && d.season === 2025);
+  const rank = D.team_seasons.filter(d => d.excess > den25.excess).length + 1;
+  $("#denRank").textContent = `${rank} of ${D.team_seasons.length}`;
+  $("#denYoy").textContent = fx(D.close_persistence.yoy_corr, 2);
+  $("#denLede").innerHTML = `Since October 2025, Denver has won ${B.den_record[0]} of ${B.den_record[0] + B.den_record[1]} games decided by eight points or fewer; the only loss was the AFC title game. Close games are tighter than the spread suggests, so we scored each one with odds recalibrated on 26 seasons of close games: a team with Denver's spreads should win about <b>${B.den_expected_wins.toFixed(1)}</b>. Going ${B.den_record[0]}–${B.den_record[1]} or better happens in <b>1 of ${Math.round(B.sim_hist.reduce((a, c) => a + c, 0) / B.sim_hist.slice(B.den_record[0]).reduce((a, c) => a + c, 0)).toLocaleString()}</b> fair replays, and only two teams since 1999 have matched it.`;
+  const gamesEl = $("#games");
+  const opp = g => { const [, , a, h] = g.game_id.split("_"); return a === "DEN" ? "@" + h : "vs " + a; };
+  const renderGames = (res) => { gamesEl.innerHTML = B.den_games.map((g, i) => { const w = res ? res[i] : g.win; return `<div class="g ${w ? "w" : "l"}${res ? " flip" : ""}" style="transition-delay:${i * 35}ms" data-i="${i}"><div class="o">${opp(g)}</div><div class="m">${res ? (w ? "W" : "L") : (g.margin > 0 ? "W " : "L ") + Math.abs(g.margin)}</div><div class="p">${Math.round(g.wp_close * 100)}%</div></div>`; }).join(""); gamesEl.querySelectorAll(".g").forEach(el => { const g = B.den_games[+el.dataset.i]; el.onmousemove = e => showTip(e, `<b>${g.gameday} ${opp(g)}</b><br>Final margin ${sg(g.margin, 0)}<br>Spread ${sg(g.spread_for, 1)}, close-game win chance ${Math.round(g.wp_close * 100)}%`); el.onmouseleave = hideTip; }); };
+  renderGames(null);
+  let flips = 0, hits = 0;
+  $("#flipBtn").onclick = () => { const res = B.den_games.map(g => Math.random() < g.wp_close); flips++; const w = res.filter(Boolean).length; if (w >= B.den_record[0]) hits++; renderGames(null); requestAnimationFrame(() => renderGames(res)); $("#flipOut").innerHTML = `This replay: <b>${w}–${18 - w}</b>. ${flips} flip${flips > 1 ? "s" : ""}, ${hits} at ${B.den_record[0]}–${B.den_record[1]} or better.`; };
+  const sh = B.sim_hist, smx = Math.max(...sh);
+  $("#denHist").innerHTML = sh.map((c, i) => `<i class="${i >= B.den_record[0] ? "hit" : ""}" style="height:${Math.max(c / smx * 100, i >= B.den_record[0] ? 2 : 0)}%" title="${i} wins: ${(c / 2000).toFixed(2)}%"></i>`).join("");
+  const yr = d => d.slice(0, 4);
+  $("#lb").innerHTML = B.league_best18.slice(0, 6).map(r => `<tr class="${r.team === "DEN" ? "den" : ""}"><td>${r.team}</td><td class="small">${yr(r.start)}–${yr(r.end)}</td><td class="n">${r.best18}–${18 - r.best18}</td></tr>`).join("");
+
+  /* ---------------- breaks ---------------- */
+  const brSvg = $("#brSvg");
+  const drawBr = () => {
+    const W = brSvg.clientWidth, H = brSvg.clientHeight, m = { l: 112, r: 16, t: 26, b: 34 };
+    const rows = [["holdout_nfl", "NFL"], ["holdout_cfb", "College"]], kinds = [["none", "No break"], ["quarter_break", "Quarter break"], ["halftime", "Halftime"]];
+    const all = rows.flatMap(([k]) => kinds.map(([b]) => D.breaks[k][b])), lo = Math.min(...all.map(d => d.est - 1.96 * d.sd), 0) * 1.1, hi2 = Math.max(...all.map(d => d.est + 1.96 * d.sd)) * 1.1;
+    const x = v => m.l + (v - lo) / (hi2 - lo) * (W - m.l - m.r);
+    const rowH = (H - m.t - m.b) / 7;
+    let s = `<line x1="${x(0)}" x2="${x(0)}" y1="${m.t - 8}" y2="${H - m.b}" stroke="rgba(255,255,255,.45)"/>`;
+    rows.forEach(([k, name], r) => { const y0 = m.t + r * 3.6 * rowH; s += `<text class="lbl" x="4" y="${y0 + 2}">${name}</text>`; kinds.forEach(([b, lab], j) => { const d = D.breaks[k][b], yy = y0 + (j + .9) * rowH; s += `<text x="12" y="${yy + 4}">${lab}</text><line x1="${x(d.est - 1.96 * d.sd)}" x2="${x(d.est + 1.96 * d.sd)}" y1="${yy}" y2="${yy}" stroke="${k.includes("nfl") ? "var(--or)" : "var(--ice)"}" stroke-width="3" stroke-linecap="round"/><circle cx="${x(d.est)}" cy="${yy}" r="6" fill="${k.includes("nfl") ? "var(--or)" : "var(--ice)"}"/>`; }); });
+    [lo, 0, hi2].forEach(v => s += `<text x="${x(v)}" y="${H - 12}" text-anchor="middle">${sg(v, 2)}</text>`);
+    brSvg.innerHTML = s;
+  };
+  observe(brSvg, drawBr);
+  const bn = D.breaks.holdout_nfl, bc = D.breaks.holdout_cfb;
+  $("#breakGuide").innerHTML = `NFL carryover is no smaller after halftime (${sg(bn.halftime.est, 3)}) than with no break (${sg(bn.none.est, 3)}). Nothing drains. In college the halftime number flips below zero (${sg(bc.halftime.est, 3)}): teams that were hot before the half run cooler after it, which looks more like the other coach adjusting than a feeling fading.`;
+
+  /* ---------------- college ---------------- */
+  const C = D.tests.holdout_cfb;
+  const cf = ["P2_sr_sum", "P2_epa_oe", "P1", "P2"].filter(k => C[k]).map(k => C[k]);
+  $("#cfbCards").innerHTML = cf.map(card).join("");
+  $("#cfbLede").innerHTML = `The video guessed amateurs might show momentum the pros have trained out. In 2019–2021 FBS games, a college offense's drive does carry a little into its next drive in the same half: ${sg(C.P2_sr_sum.est, 3)} extra successful plays next drive for every extra successful play on this one, and ${sg(C.P2_epa_oe.est, 3)} EPA per EPA. The successful-plays version replicated from 2014–2018, though both are secondary yardsticks; the pre-registered points version (${sg(C.P2.est, 3)}) didn't clear the bar. It resets at halftime. Even taken at face value it's tiny: a drive 2 successful plays better than expected buys about ${(2 * C.P2_sr_sum.est).toFixed(2)} on the next one.`;
+
+  /* nav highlight */
+  const secs = [...document.querySelectorAll("section[id]")], links = [...document.querySelectorAll(".nav a:not(.brand)")];
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id)); }), { rootMargin: "-40% 0px -55% 0px" });
+  secs.forEach(s => io.observe(s));
+}).catch(err => { document.getElementById("lede").textContent = "The data file didn't load: " + err.message; });
+}
+</script>
+</body>
+</html>
