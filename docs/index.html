@@ -179,6 +179,21 @@ summary{cursor:pointer;font:700 17px "Barlow Condensed"}
 .cp p{margin:0;font-size:15px;color:#e4ebf4;max-width:84ch}
 .cp i{color:var(--ink)}
 @media(max-width:600px){.cp{grid-template-columns:minmax(0,1fr);gap:4px}}
+.quiz{margin-top:22px}
+.qrow{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;align-items:center;margin:8px 0;padding:6px;border-radius:10px;border:2px solid transparent;transition:border-color .3s,background .3s}
+.qrow.real{border-color:var(--or);background:rgba(251,79,20,.08)}
+.qrow .nm{font:800 22px "Barlow Condensed";color:var(--mute);text-align:center}
+.qrow.real .nm{color:var(--or)}
+.qtiles{display:flex;gap:4px}
+.qt{flex:1;height:34px;border-radius:6px;border:1px solid rgba(255,255,255,.15);transition:transform .25s}
+.qt.gap{flex:0 0 2px;background:rgba(255,255,255,.4);border:0;border-radius:0}
+.qrow:hover .qt{transform:translateY(-2px)}
+.ava{width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:8px;border:2px solid var(--or)}
+.photo{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid var(--or);box-shadow:0 0 0 8px rgba(251,79,20,.15)}
+.verdict{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.verdict .stat .v{font-size:26px}
+@media(max-width:860px){.verdict{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.verdict{grid-template-columns:minmax(0,1fr)}.qrow{grid-template-columns:30px minmax(0,1fr)}}
 footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1px solid var(--line)}
 @media(max-width:860px){.cointop{grid-template-columns:minmax(0,1fr)!important}.grid2,.eq{grid-template-columns:minmax(0,1fr)}.defs{grid-template-columns:minmax(0,1fr)}.map{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.tile{font-size:0}.wfrow{grid-template-columns:minmax(0,1fr) 60px}.wfrow .track{grid-column:1/-1;grid-row:2}.games{grid-template-columns:repeat(3,minmax(0,1fr))}.readout,.score{grid-template-columns:minmax(0,1fr)}.map{grid-template-columns:minmax(0,1fr)}.lane .name{width:40px;font-size:15px}.tiles{left:42px}.try{grid-template-columns:minmax(0,1fr) 64px}.try svg{grid-column:1/-1;grid-row:2}}
@@ -188,28 +203,33 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <body>
 <nav class="nav"><div class="wrap">
 <a class="brand" href="#top">Momentum <b>Lab</b></a>
-<a href="#define">1 Coin flip</a><a href="#shuffle">2 Shuffle</a><a href="#who">3 Streaky?</a><a href="#broncos">4 Broncos</a><a href="#impostors">5 Impostors</a><a href="#test">6 Can we see it</a><a href="#every">7 Every test</a><a href="#pauses">8 Pauses</a><a href="#college">9 College</a><a href="#method">Method</a><a href="#about">About</a>
+<a href="#define">1 Coin flip</a><a href="#shuffle">2 Shuffle</a><a href="#who">3 Streaky?</a><a href="#broncos">4 Broncos</a><a href="#impostors">5 Impostors</a><a href="#test">6 Can we see it</a><a href="#every">7 Every test</a><a href="#pauses">8 Pauses</a><a href="#college">9 College</a><a href="#verdict">Verdict</a><a href="#method">Method</a><a href="#about">About</a>
 </div></nav>
 
 <section class="band" id="top"><div class="wrap">
-<div class="by">By <a href="https://www.linkedin.com/in/raahul-n" style="color:var(--ink);font-weight:600;text-decoration-color:var(--or);text-underline-offset:3px">Raahul Narayanan, MPH</a> · An entry for The Side Quest's "Can you find momentum?" challenge</div>
+<div class="by"><img class="ava" src="raahul.jpg" alt="">By <a href="https://www.linkedin.com/in/raahul-n" style="color:var(--ink);font-weight:600;text-decoration-color:var(--or);text-underline-offset:3px">Raahul Narayanan, MPH</a> · An entry for The Side Quest's "Can you find momentum?" challenge</div>
 <h1>The momentum you feel isn't in the next play</h1>
-<p class="lede">I'm a Broncos fan, so one-score games and "momentum swings" are basically my weekly cardio. I tested 1.7 million NFL and college plays to find out if momentum is real. Short version: a good play does make the next one easier, because it leaves you a better down, distance and spot. That part is real. The part we feel, success feeding itself beyond the spot, doesn't show up. Football behaves like a weighted coin: the weight changes, but the coin doesn't remember.</p>
+<p class="lede">I'm a Broncos fan, so one-score games and "momentum swings" are my weekly cardio. I tested 1.7 million NFL and college plays to see if momentum is real. Short version: a good play does make the next one easier, by leaving a better down and spot. The part we feel, success feeding itself beyond that, doesn't show up. Don't take my word for it yet. Try this first.</p>
+<div class="board quiz" id="quiz"><div class="row" style="justify-content:space-between;align-items:baseline"><h3 style="margin:0">Quick test: which one is the real game?</h3><span class="small" id="qzScore">You: 0 of 0</span></div>
+<p class="small" id="qzSub" style="margin:6px 0 4px"></p><div id="qzRows"></div>
+<div class="row" style="margin-top:8px"><button class="btn" id="qzA">A is the real game</button><button class="btn" id="qzB">B is the real game</button><button class="btn ghost" id="qzNext">New round</button></div>
+<p class="guide" id="qzOut">Orange drives beat expectations, blue fell short. One row is the real order, the other is the same drives shuffled within each half. If momentum lived in the order, the real game would jump out.</p></div>
 <div class="score">
 <div><div class="k">Plays tested, NFL 1999–2026 and college 2014–2021</div><div class="v dig">1.7M</div><div class="s">every snap, scored against its situation</div></div>
 <div><div class="k">Left for felt momentum, NFL 2019–25, locked in advance</div><div class="v dig or" id="hOrder">–</div><div class="s" id="hOrderS">points of next-play success</div></div>
 <div><div class="k">Smallest momentum we'd catch most of the time</div><div class="v dig">0.5</div><div class="s">planted in fake seasons, found 80% of the time</div></div>
 </div>
-<div class="map">
-<a href="#define"><div class="t"><i>1</i>The coin flip</div><div class="q">What would momentum have to look like in the data?</div></a>
-<a href="#shuffle"><div class="t"><i>2</i>Shuffle a momentum shift</div><div class="q">Do two famous swings look special next to random orders?</div></a>
-<a href="#who"><div class="t"><i>3</i>Streaky QBs and teams</div><div class="q">Does anyone's coin remember, season after season?</div></a>
-<a href="#broncos"><div class="t"><i>4</i>The Broncos' 17–1</div><div class="q">Is Denver's close-game magic momentum?</div></a>
+<h3 style="margin:26px 0 0">What's inside</h3>
+<div class="map" style="margin-top:10px">
+<a href="#define"><div class="t"><i>1</i>The coin flip</div><div class="q">What would momentum even look like?</div></a>
+<a href="#shuffle"><div class="t"><i>2</i>Shuffle a momentum shift</div><div class="q">The Super Bowl blackout and Denver's 33-point quarter, shuffled.</div></a>
+<a href="#who"><div class="t"><i>3</i>Streaky QBs and teams</div><div class="q">Does Romo, Purdy or your QB play with momentum?</div></a>
+<a href="#broncos"><div class="t"><i>4</i>The Broncos' 17–1</div><div class="q">Magic, skill or momentum?</div></a>
 <a href="#impostors"><div class="t"><i>5</i>Unmask the impostors</div><div class="q">If not felt momentum, then what?</div></a>
 <a href="#test"><div class="t"><i>6</i>Can we even see it?</div><div class="q">If momentum were there, would this test catch it?</div></a>
 <a href="#every"><div class="t"><i>7</i>Look everywhere</div><div class="q">Drives, defenses, fumbles, big moments, the crowd.</div></a>
 <a href="#pauses"><div class="t"><i>8</i>Forced pauses</div><div class="q">Do quarter breaks, timeouts or a blackout drain it?</div></a>
-<a href="#college"><div class="t"><i>9</i>College</div><div class="q">Do younger players show what the pros don't?</div></a>
+<a href="#college"><div class="t"><i>9</i>College</div><div class="q">Do younger players show it?</div></a>
 </div>
 <div class="key"><b>How to read every chart</b>
 <span><i style="width:2px;height:18px;background:rgba(255,255,255,.6)"></i>The line at 0 means the order of plays didn't matter</span>
@@ -224,10 +244,9 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <p class="doing"><b>The question:</b> when a good play makes the next one easier, is that momentum, and what exactly are we testing?</p>
 <div class="board" style="margin-top:16px"><div class="cointop" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:center">
 <div class="cointxt"><h3>The coin flip is the whole idea</h3>
-<p>A fair coin doesn't remember. After five heads, the next flip is still 50/50. Expecting tails because it's "due" is the gambler's fallacy; expecting heads because the coin is "hot" is the hot-hand fallacy. Momentum is the claim that football isn't like that.</p>
-<p>Football is a weighted coin, and a good flip can change the weight. Gain 9 yards on 2nd-and-10 and your next flip is a 1st-and-10, a heavier coin for anyone. Call that <b>field momentum</b>. It's real, it's big, and it's just the rules of football: the next play is easier because of where it starts.</p>
-<p>What fans mean is more than that. <b>Felt momentum</b> is the idea that the last flip helps <i>beyond</i> the spot it left you, because the team is rolling. That's the version people argue about, and the one we test: give every snap its real weight, then ask whether the coin remembers anything else.</p>
-<p style="margin:0"><b>Felt momentum is about order, not amount.</b> Shuffle the same flips and the total never changes, only the sequence. If the real order beats the shuffled ones, the coin remembers.</p></div>
+<p>A fair coin doesn't remember. After five heads, the next flip is still 50/50. Betting on tails because it's "due" is the gambler's fallacy; betting on heads because it's "hot" is the hot-hand fallacy.</p>
+<p>Football is a weighted coin, and a good flip can change the weight: gain 9 yards on 2nd-and-10 and your next flip is an easier 1st-and-10. That's <b>field momentum</b>. It's real, and it's just the rules of football.</p>
+<p style="margin:0"><b>Felt momentum</b> is the claim on top of that: the last flip helps <i>beyond</i> the spot it left you, because the team is rolling. It's about order, not amount. Shuffle the same flips and the total never changes, so if the real order beats the shuffles, the coin remembers.</p></div>
 <div class="coins" aria-label="The same six heads in two orders">
 <div class="coinrow"><span class="lab">Real order</span><span class="coin h">H</span><span class="coin h">H</span><span class="coin h">H</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin t">T</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span></div>
 <div class="coinrow"><span class="lab">Shuffled</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span></div>
@@ -265,7 +284,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div class="kick">Chapter 3 · Streaky QBs and teams</div>
 <h2>Does any quarterback's coin remember? A few look like it. Most are luck</h2>
 <p class="doing"><b>The question:</b> forget the league for a second. Does any one quarterback, or any one team-season, play like their coin remembers? <b>Try it:</b> hover the dots, tap the names, or search a team and year.</p>
-<p class="small" style="margin:-8px 0 16px;max-width:78ch"><b style="color:var(--ink)">How the momentum index works:</b> take one QB's starts (or one team-season). Measure how much the next play beat expectations after a success, minus after a failure. Then do the same with that QB's own plays shuffled into random order, 300 times, and subtract. Above 0 means streakier than his own plays in random order; below 0 means he bounces back more than chance, a steady coin. Exploratory: not part of the locked tests.</p>
+<p class="small" style="margin:-8px 0 16px;max-width:78ch"><b style="color:var(--ink)">How the index works:</b> for one quarterback (or team-season), how much more the next play beats expectations after a success than after a failure, compared with 300 shuffles of his own plays. Above 0: streakier than his own random order. Below 0: bounces back more than chance. Exploratory, not one of the locked tests.</p>
 <div class="grid2">
 <div class="board" style="grid-column:1/-1">
 <div class="row" style="margin-bottom:10px;justify-content:space-between">
@@ -398,9 +417,22 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div class="plain"><h3>In plain English</h3><p>College is the closest thing to a yes, and it's tiny. Play to play it actually runs slightly the other way, which I think is messy ball spots, not anti-momentum.</p></div>
 </div></section>
 
-<section class="band" id="method"><div class="wrap">
-<div class="kick">Method</div>
-<h2>How it works, in six steps</h2>
+<section class="band" id="verdict"><div class="wrap">
+<div class="kick">The final whistle</div>
+<h2>So, can you find momentum? The kind you see, yes. The kind you feel, no</h2>
+<p class="lede">A good play really does make the next one easier, because of the down and spot it leaves you. Everything beyond that, the rolling, the swing, the "we've got it now," didn't show up anywhere I looked, in 1.7 million plays, nine kinds of tests and two famous games I'll never forget.</p>
+<div class="verdict">
+<div class="stat"><div class="k">Field momentum</div><div class="v or">3.9 of 4.3</div><div class="small">points of "success follows success" explained by the down and spot</div></div>
+<div class="stat"><div class="k">Felt momentum</div><div class="v">−0.02</div><div class="small">points, NFL 2019–25, when we'd catch 0.5</div></div>
+<div class="stat"><div class="k">Streaky QBs</div><div class="v ice">8 of 96</div><div class="small">outside chance, where luck gives 5; Romo streaky, Purdy and Herbert steady</div></div>
+<div class="stat"><div class="k">The Broncos</div><div class="v or">17–1</div><div class="small">a good team on a 1-in-3,300 run, with a dead-average momentum index</div></div>
+</div>
+<p style="max-width:72ch">I'll still yell "we've got momentum" at my TV every Sunday. I just know what I'm cheering for now: a good spot, a good day, and a coin that doesn't remember.</p>
+<p style="margin:16px 0 0"><a class="btn" href="#method" style="display:inline-block;text-decoration:none">How I quantified it: the method and formulas</a></p>
+</div></section>
+<section class="band alt" id="method"><div class="wrap">
+<div class="kick">For the stats nerds</div>
+<h2>How I quantified it</h2>
 <p class="doing">Each of the challenge's criteria became a step, using the method from the paper that solved the same problem somewhere else.</p>
 <div class="board" style="margin-bottom:16px"><h3>The science behind it</h3><p class="small">How physics, psychology and statistics each define momentum, and how this study turns them into one testable number.</p><div class="defs">
 <div class="def"><h3>In physics</h3><div class="f">p = m × v</div><p>Mass times velocity. A moving object keeps moving until a force stops it.</p><div class="c">Newton, 1687</div></div>
@@ -442,8 +474,8 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 </ul></details>
 </div></section>
 
-<section class="band alt" id="about"><div class="wrap me">
-<div class="mono" aria-hidden="true">RN</div>
+<section class="band" id="about"><div class="wrap me">
+<img class="photo" src="raahul.jpg" alt="Raahul Narayanan">
 <div>
 <h2 style="margin-bottom:6px">About me</h2>
 <p>I'm Raahul Narayanan, MPH, a data analyst at the University of Pennsylvania with a background in biostatistics research from the University of Washington and Penn. I love numbers and I love sports, and momentum is where the two have always argued in my head.</p>
@@ -494,6 +526,27 @@ fetch("data.json").then(r => r.json()).then(D => {
   const grow = () => steps.forEach(([, , a, b, col], i) => { const s = $("#seg" + i); s.style.background = col; s.style.left = X(Math.min(a, b)) + "%"; s.style.width = Math.max(0, X(Math.max(a, b)) - X(Math.min(a, b))) + "%"; });
   const wio = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { grow(); wio.disconnect(); } }, { threshold: .3 });
   wio.observe($("#wf")); setTimeout(grow, 2500);
+
+  /* ---------- hero quiz ---------- */
+  {
+    const QG = [{ g: D.giants, f: "DEN", t: "Denver's drives against the Giants, Oct 19 2025, the 33-point 4th quarter" }, { g: D.sb47, f: "SF", t: "The 49ers' drives in Super Bowl XLVII, the blackout game" }];
+    let round = 0, realRow = 0, answered = false, right = 0, played = 0;
+    const tileCol = v => { const a = Math.min(1, Math.abs(v) / 5); return v >= 0 ? `rgba(251,79,20,${.3 + .7 * a})` : `rgba(59,143,217,${.3 + .7 * a})`; };
+    const draw = () => {
+      const Q = QG[round % 2], ds = Q.g.drives.filter(d => d.posteam === Q.f), real = ds.map(d => d.poe), half = ds.map(d => d.qtr <= 2 ? 1 : 2);
+      const shuf = real.slice(); [1, 2].forEach(h => { const idx = half.map((x, i) => x === h ? i : -1).filter(i => i >= 0); const v = idx.map(i => real[i]); for (let i = v.length - 1; i > 0; i--) { const k = Math.floor(Math.random() * (i + 1)); [v[i], v[k]] = [v[k], v[i]]; } idx.forEach((i, t) => shuf[i] = v[t]); });
+      realRow = Math.random() < .5 ? 0 : 1; answered = false;
+      const rows = realRow === 0 ? [real, shuf] : [shuf, real], h2 = half.indexOf(2);
+      $("#qzSub").textContent = Q.t + ". First half, then second half.";
+      $("#qzRows").innerHTML = rows.map((r, k) => `<div class="qrow" id="qr${k}"><div class="nm">${"AB"[k]}</div><div class="qtiles">${r.map((v, i) => (i === h2 ? '<i class="qt gap"></i>' : "") + `<i class="qt" style="background:${tileCol(v)}" title="${sg(v, 1)} pts vs expected"></i>`).join("")}</div></div>`).join("");
+      $("#qzOut").innerHTML = "Orange drives beat expectations, blue fell short. One row is the real order, the other is the same drives shuffled within each half. If momentum lived in the order, the real game would jump out.";
+    };
+    const pick = k => { if (answered) return; answered = true; played++; if (k === realRow) right++; $("#qr" + realRow).classList.add("real"); $("#qr" + realRow + " .nm").textContent = "Real";
+      $("#qzScore").textContent = `You: ${right} of ${played}`;
+      $("#qzOut").innerHTML = (k === realRow ? "<b>Nice call.</b> " : "<b>That one was the shuffle.</b> ") + "Play a few more rounds. If momentum lived in the order, you'd spot the real game every time. Same drives, same total: only the order changed, and the order is the one thing momentum claims matters."; };
+    $("#qzA").onclick = () => pick(0); $("#qzB").onclick = () => pick(1); $("#qzNext").onclick = () => { round++; draw(); };
+    draw();
+  }
 
   /* ---------- chapter 3 shuffle ---------- */
   const GAMES = { giants: { g: D.giants, focus: "DEN", title: "Giants at Broncos, Oct 19 2025" }, sb47: { g: D.sb47, focus: "SF", title: "Super Bowl XLVII, Feb 3 2013" } };
