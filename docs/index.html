@@ -188,11 +188,11 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 
 <section class="band" id="top"><div class="wrap">
 <div class="by">By <a href="https://www.linkedin.com/in/raahul-n" style="color:var(--ink);font-weight:600;text-decoration-color:var(--or);text-underline-offset:3px">Raahul Narayanan, MPH</a> · An entry for The Side Quest's "Can you find momentum?" challenge</div>
-<h1>Momentum isn't in the next play</h1>
-<p class="lede">I'm a Broncos fan, so one-score games and "momentum swings" are basically my weekly cardio. I tested 1.7 million NFL and college plays to find out if momentum is real. The short version: football behaves like a weighted coin. The weight changes with the down, the score and who's better that day, but the coin doesn't remember its last flip.</p>
+<h1>The momentum you feel isn't in the next play</h1>
+<p class="lede">I'm a Broncos fan, so one-score games and "momentum swings" are basically my weekly cardio. I tested 1.7 million NFL and college plays to find out if momentum is real. Short version: a good play does make the next one easier, because it leaves you a better down, distance and spot. That part is real. The part we feel, success feeding itself beyond the spot, doesn't show up. Football behaves like a weighted coin: the weight changes, but the coin doesn't remember.</p>
 <div class="score">
 <div><div class="k">Plays tested, NFL 1999–2026 and college 2014–2021</div><div class="v dig">1.7M</div><div class="s">every snap, scored against its situation</div></div>
-<div><div class="k">Left for momentum, NFL 2019–25, locked in advance</div><div class="v dig or" id="hOrder">–</div><div class="s" id="hOrderS">points of next-play success</div></div>
+<div><div class="k">Left for felt momentum, NFL 2019–25, locked in advance</div><div class="v dig or" id="hOrder">–</div><div class="s" id="hOrderS">points of next-play success</div></div>
 <div><div class="k">Smallest momentum we'd catch most of the time</div><div class="v dig">0.5</div><div class="s">planted in fake seasons, found 80% of the time</div></div>
 </div>
 <div class="map">
@@ -200,7 +200,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <a href="#shuffle"><div class="t"><i>2</i>Shuffle a momentum shift</div><div class="q">Do two famous swings look special next to random orders?</div></a>
 <a href="#who"><div class="t"><i>3</i>Streaky QBs and teams</div><div class="q">Does anyone's coin remember, season after season?</div></a>
 <a href="#broncos"><div class="t"><i>4</i>The Broncos' 17–1</div><div class="q">Is Denver's close-game magic momentum?</div></a>
-<a href="#impostors"><div class="t"><i>5</i>Unmask the impostors</div><div class="q">If not momentum, then what?</div></a>
+<a href="#impostors"><div class="t"><i>5</i>Unmask the impostors</div><div class="q">If not felt momentum, then what?</div></a>
 <a href="#test"><div class="t"><i>6</i>Can we even see it?</div><div class="q">If momentum were there, would this test catch it?</div></a>
 <a href="#every"><div class="t"><i>7</i>Look everywhere</div><div class="q">Drives, defenses, fumbles, big moments, the crowd.</div></a>
 <a href="#pauses"><div class="t"><i>8</i>Forced pauses</div><div class="q">Do quarter breaks, timeouts or a blackout drain it?</div></a>
@@ -215,19 +215,20 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 
 <section class="band alt" id="define"><div class="wrap">
 <div class="kick">Chapter 1 · The coin flip</div>
-<h2>Momentum means order: this play went well because the last one did</h2>
-<p class="doing"><b>The question:</b> what would momentum have to look like in the data? One idea from intro stats is enough.</p>
+<h2>Two things get called momentum. Only one is a mystery</h2>
+<p class="doing"><b>The question:</b> when a good play makes the next one easier, is that momentum, and what exactly are we testing?</p>
 <div class="board" style="margin-top:16px"><div class="cointop" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:center">
 <div class="cointxt"><h3>The coin flip is the whole idea</h3>
-<p>A fair coin doesn't remember. After five heads, the next flip is still 50/50. Expecting tails because it's "due" is the gambler's fallacy; expecting heads because the coin is "hot" is the hot-hand fallacy. Momentum is the claim that football isn't like that, that a success makes the next snap more likely to work.</p>
-<p>Football is a weighted coin, though. A 3rd-and-1 is weighted toward success, a 3rd-and-15 against it, and a better team flips a heavier coin all day. So the test is: give every snap its own weight, then ask whether the coin remembers.</p>
-<p style="margin:0"><b>Momentum is about order, not amount.</b> Shuffle the same flips and the total never changes, only the sequence. If the real order beats the shuffled ones, the coin remembers.</p></div>
+<p>A fair coin doesn't remember. After five heads, the next flip is still 50/50. Expecting tails because it's "due" is the gambler's fallacy; expecting heads because the coin is "hot" is the hot-hand fallacy. Momentum is the claim that football isn't like that.</p>
+<p>Football is a weighted coin, and a good flip can change the weight. Gain 9 yards on 2nd-and-10 and your next flip is a 1st-and-10, a heavier coin for anyone. Call that <b>field momentum</b>. It's real, it's big, and it's just the rules of football: the next play is easier because of where it starts.</p>
+<p>What fans mean is more than that. <b>Felt momentum</b> is the idea that the last flip helps <i>beyond</i> the spot it left you, because the team is rolling. That's the version people argue about, and the one we test: give every snap its real weight, then ask whether the coin remembers anything else.</p>
+<p style="margin:0"><b>Felt momentum is about order, not amount.</b> Shuffle the same flips and the total never changes, only the sequence. If the real order beats the shuffled ones, the coin remembers.</p></div>
 <div class="coins" aria-label="The same six heads in two orders">
 <div class="coinrow"><span class="lab">Real order</span><span class="coin h">H</span><span class="coin h">H</span><span class="coin h">H</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin t">T</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span></div>
 <div class="coinrow"><span class="lab">Shuffled</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span></div>
-<p class="small" style="margin:4px 0 0">Six heads either way. The first row looks like a hot start; the second looks like nothing. Momentum is the claim that the first row happened <i>because</i> of its order.</p>
+<p class="small" style="margin:4px 0 0">Six heads either way. The first row looks like a hot start; the second looks like nothing. Felt momentum is the claim that the first row happened <i>because</i> of its order.</p>
 </div></div></div>
-<div class="plain"><h3>In plain English</h3><p>Momentum is one specific claim: the last play changes the odds of the next one. When Bo Nix told reporters "we found some momentum" after the Giants comeback, that's the claim. Everything after this chapter is a test of it.</p></div>
+<div class="plain"><h3>In plain English</h3><p>Two things get called momentum. Field momentum is a good play leaving you a better down and spot, and it's real. Felt momentum is the fire on the sideline, the idea that success keeps feeding itself beyond the spot. I can't put a feeling in a spreadsheet, and I'm not saying players don't feel it. What I can measure is whether that feeling changes what happens next. When Bo Nix said "we found some momentum" after the Giants comeback, that's the claim on trial.</p></div>
 </div></section>
 
 <section class="band" id="shuffle"><div class="wrap">
@@ -303,23 +304,22 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 
 <section class="band alt" id="impostors"><div class="wrap">
 <div class="kick">Chapter 5 · Unmask the impostors</div>
-<h2>A good play does help the next one, by 4.3 points. None of it is momentum</h2>
+<h2>A good play helps the next one by 4.3 points, and the field explains all of it</h2>
 <p class="doing"><b>The question:</b> a good play makes the next one 4.3 points likelier to work across 241,775 NFL plays from 2019–2025, so how much of that is actually momentum?</p>
 <div class="board">
 <div class="wf" id="wf"></div>
 <p class="small" style="margin:14px 0 0">Percentage points of next-play success. The orange dot is the only piece momentum can claim; its line is the 95% range from 2,000 shuffles. Same answer in 1999–2018 (<span id="disc"></span>); 2026 so far reads <span id="fresh"></span>, on a much smaller sample.</p>
 </div>
 <div class="imps">
-<div class="imp"><h3>The chain</h3><p>A good play earns a first down and better field. The next snap is easier because of where it starts.</p></div>
+<div class="imp"><h3>Field momentum</h3><p>A good play earns a first down and better field. The next snap is easier because of where it starts.</p></div>
 <div class="imp"><h3>The rubber band</h3><p>Trailing teams throw, leading teams sit on the ball. Big over a game, tiny from one play to the next.</p></div>
 <div class="imp"><h3>A good day</h3><p>One team is simply better this half. Its good plays cluster because all its plays are good.</p></div>
 <div class="imp"><h3>Randomness</h3><p>Coins streak more than people expect. Chapter 2 showed it on two real momentum shifts.</p></div>
 <div class="imp"><h3>The sideline</h3><p>Coaches really do change calls after big moments, as the video showed. That's momentum in decisions, not in results.</p></div>
 </div>
-<div class="plain"><h3>In plain English</h3><p>In public health we'd call this confounding. The crude association looks big: the next play works 46.3% of the time after a success and 42.0% after a failure. Adjust for the confounders (the first down it earned, the score, who's better that half) and it drops to −0.02. Real example: the 2025–26 Broncos average −0.31 points over expected on 1st-quarter drives and +0.23 on 4th-quarter drives. That's a team that gets better as games go on, a level that shifts, not one play feeding the next.</p></div>
-<div class="board" style="margin-top:16px"><h3>The obvious objection: isn't one play setting up the next just momentum?</h3>
-<p style="max-width:80ch;font-size:15.5px;color:#e4ebf4">It's real, and it's the biggest piece here: 3.9 of the 4.3 points. But it's football, not momentum. A 9-yard gain turns 2nd-and-10 into 1st-and-10, and 1st-and-10 is easier for anyone, no matter how they got there. Momentum is the claim that the last play helps <i>beyond</i> the spot it leaves you in. That's why we never shuffle raw results. Every play keeps its real down, distance, field and score, and we only shuffle how much it beat or missed what that situation predicted.</p>
-<p style="max-width:80ch;font-size:15.5px;color:#e4ebf4;margin:0">In coin terms: a good flip can hand you a heavier coin for the next flip. That's the chain, and we count it out loud in the chart above. Momentum would mean the next coin <i>also</i> remembers. Two tests don't lean on the chain at all: drive to drive, where every possession starts fresh with field position priced in, and offense to defense, where it's different players on the field. Neither shows carryover (chapter 7).</p></div>
+<div class="plain"><h3>In plain English</h3><p>In public health we'd call this confounding. The crude association looks big: the next play works 46.3% of the time after a success and 42.0% after a failure. Adjust for the confounders (the field momentum it earned, the score, who's better that half) and it drops to −0.02. Real example: the 2025–26 Broncos average −0.31 points over expected on 1st-quarter drives and +0.23 on 4th-quarter drives. That's a team that gets better as games go on, a level that shifts, not one play feeding the next.</p></div>
+<div class="board" style="margin-top:16px"><h3>So isn't field momentum just momentum?</h3>
+<p style="max-width:80ch;font-size:15.5px;color:#e4ebf4;margin:0">If you define momentum as "a good play makes the next one easier," then yes: it exists, it's 3.9 points, and every bit of it is where the ball is. That's why the shuffle never moves raw results. Every play keeps its real down, distance, field and score, and only its beat-or-miss moves. Felt momentum would be something on top of that, and two tests check it without leaning on field position at all: drive to drive, where every possession starts fresh, and offense to defense, where it's different players on the field. Neither shows carryover (chapter 7).</p></div>
 </div></section>
 
 <section class="band" id="test"><div class="wrap grid2">
@@ -472,10 +472,10 @@ fetch("data.json").then(r => r.json()).then(D => {
   $("#fresh").textContent = sg(D.waterfall.fresh_nfl.order, 2);
   const steps = [
     ["After a good play, the next one is more likely to work", `${W0.after_success.toFixed(1)}% vs ${W0.after_fail.toFixed(1)}% next-play success`, 0, dec.raw, "#e9eef6", sg(dec.raw)],
-    ["The chain", "down, distance, field and play type", dec.raw - dec.down_distance, dec.raw, "#5a7396", sg(-dec.down_distance)],
+    ["Field momentum", "the down, distance and spot a good play leaves you", dec.raw - dec.down_distance, dec.raw, "#5a7396", sg(-dec.down_distance)],
     ["The rubber band", "score, clock and team strength", dec.raw - dec.down_distance - dec.score_clock_strength, dec.raw - dec.down_distance, "#7d8fab", sg(-dec.score_clock_strength, 2)],
     ["A good day", "who was better that half", dec.order, dec.raw - dec.down_distance - dec.score_clock_strength, "#3b8fd9", sg(-dec.good_half, 2)],
-    ["Left for momentum", "the order of plays", dec.order, dec.order, "var(--or)", sg(dec.order, 2)]];
+    ["Left for felt momentum", "the order of plays", dec.order, dec.order, "var(--or)", sg(dec.order, 2)]];
   const lo = Math.min(0, ci[0]) - 0.35, hi = dec.raw + 0.25, X = v => (v - lo) / (hi - lo) * 100;
   $("#wf").innerHTML = steps.map(([lab, sub, , , , val], i) => `<div class="wfrow"><div class="lab">${lab}<small>${sub}</small></div><div class="track"><div class="zero" style="left:${X(0)}%"></div><div class="seg" id="seg${i}" style="left:${X(0)}%;width:0"></div>${i === 4 ? `<div class="whisk" style="left:${X(ci[0])}%;width:${X(ci[1]) - X(ci[0])}%"></div><div class="dot" style="left:${X(dec.order)}%"></div>` : ""}</div><div class="val" style="${i === 4 ? "color:var(--or)" : ""}">${val}</div></div>`).join("");
   const grow = () => steps.forEach(([, , a, b, col], i) => { const s = $("#seg" + i); s.style.background = col; s.style.left = X(Math.min(a, b)) + "%"; s.style.width = Math.max(0, X(Math.max(a, b)) - X(Math.min(a, b))) + "%"; });
