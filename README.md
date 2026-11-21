@@ -1,6 +1,6 @@
 # Can you find momentum?
 
-An entry for The Side Quest's momentum challenge.
+An entry for The Side Quest's momentum challenge, by Raahul Narayanan, MPH.
 
 **Answer.** We tested 1.7 million NFL and college plays with every control the challenge asked for. In the NFL, momentum isn't in the next play or the next drive. A successful play is followed by a successful play 4.3 percentage points more often than a failed one (2019–2025, tested only after the rules were committed). The situation it leaves you in explains 3.9 points, who was better that half explains 0.45, and what's left for momentum is **−0.02 (95% range −0.41 to +0.37)**. Our test catches planted momentum of 0.5 points 80% of the time, so this is a measured zero, not a blind spot.
 
@@ -19,6 +19,9 @@ An entry for The Side Quest's momentum challenge.
 - **College is the one place something shows up, and it's tiny.** Drives carry slightly into the same offense's next drive within a half (+0.015 successful plays per extra successful play, p .002, replicated from 2014–2018 on this secondary yardstick), and it flips negative across halftime, which looks like coaching adjustments more than a feeling. College play-to-play runs slightly *anti*-momentum, which may be ball-spot recording error.
 - **No team or quarterback plays with momentum.** 6.3% of 893 team-seasons fall outside the chance funnel (5% expected), and a team's index predicts next year's at r = 0.10.
 - **The Broncos are 17–1 in one-score games since October 2025.** With close-game-calibrated odds they'd expect about 10 wins; 17–1 or better happens in 1 of about 3,300 fair replays, matched since 1999 only by the 2002–04 Patriots and the 2023–25 Chiefs. Close-game luck has a year-to-year correlation of −0.003, and the 2025 Broncos' in-game momentum index ranks 434th of 893, dead average.
+
+- **We tried to break it** (`src/stress.py`, run after the locked tests, all 28 NFL seasons): bare-bones controls with a whole-game shuffle (−0.06), EPA instead of success, live games only, streaks of 2 and 3, after big plays, passes vs runs. None move off zero. Splitting the 4.3 points: down/distance/field/play type 3.87, score/clock/team strength 0.03, better that half 0.45, order −0.02.
+- **Forced pauses don't drain anything.** Within a drive, carryover is +0.07 pts with no pause, −0.36 across a clock-forced quarter break and +0.18 across a defensive timeout, all noise. After two straight successes, a defensive timeout is followed by a play 1.3 pts below expectation (95% range −4.2 to +1.9, 930 timeouts).
 
 Interactive version: `docs/index.html` (serve the folder; it reads `docs/data.json`).
 
@@ -49,6 +52,7 @@ Runtime is about 25 minutes on a laptop. Results land in `results/`, figures in 
 | `src/analysis.py` | Every hypothesis test |
 | `src/run_confirmatory.py` | Runs one league × split, writes `results/*.json` |
 | `src/simulate.py` | Planted-momentum validation |
+| `src/stress.py` | Post-hoc robustness, decomposition, quarter-break and timeout pauses |
 | `src/exploratory.py` | Team and QB momentum index, Broncos close games, game timelines |
 | `src/build_page_data.py` | Builds `docs/data.json` from results for the interactive page |
 

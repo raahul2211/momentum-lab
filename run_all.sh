@@ -19,5 +19,6 @@ python src/models.py cfb
 python -c "import sys; sys.path.insert(0,'src'); import pandas as pd; from analysis import prep_plays; from simulate import run; p=pd.read_parquet('data/clean/nfl_plays_model.parquet'); run(prep_plays(p, list(range(2009,2019))), n_sims=30, n_perm=150).to_parquet('data/clean/sim_results.parquet')"
 for s in "nfl discovery" "nfl holdout" "nfl fresh" "cfb discovery" "cfb holdout"; do python src/run_confirmatory.py $s; done
 python src/exploratory.py
+python src/stress.py
 python src/build_page_data.py
 jupyter nbconvert --to notebook --execute --inplace notebooks/momentum.ipynb
