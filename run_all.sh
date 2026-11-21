@@ -20,5 +20,6 @@ python -c "import sys; sys.path.insert(0,'src'); import pandas as pd; from analy
 for s in "nfl discovery" "nfl holdout" "nfl fresh" "cfb discovery" "cfb holdout"; do python src/run_confirmatory.py $s; done
 python src/exploratory.py
 python src/stress.py
+python src/qb_small.py
 python src/build_page_data.py
 jupyter nbconvert --to notebook --execute --inplace notebooks/momentum.ipynb

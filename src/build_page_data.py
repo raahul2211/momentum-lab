@@ -71,7 +71,7 @@ def tests(R, league):
     for k in ["P2_sr_sum", "P2_epa_oe"]:
         x = R[k]
         out[k] = dict(label="Drive → our next drive (" + ("successful plays" if "sr" in k else "EPA") + ")",
-                      unit="per unit", kind="secondary", direction="+", note="Same as P2 with a different drive yardstick.",
+                      unit="per unit", kind="secondary", direction="+", note="The same drive-to-drive test, counting successful plays (or EPA) instead of points.",
                       est=x["excess"], ci=ci(x["excess"], x["null_sd"]), mde=x["mde80"], p=x["p"])
     return out
 
@@ -121,6 +121,7 @@ def main():
         broncos=E["broncos"], close_persistence=E["close_persistence"],
         giants=tl(E["giants_broncos"], "DEN"), sb47=tl(E["sb47"], "SF"),
         stress=load("stress_nfl"),
+        qbs_small=r(pd.DataFrame(json.loads((RES / "qbs_small.json").read_text()))[["passer_player_name", "games", "excess", "null_sd", "z", "n_pairs", "level"]].assign(excess=lambda x: x.excess * 100, null_sd=lambda x: x.null_sd * 100, level=lambda x: x.level * 100).to_dict(orient="records"), 3),
     )
     (DOCS / "data.json").write_text(json.dumps(r(data, 4), separators=(",", ":")))
     print("data.json", round((DOCS / "data.json").stat().st_size / 1024), "KB")
