@@ -174,6 +174,11 @@ summary{cursor:pointer;font:700 17px "Barlow Condensed"}
 .coin.h{background:var(--or)}
 .coin.t{background:var(--ice2)}
 .cointxt p{font-size:15px;color:#dbe4f0}
+.cp{margin-top:16px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline;padding:12px 16px;border:1px solid rgba(124,196,255,.35);border-radius:12px;background:rgba(124,196,255,.06)}
+.cp .k{font:700 16px "Barlow Condensed";color:var(--ice);white-space:nowrap}
+.cp p{margin:0;font-size:15px;color:#e4ebf4;max-width:84ch}
+.cp i{color:var(--ink)}
+@media(max-width:600px){.cp{grid-template-columns:minmax(0,1fr);gap:4px}}
 footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1px solid var(--line)}
 @media(max-width:860px){.cointop{grid-template-columns:minmax(0,1fr)!important}.grid2,.eq{grid-template-columns:minmax(0,1fr)}.defs{grid-template-columns:minmax(0,1fr)}.map{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.tile{font-size:0}.wfrow{grid-template-columns:minmax(0,1fr) 60px}.wfrow .track{grid-column:1/-1;grid-row:2}.games{grid-template-columns:repeat(3,minmax(0,1fr))}.readout,.score{grid-template-columns:minmax(0,1fr)}.map{grid-template-columns:minmax(0,1fr)}.lane .name{width:40px;font-size:15px}.tiles{left:42px}.try{grid-template-columns:minmax(0,1fr) 64px}.try svg{grid-column:1/-1;grid-row:2}}
@@ -228,6 +233,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div class="coinrow"><span class="lab">Shuffled</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span><span class="coin h">H</span><span class="coin t">T</span></div>
 <p class="small" style="margin:4px 0 0">Six heads either way. The first row looks like a hot start; the second looks like nothing. Felt momentum is the claim that the first row happened <i>because</i> of its order.</p>
 </div></div></div>
+<div class="cp"><b class="k">You might think</b><p><i>"Football isn't a coin. These are people, not random flips."</i>&ensp;Right, which is why every snap gets its own weight from its down, distance, field, score and matchup. The coin is just the cleanest way to ask the one question left: does the last flip change the next one beyond that?</p></div>
 <div class="plain"><h3>In plain English</h3><p>Two things get called momentum. Field momentum is a good play leaving you a better down and spot, and it's real. Felt momentum is the fire on the sideline, the idea that success keeps feeding itself beyond the spot. I can't put a feeling in a spreadsheet, and I'm not saying players don't feel it. What I can measure is whether that feeling changes what happens next. When Bo Nix said "we found some momentum" after the Giants comeback, that's the claim on trial.</p></div>
 </div></section>
 
@@ -251,6 +257,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <p class="small" id="shufCap" style="margin:6px 0 0"></p>
 <p class="guide" id="shufGuide">Hot runs land somewhere almost every time, because a team that had a great half has great drives to stack.</p>
 </div>
+<div class="cp"><b class="k">You might think</b><p><i>"Shuffling breaks the game. You can't kick off and then punt from the same spot."</i>&ensp;We don't replay the game. Each drive keeps its own points over expected, which already prices in where it started, and drives only move within their own half.</p></div>
 <div class="plain"><h3>In plain English</h3><p>Same drives, different order, and the hot stretch shows up anyway. Denver's 4th quarter against the Giants felt like the most momentum-y thing I've ever watched, but about 37% of random orders of their drives are just as hot. What won that game was a great second half, not the order it came in. The Super Bowl is even more ordinary: about three out of four random orders of the 49ers' drives are as hot as the real post-blackout run. The swing I've remembered since I was 11 is just what a good half looks like.</p></div>
 </div></section>
 
@@ -273,12 +280,13 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 </div>
 <div class="readout" id="whoStats"></div>
 <p class="guide" id="whoGuide"></p>
+<div class="cp"><b class="k">You might think</b><p><i>"Romo's streakiness was his offensive line, not him."</i>&ensp;Maybe. The index finds the pattern, not the cause, and a quarterback's number carries his whole offense. Purdy bouncing back could be the 49ers' system as much as Purdy.</p></div>
 <div class="plain"><h3>In plain English</h3><p>Eight of 96 quarterbacks land outside the chance zone, where luck alone would put about five. Tony Romo, a gunslinger who lived on highs and lows, really does lean streaky, and so do Ryan Tannehill and Derek Anderson. The other side is more surprising: Brock Purdy, Justin Herbert, Matt Ryan, Nick Foles and Joe Flacco bounce back after a bad play more than chance says, the opposite of momentum. With three or so names more than luck predicts, a couple of these are probably real styles and the rest are noise. Meanwhile Eli Manning, the league's streakiest reputation, sits inside the funnel at +1.8 standard errors, and so do the 16–0 Patriots.</p></div>
 </div></section>
 
 <section class="band" id="broncos"><div class="wrap">
 <div class="kick">Chapter 4 · The Broncos' 17–1</div>
-<h2>Denver is 17–1 in one-score games. It's rare, and it isn't momentum</h2>
+<h2>Denver is 17–1 in one-score games. Good team, great run, no momentum</h2>
 <p class="doing"><b>The question:</b> is Denver's close-game magic momentum? I've been a Broncos fan since Peyton Manning showed up in 2012, so this one's personal. <b>Try it:</b> flip the 18 games.</p>
 <div class="grid2">
 <div class="board">
@@ -299,7 +307,8 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div class="board"><h3>Best 18-game close-game stretch since 1999</h3><table class="lb"><tbody id="lb"></tbody></table></div>
 </div>
 </div>
-<div class="plain"><h3>In plain English</h3><p>So is momentum why the Broncos give me a heart attack every week? No. Denver is 17–1 in one-score games when fair odds say about 10 wins, roughly a 1-in-3,300 run that only Brady's Patriots and Mahomes's Chiefs have matched. Inside games, though, the 2025 Broncos rank 434th of 893 on the momentum index, dead average, and Bo Nix's own index is −1.0, inside the chance zone. It's a good team plus a lot of luck, and close-game luck has never carried from one season to the next. I'll enjoy it while it lasts.</p></div>
+<div class="cp"><b class="k">You might think</b><p><i>"Good teams find a way to win close games."</i>&ensp;They do, and the numbers agree: since 1999, 7-point favorites win 68% of one-score games and 7-point underdogs win 32%. Denver was favored in 12 of these 18, and that's already baked into the 10 expected wins. What being good can't explain is the other seven.</p></div>
+<div class="plain"><h3>In plain English</h3><p>So is momentum why the Broncos give me a heart attack every week? No, but it isn't just luck either. This is a good team on a 1-in-3,300 run that only Brady's Patriots and Mahomes's Chiefs have matched. Inside games, the 2025 Broncos rank 434th of 893 on the momentum index and Bo Nix sits at −1.0, so it isn't one play feeding the next. Beating close-game odds almost never carries into the next season (r = 0.00). Then again, the two teams Denver is tied with had Brady and Mahomes. I'll enjoy it while it lasts.</p></div>
 </div></section>
 
 <section class="band alt" id="impostors"><div class="wrap">
@@ -308,7 +317,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <p class="doing"><b>The question:</b> a good play makes the next one 4.3 points likelier to work across 241,775 NFL plays from 2019–2025, so how much of that is actually momentum?</p>
 <div class="board">
 <div class="wf" id="wf"></div>
-<p class="small" style="margin:14px 0 0">Percentage points of next-play success. The orange dot is the only piece momentum can claim; its line is the 95% range from 2,000 shuffles. Same answer in 1999–2018 (<span id="disc"></span>); 2026 so far reads <span id="fresh"></span>, on a much smaller sample.</p>
+<p class="small" style="margin:14px 0 0">Percentage points of next-play success. The orange dot is the only piece felt momentum can claim; its line is the 95% range from 2,000 shuffles. Same answer in 1999–2018 (<span id="disc"></span>); 2026 so far reads <span id="fresh"></span>, on a much smaller sample.</p>
 </div>
 <div class="imps">
 <div class="imp"><h3>Field momentum</h3><p>A good play earns a first down and better field. The next snap is easier because of where it starts.</p></div>
@@ -317,9 +326,8 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div class="imp"><h3>Randomness</h3><p>Coins streak more than people expect. Chapter 2 showed it on two real momentum shifts.</p></div>
 <div class="imp"><h3>The sideline</h3><p>Coaches really do change calls after big moments, as the video showed. That's momentum in decisions, not in results.</p></div>
 </div>
+<div class="cp"><b class="k">You might think</b><p><i>"A good play setting up the next one is momentum."</i>&ensp;If that's the definition, it exists: it's 3.9 of the 4.3 points, and every bit of it is where the ball is. That's why the shuffle never moves raw results. Each play keeps its real down, distance, field and score; only its beat-or-miss moves. Felt momentum would be something on top, and two tests skip field position entirely: drive to drive, where every possession starts fresh, and offense to defense, where it's different players. Neither shows carryover.</p></div>
 <div class="plain"><h3>In plain English</h3><p>In public health we'd call this confounding. The crude association looks big: the next play works 46.3% of the time after a success and 42.0% after a failure. Adjust for the confounders (the field momentum it earned, the score, who's better that half) and it drops to −0.02. Real example: the 2025–26 Broncos average −0.31 points over expected on 1st-quarter drives and +0.23 on 4th-quarter drives. That's a team that gets better as games go on, a level that shifts, not one play feeding the next.</p></div>
-<div class="board" style="margin-top:16px"><h3>So isn't field momentum just momentum?</h3>
-<p style="max-width:80ch;font-size:15.5px;color:#e4ebf4;margin:0">If you define momentum as "a good play makes the next one easier," then yes: it exists, it's 3.9 points, and every bit of it is where the ball is. That's why the shuffle never moves raw results. Every play keeps its real down, distance, field and score, and only its beat-or-miss moves. Felt momentum would be something on top of that, and two tests check it without leaning on field position at all: drive to drive, where every possession starts fresh, and offense to defense, where it's different players on the field. Neither shows carryover (chapter 7).</p></div>
 </div></section>
 
 <section class="band" id="test"><div class="wrap grid2">
@@ -338,6 +346,8 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 </div>
 <div class="board"><div class="fig" id="simFig" style="min-height:330px"><svg id="simSvg" role="img" aria-label="Simulated test results"></svg></div>
 <p class="small" style="margin:6px 0 0">Each dot is one fake season. Grey is what chance alone gives. Orange is the real NFL answer.</p></div>
+<div style="grid-column:1/-1;margin-top:-8px"><div class="cp"><b class="k">You might think</b><p><i>"A test that finds nothing is just a weak test."</i>&ensp;That's what this chapter checks. The fake seasons use real 2009–2018 situations and real good and bad halves, and the same test still catches +0.5 points 80% of the time.</p></div>
+</div>
 <div class="plain" style="grid-column:1/-1;margin-top:0"><h3>In plain English</h3><p>If momentum were worth even half a point, about one extra successful play every 200 snaps or roughly every three games, we'd catch it most of the time. The real NFL answer lands right on top of the no-momentum fake seasons. This isn't "we didn't look hard enough."</p></div>
 </div></section>
 
@@ -353,6 +363,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <p class="small">Every way a skeptic might say we hid momentum, on all 28 NFL seasons. These ran after the locked test, so treat them as checks, not discoveries.</p>
 <div class="tries" id="tries" style="margin-top:10px"></div>
 </div>
+<div class="cp"><b class="k">You might think</b><p><i>"Momentum is a drive thing, not a play thing."</i>&ensp;Drive to drive was one of the four locked tests: +0.006 points per point, nothing. Offense to defense, where a big drive is supposed to fire up the other side, comes up empty too.</p></div>
 <div class="plain"><h3>In plain English</h3><p>Every story fans tell got its own test, and none of them held up. After a gutsy 4th-down conversion, the next play is no better than after a routine 3rd-down conversion (−0.07). Fumble bounces gave one hint (+0.37 in 2019–25) that wasn't there in the 20 seasons before it. Empty stadiums in 2020 changed nothing either, so whatever the crowd does, it isn't feeding play-to-play momentum.</p></div>
 </div></section>
 
@@ -374,7 +385,8 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <p class="small" style="margin:8px 0 0" id="breakGuide"></p>
 </div>
 </div>
-<div class="plain"><h3>In plain English</h3><p>The blackout is the perfect momentum story, and it's also one game. The 49ers went touchdown, touchdown, field goal once the lights came back. But across every clock-forced quarter break since 1999, carryover doesn't drop, and 930 "icing" timeouts on a hot offense did nothing you can measure. You can't drain what isn't there.</p></div>
+<div class="cp"><b class="k">You might think</b><p><i>"The 49ers' surge proves the blackout flipped momentum."</i>&ensp;One game is one run of flips, and chapter 2 showed three out of four shuffles of the 49ers' drives look just as hot. Across every clock-forced quarter break since 1999, carryover is the same on both sides of the pause.</p></div>
+<div class="plain"><h3>In plain English</h3><p>You can't drain what isn't there. Inside a drive, carryover is +0.07 points with no pause, and neither a quarter break nor 930 "icing" timeouts on a hot offense changes it measurably.</p></div>
 </div></section>
 
 <section class="band alt" id="college"><div class="wrap">
@@ -382,7 +394,8 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <h2>College is the one place something shows up, and it's tiny</h2>
 <p class="doing"><b>The question:</b> do college players show the momentum the pros have trained out, as the video guessed?</p>
 <div class="grid2"><div><p class="lede" id="cfbLede"></p></div><div class="cards" id="cfbCards"></div></div>
-<div class="plain"><h3>In plain English</h3><p>College is the closest thing to a yes: drives stay a little streaky within a half, then flip at halftime. That looks like the other coach adjusting, and it's worth about 0.03 per drive. Play to play, college actually runs slightly the other way, which I think is messy ball spots, not anti-momentum.</p></div>
+<div class="cp"><b class="k">You might think</b><p><i>"College players are younger and more emotional, so momentum should be bigger."</i>&ensp;It is a little bigger, but it's worth about 0.03 points per drive and it flips at halftime, which looks like the other coach adjusting more than emotion fading.</p></div>
+<div class="plain"><h3>In plain English</h3><p>College is the closest thing to a yes, and it's tiny. Play to play it actually runs slightly the other way, which I think is messy ball spots, not anti-momentum.</p></div>
 </div></section>
 
 <section class="band" id="method"><div class="wrap">
