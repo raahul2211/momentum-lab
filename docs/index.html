@@ -218,6 +218,21 @@ summary{cursor:pointer;font:700 17px "Barlow Condensed"}
 .dog{width:180px;border-radius:14px;border:3px solid var(--line);display:block}
 .dog+figcaption{font-size:13px;color:var(--mute);margin-top:6px;max-width:180px}
 @media(max-width:860px){.me{grid-template-columns:minmax(0,1fr)!important}}
+.rt{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.rt span{font:700 15px "Barlow Condensed";letter-spacing:.02em;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink)}
+.rt span:first-child{background:var(--or);border-color:var(--or);color:#fff}
+.timeout{margin:0 0 26px;padding:12px 16px;border-left:4px solid var(--or);background:rgba(255,255,255,.045);border-radius:0 10px 10px 0;max-width:82ch}
+.timeout .k{font:700 14px "Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;color:var(--or)}
+.timeout h3{font-size:19px;margin:2px 0 4px}
+.timeout p{margin:0;font-size:15px;color:#dfe7f2}
+.hb{display:grid;grid-template-columns:130px minmax(0,1fr) 230px;gap:12px;align-items:center;margin:12px 0}
+.hl{font:600 15px "Barlow Condensed";color:var(--ink)}
+.ht{position:relative;height:22px;background:rgba(255,255,255,.07);border-radius:6px}
+.ht i{position:absolute;left:0;top:0;bottom:0;background:var(--or);border-radius:6px}
+.ht b{position:absolute;top:-5px;bottom:-5px;width:3px;margin-left:-1px;background:#fff;border-radius:2px}
+.hn{font-size:14px;color:var(--mute)}.hn b{color:var(--ink)}
+.fb{margin-top:16px;padding:14px 16px;border:1px solid rgba(251,79,20,.4);border-radius:12px;background:rgba(251,79,20,.07)}
+@media(max-width:700px){.hb{grid-template-columns:minmax(0,1fr);gap:4px}}
 footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1px solid var(--line)}
 @media(max-width:860px){.cointop{grid-template-columns:minmax(0,1fr)!important}.grid2,.eq{grid-template-columns:minmax(0,1fr)}.defs{grid-template-columns:minmax(0,1fr)}.map{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.tile{font-size:0}.wfrow{grid-template-columns:minmax(0,1fr) 60px}.wfrow .track{grid-column:1/-1;grid-row:2}.games{grid-template-columns:repeat(3,minmax(0,1fr))}.readout,.score{grid-template-columns:minmax(0,1fr)}.map{grid-template-columns:minmax(0,1fr)}.lane .name{width:40px;font-size:15px}.tiles{left:42px}.try{grid-template-columns:minmax(0,1fr) 64px}.try svg{grid-column:1/-1;grid-row:2}}
@@ -227,11 +242,12 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <body>
 <nav class="nav"><div class="wrap">
 <a class="brand" href="#top">The coin doesn't <b>remember</b></a>
-<a href="#define">1 Coin flip</a><a href="#shuffle">2 Shuffle</a><a href="#who">3 Streaky?</a><a href="#broncos">4 Broncos</a><a href="#impostors">5 Impostors</a><a href="#test">6 Can we see it</a><a href="#every">7 Every test</a><a href="#pauses">8 Pauses</a><a href="#college">9 College</a><a href="#verdict">Verdict</a><a href="#method">Method</a><a href="#about">About</a>
+<a href="#define">1 Coin flip</a><a href="#shuffle">2 Shuffle</a><a href="#who">3 Streaky?</a><a href="#broncos">4 Broncos</a><a href="#impostors">5 Impostors</a><a href="#test">6 Can we see it</a><a href="#every">7 Every test</a><a href="#pauses">8 Pauses</a><a href="#college">9 College</a><a href="#january">10 January</a><a href="#verdict">Verdict</a><a href="#method">Method</a><a href="#about">About</a>
 </div></nav>
 
 <section class="band" id="top"><div class="wrap">
-<div class="by"><img class="ava" src="raahul.jpg" alt="">By <a href="https://www.linkedin.com/in/raahul-n" style="color:var(--ink);font-weight:600;text-decoration-color:var(--or);text-underline-offset:3px">Raahul Narayanan, MPH</a> · An entry for The Side Quest's "Can you find momentum?" challenge · About 12 minutes to read, 20 if you play with everything</div>
+<div class="by"><img class="ava" src="raahul.jpg" alt="">By <a href="https://www.linkedin.com/in/raahul-n" style="color:var(--ink);font-weight:600;text-decoration-color:var(--or);text-underline-offset:3px">Raahul Narayanan, MPH</a> · An entry for The Side Quest's "Can you find momentum?" challenge</div>
+<div class="rt"><span>16 min read</span><span>25 min with every game and the method</span><span id="rtCalls">15 calls to make</span></div>
 <h1>The coin doesn't remember</h1>
 <p class="dek">I tested 1.7 million football plays for momentum. The kind you see is real. The kind you feel isn't.</p>
 <p class="lede">I'm a Broncos fan, so one-score games and "momentum swings" are my weekly cardio. I wanted to know if momentum is real or just a story we tell after the fact. Before you read on, make a call. There's one in every chapter, and a scorecard in the corner.</p>
@@ -252,6 +268,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <a href="#every"><div class="t"><i>7</i>Look everywhere</div><div class="q">Drives, defenses, fumbles, big moments, the crowd.</div></a>
 <a href="#pauses"><div class="t"><i>8</i>Forced pauses</div><div class="q">Do quarter breaks, timeouts or a blackout drain it?</div></a>
 <a href="#college"><div class="t"><i>9</i>College</div><div class="q">Do younger players show it?</div></a>
+<a href="#january"><div class="t"><i>10</i>January</div><div class="q">Do streaky teams win playoff games and Super Bowls?</div></a>
 </div>
 <div class="key"><b>How to read every chart</b>
 <span><i style="width:2px;height:18px;background:rgba(255,255,255,.6)"></i>The line at 0 means the order of plays didn't matter</span>
@@ -307,6 +324,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 </div></section>
 
 <section class="band alt" id="who"><div class="wrap">
+<div class="timeout"><div class="k">Timeout</div><h3>If shuffled games look just as hot, is nobody ever streaky?</h3><p>Not quite. Chapter 2 looked at whole games, where a few streaky players could hide in the average. So now we check one quarterback and one team at a time.</p></div>
 <div class="kick">Chapter 3 · Streaky QBs and teams</div>
 <h2>Does any quarterback's coin remember? A few look like it. Most are luck</h2>
 <p class="doing"><b>The question:</b> forget the league for a second. Does any one quarterback, or any one team, play like their coin remembers?</p>
@@ -369,6 +387,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 </div></section>
 
 <section class="band alt" id="impostors"><div class="wrap">
+<div class="timeout"><div class="k">Timeout</div><h3>Hold on. If there's no momentum, why does success seem to follow success?</h3><p>Because it does, by 4.3 points. This chapter breaks that 4.3 apart: how much is the down and spot a good play leaves you, and how much is left over for momentum.</p></div>
 <div class="kick">Chapter 5 · Unmask the impostors</div>
 <h2>A good play helps the next one by 4.3 points, and the field explains all of it</h2>
 <p class="doing"><b>The question:</b> a good play makes the next one 4.3 points likelier to work across 241,775 NFL plays from 2019–2025, so how much of that is actually momentum?</p>
@@ -388,7 +407,9 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div class="plain"><h3>In plain English</h3><p>In public health we'd call this confounding. The crude association looks big: the next play works 46.3% of the time after a success and 42.0% after a failure. Adjust for the confounders (the field momentum it earned, the score, who's better that half) and it drops to −0.02. Real example: the 2025–26 Broncos average −0.31 points over expected on 1st-quarter drives and +0.23 on 4th-quarter drives. That's a team that gets better as games go on, a level that shifts, not one play feeding the next.</p></div>
 </div></section>
 
-<section class="band" id="test"><div class="wrap grid2">
+<section class="band" id="test"><div class="wrap">
+<div class="timeout"><div class="k">Timeout</div><h3>Everything so far is close to zero. Could the test just be blind?</h3><p>Fair worry. A test that can't see momentum would also say zero. So before going further, I planted fake momentum in fake seasons and checked whether the test finds it.</p></div>
+<div class="grid2">
 <div>
 <div class="kick">Chapter 6 · Can we even see it?</div>
 <h2>Plant momentum in fake seasons and the test finds it</h2>
@@ -409,9 +430,10 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div style="grid-column:1/-1;margin-top:-8px"><div class="cp"><b class="k">You might think</b><p><i>"A test that finds nothing is just a weak test."</i>&ensp;That's what this chapter checks. The fake seasons use real 2009–2018 situations and real good and bad halves, and the same test still catches +0.5 points 80% of the time.</p></div>
 </div>
 <div class="plain" style="grid-column:1/-1;margin-top:0"><h3>In plain English</h3><p>If momentum were worth even half a point, about one extra successful play every 200 snaps or roughly every three games, we'd catch it most of the time. The real NFL answer lands right on top of the no-momentum fake seasons. This isn't "we didn't look hard enough."</p></div>
-</div></section>
+</div></div></section>
 
 <section class="band alt" id="every"><div class="wrap">
+<div class="timeout"><div class="k">Timeout</div><h3>So far it's all play to play. Isn't momentum bigger than one snap?</h3><p>Usually, when fans say momentum, they mean a drive, a defense feeding off its offense, a big turnover or a loud crowd. Each of those gets its own test here.</p></div>
 <div class="kick">Chapter 7 · Look everywhere</div>
 <h2>Every place momentum is supposed to live comes up empty</h2>
 <p class="doing"><b>The question:</b> does momentum show up anywhere fans say it lives? Four tests were locked before we touched 2019–2025; five more check the stories fans tell. Shaded zones are too small for a test to see.</p>
@@ -461,10 +483,32 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div class="plain"><h3>In plain English</h3><p>College is the closest thing to a yes, and it's tiny. Play to play it actually runs slightly the other way, which I think is messy ball spots, not anti-momentum.</p></div>
 </div></section>
 
-<section class="band" id="verdict"><div class="wrap">
+<section class="band" id="january"><div class="wrap">
+<div class="timeout"><div class="k">Timeout</div><h3>Fine, but January is different, right?</h3><p>That's the last story to check. If streaky teams have something the rest don't, it should show up when it matters most: making the playoffs, winning there and lifting the trophy.</p></div>
+<div class="kick">Chapter 10 · January</div>
+<h2>Streaky teams don't win more in January. Good teams do</h2>
+<p class="doing"><b>The question:</b> do streaky teams make the playoffs or win the Super Bowl more often, and does getting hot in December carry into January? Every index here uses regular-season plays only, so a playoff run can't pump up its own number.</p>
+<div class="call" data-call="champs"></div>
+<div class="board">
+<h3>Every team-season since 1999, sorted by how it finished</h3>
+<p class="small" style="margin:4px 0 8px">Each dot is one team-season's momentum index. Right means streakier than its coin, left means steadier. The shaded band is where luck alone puts 95% of teams, and the white tick is each row's average. If streaky teams won more, the bottom rows would lean right.</p>
+<div id="poStrip"></div>
+</div>
+<div class="readout" id="poStats" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"></div>
+<div class="call" data-call="hotfinish"></div>
+<div class="board">
+<h3>Playoff wins by how teams finished the regular season, 1999–2025</h3>
+<p class="small" style="margin:4px 0 4px">Orange bar: how often they won. White tick: what the point spread expected. A hot finish that carried over would push the orange past the tick.</p>
+<div id="hotBars"></div>
+</div>
+<div class="cp"><b class="k">You might think</b><p><i>"Some teams just get hot at the right time, like the 2007 and 2011 Giants."</i>&ensp;They did, and the 2011 Giants are the streakiest champion in the data. But the 2014 Patriots won it all as the steadiest, and the other 25 champions all land inside the chance zone with everybody else. A hot December doesn't carry over either: once you know the point spread, the last four games tell you nothing extra about January.</p></div>
+<div class="plain"><h3>In plain English</h3><p id="poPlain"></p></div>
+</div></section>
+
+<section class="band alt" id="verdict"><div class="wrap">
 <div class="kick">The final whistle</div>
 <h2>So, can you find momentum? The kind you see, yes. The kind you feel, no</h2>
-<p class="lede">A good play really does make the next one easier, because of the down and spot it leaves you. Everything beyond that, the rolling, the swing, the "we've got it now," didn't show up anywhere I looked, in 1.7 million plays, nine kinds of tests and two famous games I'll never forget.</p>
+<p class="lede">A good play really does make the next one easier, because of the down and spot it leaves you. Everything beyond that, the rolling, the swing, the "we've got it now," didn't show up anywhere I looked, in 1.7 million plays, nine kinds of tests and two famous games I'll never forget. It doesn't pick playoff teams or Super Bowl champions either.</p>
 <div class="verdict">
 <div class="stat"><div class="k">Field momentum</div><div class="v or">3.9 of 4.3</div><div class="small">points of "success follows success" explained by the down and spot</div></div>
 <div class="stat"><div class="k">Felt momentum</div><div class="v">−0.02</div><div class="small">points, NFL 2019–25, when we'd catch 0.5</div></div>
@@ -475,7 +519,8 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <p style="max-width:72ch">I'll still yell "we've got momentum" at my TV every Sunday. I just know what I'm cheering for now: a good spot, a good day, and a coin that doesn't remember.</p>
 <p style="margin:16px 0 0"><a class="btn" href="#method" style="display:inline-block;text-decoration:none">How I quantified it: the method and formulas</a></p>
 </div></section>
-<section class="band alt" id="method"><div class="wrap">
+<section class="band" id="method"><div class="wrap">
+<div class="timeout"><div class="k">Timeout</div><h3>Want to stop here? You've got the whole story.</h3><p>Everything below is how I did it: the data, the formulas and the stress tests, for anyone who wants to check my work. Please do.</p></div>
 <div class="kick">For the stats nerds</div>
 <h2>How I quantified it</h2>
 <p class="doing">Each of the challenge's criteria became a step, using the method from the paper that solved the same problem somewhere else.</p>
@@ -519,12 +564,13 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 </ul></details>
 </div></section>
 
-<section class="band" id="about"><div class="wrap me">
+<section class="band alt" id="about"><div class="wrap me">
 <img class="photo" src="raahul.jpg" alt="Raahul Narayanan">
 <div>
 <h2 style="margin-bottom:6px">About me</h2>
 <p>I'm Raahul Narayanan, MPH. I grew up in the Bay Area, studied public health and anthropology at the University of Washington, and did my MPH at Penn, where I'm now a data analyst on the Public Health and Wellbeing team. My background is biostatistics research, which mostly means I've spent years asking one question: is this pattern real, or is it a coin that got lucky?</p>
 <p>Football is where that question gets personal. I've been a Broncos fan since Peyton Manning arrived in 2012, Super Bowl XLVII at 11 was my first lesson in momentum, and this team's one-score games have taken years off my life. My co-analyst is Truffle, a rescue pup from ACCT Philly who already owns a jersey and has no opinion on the hot hand.</p>
+<p class="fb"><b>A heads-up:</b> I'm new to this kind of work. This is my first sports analytics project and the first analysis I've done in this style, so I'm sure there's plenty I'd do differently with more reps. I'd really love feedback, kind or brutal, especially from people who do this for a living. <a href="https://www.linkedin.com/in/raahul-n" style="color:var(--ice)">Find me on LinkedIn</a>.</p>
 <p class="small" id="links" style="margin-top:4px">Code, pre-registration and every result file are in the project repo.</p>
 </div>
 <figure style="margin:0"><img class="dog" src="truffle.jpg" alt="Truffle the dog in a Broncos jersey"><figcaption>Truffle, Broncos Country's newest member. Momentum index: unmeasured. Snack index: very high.</figcaption></figure>
@@ -577,6 +623,7 @@ fetch("data.json").then(r => r.json()).then(D => {
   /* ---------- make the call ---------- */
   {
     const allCalls = [...document.querySelectorAll(".call")], TOTAL = allCalls.length, rec = {};
+    { const rc = document.getElementById("rtCalls"); if (rc) rc.textContent = `${TOTAL} calls to make`; }
     const numOf = el => allCalls.indexOf(el) + 1;
     const upd = () => { const n = Object.keys(rec).length, r = Object.values(rec).filter(Boolean).length; $("#navScore").textContent = n === 0 ? `${TOTAL} calls to make` : n < TOTAL ? `Your calls: ${r} right, ${TOTAL - n} to go` : `Your calls: ${r} of ${TOTAL} right`; $("#verdictScore").innerHTML = n ? `You made <b>${r} of ${n}</b> calls${n < TOTAL ? ` (${TOTAL - n} still open above)` : ""}. Whatever you scored, the ones you missed are the feeling of momentum doing its job.` : "You haven't made any calls yet. Scroll up and try a few; they take a second each."; };
     window.recordCall = (id, ok) => { if (id in rec) return; rec[id] = ok; upd(); };
@@ -584,6 +631,8 @@ fetch("data.json").then(r => r.json()).then(D => {
     const W0 = D.waterfall.holdout_nfl, Q = Object.fromEntries(D.qbs.map(d => [d.passer_player_name, d])), B = D.broncos, S0 = D.stress;
     const tot = B.sim_hist.reduce((a, c) => a + c, 0), tail = B.sim_hist.slice(B.den_record[0]).reduce((a, c) => a + c, 0);
     const big = D.tests.holdout_nfl.big, half = D.sims.find(s => s.planted === 0.5), one = D.sims.find(s => s.planted === 1);
+    const zAvg = t => { const a = D.playoffs.seasons.filter(d => d.tier === t); return a.reduce((s, d) => s + d.z, 0) / a.length; };
+    const h4 = D.playoffs.hot.by_last4_wins.find(d => d.w4 === 4);
     const CALLS = {
       hero: { n: 1, q: "After a successful play, how much likelier is the next play to work than after a failed one?", o: ["No difference", "About 4 points", "About 10 points", "20 points or more"], a: 1,
         r: `It's <b>${sg(W0.raw, 1)} points</b>: ${W0.after_success.toFixed(1)}% vs ${W0.after_fail.toFixed(1)}% across ${W0.n_plays.toLocaleString()} NFL plays from 2019–25. So momentum is real? That's the twist. ${W0.situation.toFixed(1)} of those points come from the down and spot a good play leaves you, and ${W0.team.toFixed(2)} from a team just being better that half. What's left for the momentum you feel: <b>${sg(W0.order, 2)}</b>.` },
@@ -599,6 +648,10 @@ fetch("data.json").then(r => r.json()).then(D => {
         r: `No difference: <b>${sg(big.est, 2)}</b> points, 95% range ${sg(big.ci[0], 1)} to ${sg(big.ci[1], 1)}. The sideline goes nuts; the next snap doesn't care.` },
       shuffle: { q: "Denver scored 33 points in the 4th quarter against the Giants. Shuffle Denver's drives into a random order 1,000 times. How often do you get a stretch just as hot?", o: ["Almost never", "About 1 in 3 times", "Almost every time"], a: 1,
         r: "About 37% of the time. A team that has a great half has great drives to stack, wherever they land. Check it yourself below with \"Shuffle 1,000 times.\" The 49ers' run after the blackout is even more ordinary: about 3 in 4 shuffles match it." },
+      champs: { q: "Since 1999, do streakier teams win more Super Bowls?", o: ["Yes, clearly", "A little", "No difference"], a: 2,
+        r: `No difference. Champions average <b>${sg(zAvg("Champion"), 2)}</b> on the chart below and teams that missed the playoffs average <b>${sg(zAvg("Missed"), 2)}</b>, which is the same thing. The streakiest champ was the 2011 Giants and the steadiest was the 2014 Patriots. Both got rings.` },
+      hotfinish: { q: "Teams that won all of their last four regular-season games went into the playoffs. Compared with what the point spread expected, they won...", o: ["Way more than expected", "About as expected", "Less than expected"], a: 1,
+        r: `About as expected: <b>${Math.round(h4.win_rate * 100)}%</b> of their playoff games, when the spread expected ${Math.round(h4.expected * 100)}%, across ${h4.n} games. That gap is well within luck, and only ${D.playoffs.hot.champs_last4_wins["4"]} of 27 champions won all of their last four.` },
       qbsteady: { q: "Whose next play improves most after a bad play, beyond what chance gives? Think steadiest, not best.", o: ["Patrick Mahomes", "Josh Allen", "Brock Purdy", "Aaron Rodgers"], a: 2,
         r: `Brock Purdy: <b>${sg(Q["B.Purdy"].excess, 1)}</b> points, the steadiest coin of all 96. Justin Herbert (${sg(Q["J.Herbert"].excess, 1)}) and Nick Foles (${sg(Q["N.Foles"].excess, 1)}) are next. Allen is ${sg(Q["J.Allen"].excess, 1)}, Mahomes ${sg(Q["P.Mahomes"].excess, 1)}, Rodgers ${sg(Q["A.Rodgers"].excess, 1)}, all inside chance.` },
       team1: { q: "The 2007 Patriots went 16–0 in the regular season. Did they play with momentum?", o: ["Yes, way above chance", "A little, but inside chance", "No, they were steady"], a: 1,
@@ -625,6 +678,51 @@ fetch("data.json").then(r => r.json()).then(D => {
     upd();
   }
 
+  /* ---------- chapter 10 january ---------- */
+  (() => {
+    const P = D.playoffs; if (!P) return;
+    const R0 = P.res, H = P.hot, el = $("#poStrip");
+    const tiers = [["Missed", "Missed the playoffs"], ["Playoffs", "Made the playoffs, no Super Bowl"], ["SB loser", "Lost the Super Bowl"], ["Champion", "Won the Super Bowl"]];
+    const col = { Missed: "rgba(255,255,255,.3)", Playoffs: "#3b8fd9", "SB loser": "#7cc4ff", Champion: "#fb4f14" };
+    const notes = { "NYG 2011": "2011 Giants", "NE 2014": "2014 Patriots", "DEN 2015": "2015 Broncos" };
+    const draw = () => {
+      const W = Math.max(300, el.clientWidth || 800), rh = 78, top = 4, lo = -3.5, hi = 3.5, H4 = top + rh * 4;
+      const x = v => 10 + (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo) * (W - 20);
+      let g = `<rect x="${x(-1.96)}" y="${top}" width="${x(1.96) - x(-1.96)}" height="${rh * 4}" fill="rgba(124,196,255,.08)"/><line x1="${x(0)}" x2="${x(0)}" y1="${top}" y2="${H4}" stroke="rgba(255,255,255,.55)" stroke-width="2"/>`, lab = "";
+      tiers.forEach(([k, name], i) => {
+        const y0 = top + i * rh, rows = P.seasons.filter(d => d.tier === k), m = rows.reduce((a, d) => a + d.z, 0) / rows.length, big = k === "SB loser" || k === "Champion";
+        if (i) g += `<line x1="0" x2="${W}" y1="${y0}" y2="${y0}" stroke="rgba(255,255,255,.08)"/>`;
+        g += `<text x="10" y="${y0 + 17}" style="fill:var(--ink);font-weight:600">${name}<tspan style="fill:var(--mute);font-weight:500"> · ${rows.length} · avg ${sg(m, 2)}</tspan></text>`;
+        rows.forEach(d => {
+          const j = ((d.season * 7919 + d.team.charCodeAt(0) * 131 + (d.team.charCodeAt(1) || 0) * 17 + (d.team.charCodeAt(2) || 0) * 3) % 101) / 101, cy = y0 + 30 + j * (rh - 38), cx = x(d.z);
+          g += `<circle cx="${cx}" cy="${cy}" r="${big ? 5.5 : 3.4}" fill="${col[k]}"${k === "Champion" ? ' stroke="#fff" stroke-width="1.2"' : ""}><title>${d.team} ${d.season}: ${sg(d.z, 2)}</title></circle>`;
+          const nm = k === "Champion" && notes[`${d.team} ${d.season}`];
+          if (nm) { const anc = d.z > 1 ? "end" : d.z < -1 ? "start" : "middle", dx = anc === "end" ? -9 : anc === "start" ? 9 : 0;
+            lab += `<text x="${cx + dx}" y="${anc === "middle" ? cy - 9 : cy + 4}" text-anchor="${anc}" style="fill:#fff;font-weight:700;paint-order:stroke;stroke:#0e2b50;stroke-width:4px">${nm}</text>`; }
+        });
+        g += `<line x1="${x(m)}" x2="${x(m)}" y1="${y0 + 25}" y2="${y0 + rh - 5}" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`;
+      });
+      let ax = [-3, -2, -1, 0, 1, 2, 3].map(v => `<text x="${x(v)}" y="${H4 + 16}" text-anchor="middle">${v === 0 ? "0" : sg(v, 0)}</text>`).join("");
+      ax += `<text x="10" y="${H4 + 34}" style="fill:var(--ice)">← steadier than its coin</text><text x="${W - 10}" y="${H4 + 34}" text-anchor="end" style="fill:var(--or2)">streakier than its coin →</text>`;
+      el.innerHTML = `<svg width="${W}" height="${H4 + 42}" role="img" aria-label="Momentum index of every team-season since 1999, by playoff result">${g}${lab}${ax}</svg>`;
+    };
+    draw(); let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(draw, 150); });
+    const orr = o => [Math.exp(o.coef_per_sd), Math.exp(o.lo), Math.exp(o.hi)].map(v => v.toFixed(2));
+    const po = orr(R0.playoffs_given_quality), sb = orr(R0.sb_win_given_quality), ny = orr(R0.next_year_playoffs), pp = R0.pooled_post;
+    const c4 = H.champs_last4_wins, nCh = Object.values(c4).reduce((a, b) => a + b, 0);
+    $("#poStats").innerHTML = [
+      ["Playoff odds per step streakier, same quality", po[0] + "×", `range ${po[1]} to ${po[2]}; 1.00 = no effect`, ""],
+      ["Title odds per step streakier, among playoff teams", sb[0] + "×", `range ${sb[1]} to ${sb[2]}`, ""],
+      ["Champions who won all of their last 4", `${c4["4"]} of ${nCh}`, "a hot finish isn't a requirement", "or"],
+      ["Momentum inside playoff games", sg(pp.excess_pts, 1), `points, range ${sg(pp.lo, 1)} to ${sg(pp.hi, 1)}, ${pp.games} games`, "ice"]
+    ].map(([k, v, s2, c]) => `<div class="stat"><div class="k">${k}</div><div class="v ${c}">${v}</div><div class="small">${s2}</div></div>`).join("");
+    const b = H.by_last4_wins, m01 = b.filter(d => d.w4 <= 1), n01 = m01.reduce((a, d) => a + d.n, 0);
+    const rows = [{ l: "Won 0–1 of last 4", n: n01, w: m01.reduce((a, d) => a + d.win_rate * d.n, 0) / n01, e: m01.reduce((a, d) => a + d.expected * d.n, 0) / n01 },
+      ...[2, 3, 4].map(k => { const d = b.find(z => z.w4 === k); return { l: k === 4 ? "Won all 4" : `Won ${k} of last 4`, n: d.n, w: d.win_rate, e: d.expected }; })];
+    $("#hotBars").innerHTML = rows.map(r => `<div class="hb"><div class="hl">${r.l}</div><div class="ht"><i style="width:${(r.w * 100).toFixed(1)}%"></i><b style="left:${(r.e * 100).toFixed(1)}%"></b></div><div class="hn"><b>${Math.round(r.w * 100)}%</b> won · ${Math.round(r.e * 100)}% expected · ${r.n} games</div></div>`).join("");
+    const rr = R0.corr_level_wpct.rho, ri = R0.corr_index_wpct.rho;
+    $("#poPlain").innerHTML = `Streakiness doesn't pick playoff teams, doesn't pick champions and doesn't predict next year's playoffs either (${ny[0]}× per step, range ${ny[1]} to ${ny[2]}). What does is being good: how much a team beats expectations play by play tracks its win percentage at r = ${rr.toFixed(2)}, while streakiness tracks it at r = ${sg(ri, 2)}. If you want to know who wins in January, look at how good a team is, not how hot it's been.`;
+  })();
   /* ---------- chapter 3 shuffle ---------- */
   const GAMES = { giants: { g: D.giants, focus: "DEN", title: "Giants at Broncos, Oct 19 2025" }, sb47: { g: D.sb47, focus: "SF", title: "Super Bowl XLVII, Feb 3 2013" } };
   let gk = "giants", order = null;

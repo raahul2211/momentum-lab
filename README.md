@@ -54,6 +54,7 @@ Runtime is about 25 minutes on a laptop. Results land in `results/`, figures in 
 | `src/simulate.py` | Planted-momentum validation |
 | `src/stress.py` | Post-hoc robustness, decomposition, quarter-break and timeout pauses |
 | `src/exploratory.py` | Team and QB momentum index, Broncos close games, game timelines |
+| `src/playoffs.py`, `src/hot_entering.py` | Streakiness vs. playoffs and titles; whether a hot finish carries into January |
 | `src/build_page_data.py` | Builds `docs/data.json` from results for the interactive page |
 
 ## Limits
