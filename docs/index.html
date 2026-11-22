@@ -226,7 +226,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 </div></nav>
 
 <section class="band" id="top"><div class="wrap">
-<div class="by"><img class="ava" src="raahul.jpg" alt="">By <a href="https://www.linkedin.com/in/raahul-n" style="color:var(--ink);font-weight:600;text-decoration-color:var(--or);text-underline-offset:3px">Raahul Narayanan, MPH</a> · An entry for The Side Quest's "Can you find momentum?" challenge</div>
+<div class="by"><img class="ava" src="raahul.jpg" alt="">By <a href="https://www.linkedin.com/in/raahul-n" style="color:var(--ink);font-weight:600;text-decoration-color:var(--or);text-underline-offset:3px">Raahul Narayanan, MPH</a> · An entry for The Side Quest's "Can you find momentum?" challenge · About 12 minutes to read, 20 if you play with everything</div>
 <h1>The momentum you feel isn't in the next play</h1>
 <p class="lede">I'm a Broncos fan, so one-score games and "momentum swings" are my weekly cardio. I tested 1.7 million NFL and college plays to see if momentum is real. Short version: a good play does make the next one easier, by leaving a better down and spot. The part we feel, success feeding itself beyond that, doesn't show up. Before you read on, make a call. Every chapter has one.</p>
 <div class="call hero" data-call="hero"></div>
@@ -251,7 +251,8 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <span><i style="width:2px;height:18px;background:rgba(255,255,255,.6)"></i>The line at 0 means the order of plays didn't matter</span>
 <span><i style="width:12px;height:12px;border-radius:50%;background:var(--or)"></i>Real games</span>
 <span><i style="width:12px;height:12px;border-radius:3px;background:var(--ice2)"></i>What chance or shuffling gives</span>
-<span>"Points" are percentage points of next-play success unless a chart says otherwise</span></div>
+<span>"Points" are percentage points of next-play success unless a chart says otherwise</span>
+<span><b style="font-size:14px">Beat expectations</b> = did better than a typical offense does from the same down, distance, field position, score and matchup</span></div>
 </div></section>
 
 <section class="band alt" id="define"><div class="wrap">
@@ -278,15 +279,16 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <h2>Shuffle two famous momentum shifts and random orders look just as hot</h2>
 <p class="doing"><b>The question:</b> if we keep every drive exactly as it happened and only change the order, does a famous momentum shift still look special? <b>Try it:</b> shuffle a few times, then 1,000.</p>
 <div class="note" style="margin-bottom:16px"><b>Why these two games.</b> Super Bowl XLVII is one of the first Super Bowls I really remember. I was 11. The lights went out in the Superdome with the Ravens up 28–6, and when they came back on, the 49ers scored 17 straight. It's the first time I remember feeling momentum change hands in real time. The Broncos game is the recent one: down 19–0 to the Giants going into the 4th quarter in October 2025, Denver scored 33 in that quarter alone and won 33–32. As a fan, it's the most momentum I've ever felt. If momentum is real, it should show up in games like these.</div>
-<div class="call quiz" id="quiz"><div class="row" style="justify-content:space-between;align-items:baseline"><h3 style="margin:0"><span style="color:var(--or)">Make the call, 3 of 8:</span> which row is the real game?</h3><span class="small" id="qzScore">Rounds right: 0 of 0</span></div>
+<div class="call quiz" id="quiz"><div class="row" style="justify-content:space-between;align-items:baseline"><h3 style="margin:0"><span style="color:var(--or)" id="qzNum">Make the call:</span> which row is the real game?</h3><span class="small" id="qzScore">Rounds right: 0 of 0</span></div>
 <p class="small" id="qzSub" style="margin:6px 0 4px"></p><div id="qzRows"></div>
 <div class="row" style="margin-top:8px"><button class="btn" id="qzA">A is the real game</button><button class="btn" id="qzB">B is the real game</button><button class="btn ghost" id="qzNext">New round</button></div>
-<p class="guide" id="qzOut">Orange drives beat expectations, blue fell short. One row is the real order, the other is the same drives shuffled within each half. If momentum lived in the order, the real game would jump out.</p></div>
+<p class="guide" id="qzOut">Each tile is one drive. Orange scored more points than a typical drive from that starting spot would; blue scored fewer. Both rows hold the exact same drives: one is the real order, the other is shuffled within each half. If momentum lived in the order, the real game would jump out.</p></div>
 <div class="board">
 <div class="chips" id="gameChips" role="group" aria-label="Game"></div>
 <div class="fig" id="wpFig" style="min-height:200px"><svg id="wpSvg" role="img" aria-label="Win probability through the game"></svg></div>
 <div id="lanes" style="margin-top:8px"></div>
-<p class="small" style="margin:4px 0 0">Each tile is a drive: orange beat its expected points, blue fell short. Hover for details.</p>
+<p class="small" style="margin:4px 0 0">Each tile is a drive. The number is points over expected: what it scored minus what a typical drive from the same spot, score and clock scores. A touchdown from your own 20 might be +5; a punt from midfield might be −2. Hover for details.</p>
+<p class="small" style="margin:4px 0 0"><b style="color:var(--ink)">Hottest 3-drive stretch</b> = the best three drives in a row, adding up their points over expected. It's our stand-in for "they've got momentum."</p>
 <div class="readout">
 <div class="stat"><div class="k" id="rk1">Real hottest 3-drive stretch</div><div class="v or" id="r1">–</div></div>
 <div class="stat"><div class="k">This shuffle</div><div class="v ice" id="r2">–</div></div>
@@ -304,25 +306,35 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <section class="band alt" id="who"><div class="wrap">
 <div class="kick">Chapter 3 · Streaky QBs and teams</div>
 <h2>Does any quarterback's coin remember? A few look like it. Most are luck</h2>
-<p class="doing"><b>The question:</b> forget the league for a second. Does any one quarterback, or any one team-season, play like their coin remembers? <b>Try it:</b> hover the dots, tap the names, or search a team and year.</p>
+<p class="doing"><b>The question:</b> forget the league for a second. Does any one quarterback, or any one team, play like their coin remembers?</p>
+<div class="board" style="margin-bottom:16px"><p style="margin:0;font-size:15.5px;color:#e4ebf4;max-width:84ch"><b style="color:var(--ink)">The momentum index, in plain terms.</b> After a good play, does this quarterback's next play go better than it does after a bad play, by more than chance would give? Every play is compared with what a typical offense does in that exact spot. Then his own plays get shuffled 300 times to see what luck alone produces. <b style="color:var(--or)">Above 0 = streaky</b>: good follows good, bad follows bad. <b style="color:var(--ice)">Below 0 = steady</b>: he bounces back after a bad play. It's exploratory, not one of the locked tests.</p></div>
+<h3 style="font-size:24px;margin-top:22px">Quarterbacks, 50+ starts since 1999</h3>
 <div class="call" data-call="qb"></div>
-<p class="small" style="margin:10px 0 16px;max-width:78ch"><b style="color:var(--ink)">How the index works:</b> for one quarterback (or team-season), how much more the next play beats expectations after a success than after a failure, compared with 300 shuffles of his own plays. Above 0: streakier than his own random order. Below 0: bounces back more than chance. Exploratory, not one of the locked tests.</p>
-<div class="grid2">
-<div class="board" style="grid-column:1/-1">
-<div class="row" style="margin-bottom:10px;justify-content:space-between">
-<div class="chips" id="whoChips" style="margin:0" role="group" aria-label="Unit"></div>
-<input type="search" id="whoSearch" placeholder="Find: Bo Nix, Brady, DEN 2015" list="whoList" aria-label="Find a team-season or quarterback"><datalist id="whoList"></datalist>
+<div class="call" data-call="qbsteady"></div>
+<div class="board">
+<div class="row" style="margin-bottom:8px;justify-content:space-between"><h3 style="margin:0">96 quarterbacks</h3>
+<input type="search" id="qbSearch" placeholder="Find: Bo Nix, Brady, Purdy" list="qbList" aria-label="Search 96 quarterbacks"><datalist id="qbList"></datalist></div>
+<div class="chips" id="qbPicks" style="margin-bottom:4px"></div>
+<p class="small" id="qbMsg" style="margin:0 0 4px;min-height:1.4em" aria-live="polite"></p>
+<div class="fig" style="min-height:380px"><svg id="qbSvg" role="img" aria-label="Momentum index funnel: 96 quarterbacks"></svg></div>
+<p class="small" style="margin:6px 0 0">Each dot is one quarterback. The blue funnel is the chance zone: what random order alone gives for that many plays. Fewer plays, wider funnel. Hover any dot; tap to label it.</p>
 </div>
-<div class="chips" id="pickChips" style="margin-bottom:4px"></div>
-<p class="small" id="findMsg" style="margin:0 0 4px;min-height:1.4em" aria-live="polite"></p>
-<div class="fig" id="funFig" style="min-height:380px"><svg id="funSvg" role="img" aria-label="Funnel plot of momentum index"></svg></div>
-<p class="small" style="margin:6px 0 0">The blue funnel is the chance zone: what random order alone produces for that many plays. Smaller samples swing more, so it's wider on the left. The band uses a typical player's spread, so borderline names like Tannehill and Flacco are judged on their own numbers.</p>
-</div>
-</div>
-<div class="readout" id="whoStats"></div>
-<p class="guide" id="whoGuide"></p>
+<div class="readout" id="qbStats"></div>
 <div class="cp"><b class="k">You might think</b><p><i>"Romo's streakiness was his offensive line, not him."</i>&ensp;Maybe. The index finds the pattern, not the cause, and a quarterback's number carries his whole offense. Purdy bouncing back could be the 49ers' system as much as Purdy.</p></div>
-<div class="plain"><h3>In plain English</h3><p>Eight of 96 quarterbacks land outside the chance zone, where luck alone would put about five. Tony Romo, a gunslinger who lived on highs and lows, really does lean streaky, and so do Ryan Tannehill and Derek Anderson. The other side is more surprising: Brock Purdy, Justin Herbert, Matt Ryan, Nick Foles and Joe Flacco bounce back after a bad play more than chance says, the opposite of momentum. With three or so names more than luck predicts, a couple of these are probably real styles and the rest are noise. Meanwhile Eli Manning, the league's streakiest reputation, sits inside the funnel at +1.8 standard errors, and so do the 16–0 Patriots.</p></div>
+<div class="plain"><h3>In plain English</h3><p>Eight of 96 quarterbacks land outside the chance zone, where luck alone would put about five. Tony Romo, a gunslinger who lived on highs and lows, really does lean streaky, and so do Ryan Tannehill and Derek Anderson. The other side is the surprise: Brock Purdy, Justin Herbert, Matt Ryan, Nick Foles and Joe Flacco bounce back after a bad play more than chance says, the opposite of momentum. With about three names more than luck predicts, a couple of these are probably real styles and the rest are noise. Eli Manning, the league's streakiest reputation, sits inside the funnel.</p></div>
+<h3 style="font-size:24px;margin-top:34px">And the teams? Every team-season since 1999</h3>
+<div class="call" data-call="team1"></div>
+<div class="call" data-call="team2"></div>
+<div class="board">
+<div class="row" style="margin-bottom:8px;justify-content:space-between"><h3 style="margin:0">893 team-seasons</h3>
+<input type="search" id="teamSearch" placeholder="Find: DEN 2015, NE 2007" list="teamList" aria-label="Search 893 team-seasons"><datalist id="teamList"></datalist></div>
+<div class="chips" id="teamPicks" style="margin-bottom:4px"></div>
+<p class="small" id="teamMsg" style="margin:0 0 4px;min-height:1.4em" aria-live="polite"></p>
+<div class="fig" style="min-height:360px"><svg id="teamSvg" role="img" aria-label="Momentum index funnel: 893 team-seasons"></svg></div>
+<p class="small" style="margin:6px 0 0">Each dot is one team-season; Broncos seasons are orange. The blue funnel is the chance zone: what random order alone gives for that many plays. Fewer plays, wider funnel. Hover any dot; tap to label it.</p>
+</div>
+<div class="readout" id="teamStats"></div>
+<div class="plain"><h3>In plain English</h3><p>Teams are even less streaky than quarterbacks. About 6% of team-seasons land outside the chance zone, where luck alone gives 5%, and a team's index barely repeats the next year (r = 0.10, against 0.52 for how good its offense is). The streakiest team-season of all? The 2010 Cardinals, who went 5–11: when it went bad, it stayed bad. The steadiest was the 2021 Bills, who went 11–6. The 16–0 Patriots and the Super Bowl 50 Broncos sit inside the band with everyone else.</p></div>
 </div></section>
 
 <section class="band" id="broncos"><div class="wrap">
@@ -357,6 +369,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div class="kick">Chapter 5 · Unmask the impostors</div>
 <h2>A good play helps the next one by 4.3 points, and the field explains all of it</h2>
 <p class="doing"><b>The question:</b> a good play makes the next one 4.3 points likelier to work across 241,775 NFL plays from 2019–2025, so how much of that is actually momentum?</p>
+<div class="call" data-call="impostors"></div>
 <div class="board">
 <div class="wf" id="wf"></div>
 <p class="small" style="margin:14px 0 0">Percentage points of next-play success. The orange dot is the only piece felt momentum can claim; its line is the 95% range from 2,000 shuffles. Same answer in 1999–2018 (<span id="disc"></span>); 2026 so far reads <span id="fresh"></span>, on a much smaller sample.</p>
@@ -376,7 +389,8 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div>
 <div class="kick">Chapter 6 · Can we even see it?</div>
 <h2>Plant momentum in fake seasons and the test finds it</h2>
-<p class="doing"><b>The question:</b> if momentum were there, would this test even catch it? We built 30 fake seasons on real 2009–2018 situations where we decide the truth. <b>Try it:</b> plant some and watch the dots move.</p>
+<p class="doing"><b>The question:</b> if momentum were there, would my test even catch it?</p>
+<p style="font-size:15.5px;color:#e4ebf4">"Planting momentum" sounds weird, so here's what it means. I wanted to know my test actually works, so I made fake seasons where I control the truth. They use the real downs, distances and scores from 2009–2018, but a computer flips the outcomes. In some seasons nothing carries over. In others I secretly add momentum: after a good play, the next play's odds get a small bump, worth +0.5, +1 or +2 points. Then I run the exact same test and see if it finds what I hid. <b>Try it:</b> pick a setting and watch the dots move.</p>
 <div class="call" data-call="test"></div>
 <div class="chips" id="simChips" role="group" aria-label="Planted momentum"></div>
 <button class="chip" id="driftChip" aria-pressed="false">Add injury-style swings mid-half</button>
@@ -418,6 +432,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div>
 <p class="note">The Super Bowl XLVII blackout from chapter 2 is the most famous forced pause in football: about half an hour of dark, then 17 straight 49ers points. It's the reason I think about stoppages and momentum at all. One game can't settle it, though, so here's every pause since 1999.</p>
 <p class="doing" style="margin-top:14px"><b>The question:</b> if momentum builds like a feeling, does a stoppage drain it? The clock ends the 1st and 3rd quarters no matter what's happening, so a mid-drive quarter break is a pause nobody chose.</p>
+<div class="call" data-call="ice"></div>
 <div class="readout" style="grid-template-columns:repeat(2,minmax(0,1fr))">
 <div class="stat"><div class="k">Hot offense, then the defense calls timeout: next play vs expected</div><div class="v ice" id="ice">–</div><div class="small" id="iceS"></div></div>
 <div class="stat"><div class="k">Carryover inside a drive with no pause at all</div><div class="v" id="nop">–</div><div class="small">nothing there to drain</div></div>
@@ -437,7 +452,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <div class="kick">Chapter 9 · College</div>
 <h2>College is the one place something shows up, and it's tiny</h2>
 <p class="doing"><b>The question:</b> do college players show the momentum the pros have trained out, as the video guessed?</p>
-<div class="call" data-call="ice"></div>
+<div class="call" data-call="college"></div>
 <div class="grid2"><div><p class="lede" id="cfbLede"></p></div><div class="cards" id="cfbCards"></div></div>
 <div class="cp"><b class="k">You might think</b><p><i>"College players are younger and more emotional, so momentum should be bigger."</i>&ensp;It is a little bigger, but it's worth about 0.03 points per drive and it flips at halftime, which looks like the other coach adjusting more than emotion fading.</p></div>
 <div class="plain"><h3>In plain English</h3><p>College is the closest thing to a yes, and it's tiny. Play to play it actually runs slightly the other way, which I think is messy ball spots, not anti-momentum.</p></div>
@@ -513,7 +528,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 
 <footer><div class="wrap">Every chart and computed figure loads from the analysis repo's results files; the few numbers in the prose were checked against the same files.</div></footer>
 <div class="tip" id="tip"></div>
-<a class="navscore" id="navScore" href="#verdict">8 calls to make</a>
+<a class="navscore" id="navScore" href="#verdict">Make the calls</a>
 
 <script>
 {
@@ -557,9 +572,11 @@ fetch("data.json").then(r => r.json()).then(D => {
 
   /* ---------- make the call ---------- */
   {
-    const rec = {}, TOTAL = 8;
+    const allCalls = [...document.querySelectorAll(".call")], TOTAL = allCalls.length, rec = {};
+    const numOf = el => allCalls.indexOf(el) + 1;
     const upd = () => { const n = Object.keys(rec).length, r = Object.values(rec).filter(Boolean).length; $("#navScore").textContent = n === 0 ? `${TOTAL} calls to make` : n < TOTAL ? `Your calls: ${r} right, ${TOTAL - n} to go` : `Your calls: ${r} of ${TOTAL} right`; $("#verdictScore").innerHTML = n ? `You made <b>${r} of ${n}</b> calls${n < TOTAL ? ` (${TOTAL - n} still open above)` : ""}. Whatever you scored, the ones you missed are the feeling of momentum doing its job.` : "You haven't made any calls yet. Scroll up and try a few; they take a second each."; };
     window.recordCall = (id, ok) => { if (id in rec) return; rec[id] = ok; upd(); };
+    const T = (t, y) => D.team_seasons.find(d => d.posteam === t && d.season === y);
     const W0 = D.waterfall.holdout_nfl, Q = Object.fromEntries(D.qbs.map(d => [d.passer_player_name, d])), B = D.broncos, S0 = D.stress;
     const tot = B.sim_hist.reduce((a, c) => a + c, 0), tail = B.sim_hist.slice(B.den_record[0]).reduce((a, c) => a + c, 0);
     const big = D.tests.holdout_nfl.big, half = D.sims.find(s => s.planted === 0.5), one = D.sims.find(s => s.planted === 1);
@@ -576,12 +593,22 @@ fetch("data.json").then(r => r.json()).then(D => {
         r: `All ${Math.round(one.reject * 30)}. Even a tiny +0.5 gets caught ${Math.round(half.reject * 30)} of 30 times. So when the real answer comes back zero, it's a real zero.` },
       every: { n: 7, q: "After a gutsy 4th-down conversion, is the next play better than after a routine 3rd-down conversion?", o: ["Clearly better", "A little better", "No difference"], a: 2,
         r: `No difference: <b>${sg(big.est, 2)}</b> points, 95% range ${sg(big.ci[0], 1)} to ${sg(big.ci[1], 1)}. The sideline goes nuts; the next snap doesn't care.` },
-      ice: { n: 8, q: "An offense just ran two good plays in a row. The defense calls timeout to ice them. The next play is...", o: ["Worse than expected", "About as expected", "Better than expected"], a: 1,
+      qbsteady: { q: "Whose next play improves most after a bad play, beyond what chance gives? Think steadiest, not best.", o: ["Patrick Mahomes", "Josh Allen", "Brock Purdy", "Aaron Rodgers"], a: 2,
+        r: `Brock Purdy: <b>${sg(Q["B.Purdy"].excess, 1)}</b> points, the steadiest coin of all 96. Justin Herbert (${sg(Q["J.Herbert"].excess, 1)}) and Nick Foles (${sg(Q["N.Foles"].excess, 1)}) are next. Allen is ${sg(Q["J.Allen"].excess, 1)}, Mahomes ${sg(Q["P.Mahomes"].excess, 1)}, Rodgers ${sg(Q["A.Rodgers"].excess, 1)}, all inside chance.` },
+      team1: { q: "The 2007 Patriots went 16–0 in the regular season. Did they play with momentum?", o: ["Yes, way above chance", "A little, but inside chance", "No, they were steady"], a: 1,
+        r: `A little, but inside chance: <b>${sg(T("NE", 2007).excess, 1)}</b> points (${sg(T("NE", 2007).z, 1)} SE). Being the best team ever and being streaky are different things.` },
+      team2: { q: "Which team-season was the streakiest of all 893 since 1999?", o: ["2007 Patriots", "2013 Broncos", "2010 Cardinals", "2019 Chiefs"], a: 2,
+        r: `The 2010 Cardinals, at <b>${sg(T("ARI", 2010).excess, 1)}</b> points. They went 5–11. Streaky cuts both ways: when it went bad, it stayed bad. The steadiest? The 2021 Bills (${sg(T("BUF", 2021).excess, 1)}), who went 11–6.` },
+      impostors: { q: "Of that 4.3-point bump after a good play, how much comes from the down, distance and spot it leaves you?", o: ["About a quarter", "About half", "Almost all of it"], a: 2,
+        r: `Almost all of it: <b>${D.stress.decomposition.down_distance.toFixed(1)}</b> of ${D.stress.decomposition.raw.toFixed(1)} points. A first down makes the next snap easier for anyone, however you got there.` },
+      college: { q: "Do college offenses carry success from one drive to the next more than the pros do?", o: ["Yes, a lot more", "Slightly, and it resets at halftime", "No, not at all"], a: 1,
+        r: `Slightly: about <b>${(2 * D.tests.holdout_cfb.P2_sr_sum.est).toFixed(2)}</b> extra successful plays on the next drive after a drive two plays better than expected, and it flips at halftime. Real, tiny, and probably the other coach adjusting.` },
+      ice: { q: "An offense just ran two good plays in a row. The defense calls timeout to ice them. The next play is...", o: ["Worse than expected", "About as expected", "Better than expected"], a: 1,
         r: `About as expected: <b>${sg(S0.ice.est, 1)}</b> points, range ${sg(S0.ice.ci[0], 1)} to ${sg(S0.ice.ci[1], 1)}, across ${S0.ice.n_ice.toLocaleString()} timeouts. There's nothing hot to ice.` }
     };
     document.querySelectorAll(".call[data-call]").forEach(el => {
       const id = el.dataset.call, C = CALLS[id]; if (!C) return;
-      el.innerHTML = `<div class="ck">Make the call<span>${C.n} of ${TOTAL}</span></div><h3>${C.q}</h3><div class="opts">${C.o.map((t, i) => `<button data-i="${i}">${t}</button>`).join("")}</div><div class="rv" aria-live="polite"><p></p></div>`;
+      el.innerHTML = `<div class="ck">Make the call<span>${numOf(el)} of ${TOTAL}</span></div><h3>${C.q}</h3><div class="opts">${C.o.map((t, i) => `<button data-i="${i}">${t}</button>`).join("")}</div><div class="rv" aria-live="polite"><p></p></div>`;
       el.querySelectorAll("button").forEach(b => b.onclick = () => {
         const i = +b.dataset.i, ok = i === C.a;
         el.querySelectorAll("button").forEach((x, j) => { x.disabled = true; if (j === C.a) x.classList.add("right"); else if (j === i) x.classList.add("wrong"); });
@@ -589,6 +616,7 @@ fetch("data.json").then(r => r.json()).then(D => {
         el.classList.add("done"); window.recordCall(id, ok);
       });
     });
+    const qn = document.getElementById("qzNum"); if (qn) qn.textContent = `Make the call, ${numOf(document.getElementById("quiz"))} of ${TOTAL}:`;
     upd();
   }
 
@@ -604,7 +632,7 @@ fetch("data.json").then(r => r.json()).then(D => {
       const rows = realRow === 0 ? [real, shuf] : [shuf, real], h2 = half.indexOf(2);
       $("#qzSub").textContent = Q.t + ". First half, then second half.";
       $("#qzRows").innerHTML = rows.map((r, k) => `<div class="qrow" id="qr${k}"><div class="nm">${"AB"[k]}</div><div class="qtiles">${r.map((v, i) => (i === h2 ? '<i class="qt gap"></i>' : "") + `<i class="qt" style="background:${tileCol(v)}" title="${sg(v, 1)} pts vs expected"></i>`).join("")}</div></div>`).join("");
-      $("#qzOut").innerHTML = "Orange drives beat expectations, blue fell short. One row is the real order, the other is the same drives shuffled within each half. If momentum lived in the order, the real game would jump out.";
+      $("#qzOut").innerHTML = "Each tile is one drive. Orange scored more points than a typical drive from that starting spot would; blue scored fewer. Both rows hold the exact same drives: one is the real order, the other is shuffled within each half. If momentum lived in the order, the real game would jump out.";
     };
     const pick = k => { if (answered) return; answered = true; played++; if (k === realRow) right++; window.recordCall && window.recordCall("shuffle", k === realRow); $("#qr" + realRow).classList.add("real"); $("#qr" + realRow + " .nm").textContent = "Real";
       $("#qzScore").textContent = `Rounds right: ${right} of ${played}`;
@@ -733,59 +761,63 @@ fetch("data.json").then(r => r.json()).then(D => {
   const bn = D.breaks.holdout_nfl, bc = D.breaks.holdout_cfb;
   $("#breakGuide").innerHTML = `Top: points of next-play success, all NFL seasons. Bottom: points over expected per point, beyond the shuffle. NFL carryover is no smaller after halftime (${sg(bn.halftime.est, 3)}) than with no break (${sg(bn.none.est, 3)}). College flips negative at halftime (${sg(bc.halftime.est, 3)}), which looks like the other coach adjusting.`;
 
-  /* ---------- chapter 7 funnel ---------- */
-  const funSvg = $("#funSvg");
-  const OUT = ["T.Romo", "D.Anderson", "R.Tannehill", "B.Purdy", "J.Herbert", "M.Ryan", "N.Foles", "J.Flacco"];
-  let unit = "qb", hiSet = new Set(OUT), extra = [];
-  const keyOf = d => unit === "team" ? `${d.posteam} ${d.season}` : d.passer_player_name;
-  const units = () => unit === "team" ? D.team_seasons : D.qbs.concat(extra);
-  const PICKS = { team: ["DEN 2025", "DEN 2015", "DEN 2013", "NE 2007", "KC 2019", "ARI 2010", "BUF 2021"], qb: ["T.Romo", "B.Purdy", "J.Herbert", "M.Ryan", "E.Manning", "T.Brady", "P.Manning", "P.Mahomes"] };
-  const NOTES = { "DEN 2015": "Super Bowl 50 champions", "DEN 2013": "record-setting Manning offense", "NE 2007": "16–0 regular season", "ARI 2010": "highest index of all 893", "BUF 2021": "lowest index of all 893", "E.Manning": "the league's streakiest reputation, inside the funnel", "M.Ryan": "the steadiest: bounces back most", "T.Romo": "streakier than chance", "D.Anderson": "streakiest of all 96", "R.Tannehill": "streakier than chance", "B.Purdy": "steadier than chance: bounces back", "J.Herbert": "steadier than chance: bounces back", "N.Foles": "steadier than chance", "J.Flacco": "steadier than chance" };
-  const statsHTML = () => {
-    const R = unit === "team" ? D.team_rel : D.qb_rel, n = units().length;
-    const cells = unit === "team" ? [["Outside the chance funnel", (R.share_outside_95 * 100).toFixed(1) + "%", "chance alone gives 5%"], ["Momentum index, year to year", "r = " + R.yoy_corr_momentum.toFixed(2), "barely repeats"], ["Offense success rate, year to year", "r = " + S.offense_yoy.toFixed(2), "a real trait, for scale"]]
-      : [["Outside the chance funnel", `${Math.round(R.share_outside_95 * n)} of ${n}`, `chance alone gives about ${Math.round(.05 * n)}`], ["Streakier than chance", "Romo, Tannehill, Anderson", "after a good play, more good plays"], ["Steadier than chance", "Purdy, Herbert, Ryan, Foles, Flacco", "after a bad play, a bounce back"]];
-    $("#whoStats").innerHTML = cells.map(([k, v, s]) => `<div class="stat"><div class="k">${k}</div><div class="v ${k.includes("Outside") ? "or" : ""}" style="${v.length > 14 ? "font-size:21px;line-height:1.15" : ""}">${v}</div><div class="small">${s}</div></div>`).join("");
-    $("#whoGuide").innerHTML = unit === "team"
-      ? `If some teams truly played with momentum, many dots would sit outside the funnel and the index would repeat like offensive quality does. Neither happens. Super Bowl 50 Denver and the 16–0 Patriots sit inside the band like everyone else.`
-      : `Orange names sit outside the chance zone. Above it: streakier than their own shuffled plays. Below it: they bounce back after bad plays more than chance, which is the opposite of momentum.`;
-  };
-  const drawFun = () => {
-    const U = units(), W = funSvg.clientWidth, H = funSvg.clientHeight, m = { l: 46, r: 16, t: 14, b: 36 }, logx = unit === "qb";
-    const xs = U.map(d => d.n_pairs), xmin = Math.min(...xs) * .95, xmax = Math.max(...xs) * 1.03, tx = v => logx ? Math.log(v) : v;
-    const x = v => m.l + (tx(v) - tx(xmin)) / (tx(xmax) - tx(xmin)) * (W - m.l - m.r), ylim = unit === "team" ? 13 : 6.5, y = v => m.t + (ylim - v) / (2 * ylim) * (H - m.t - m.b);
-    const ks = U.map(d => d.null_sd * Math.sqrt(d.n_pairs)).sort((a, b) => a - b), k = ks[Math.floor(ks.length / 2)];
-    let up = "", dn = "";
-    for (let i = 0; i <= 60; i++) { const v = logx ? Math.exp(tx(xmin) + i / 60 * (tx(xmax) - tx(xmin))) : xmin + i / 60 * (xmax - xmin), sd = 1.96 * k / Math.sqrt(v); up += `${i ? "L" : "M"}${x(v).toFixed(1)},${y(sd).toFixed(1)}`; dn = `L${x(v).toFixed(1)},${y(-sd).toFixed(1)}` + dn; }
-    let s = `<path d="${up}${dn}Z" fill="rgba(124,196,255,.09)" stroke="rgba(124,196,255,.4)"/>`;
-    const step = unit === "team" ? 5 : 2;
-    for (let v = -Math.floor(ylim / step) * step; v <= ylim; v += step) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="rgba(255,255,255,${v === 0 ? .4 : .07})"/><text x="${m.l - 6}" y="${y(v) + 4}" text-anchor="end">${sg(v, 0)}</text>`;
-    s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 6}" text-anchor="middle">${unit === "team" ? "plays in the season (fewer plays, wider funnel)" : "plays in the career, log scale"}</text><text class="lbl" x="${m.l + 4}" y="${m.t + 10}">Streakier: the coin remembers</text><text class="lbl" x="${m.l + 4}" y="${H - m.b - 6}">Steadier: bounces back</text><text x="${W - m.r - 6}" y="${y(0) - 8}" text-anchor="end" fill="var(--ice)">chance zone</text>`;
-    s += U.map((d, i) => { const kk = keyOf(d), h = hiSet.has(kk), den = unit === "team" && d.posteam === "DEN"; const outside = Math.abs(d.z) > 1.96, sm = unit === "qb" && d.games < 50; if (sm) return `<circle data-i="${i}" cx="${x(d.n_pairs).toFixed(1)}" cy="${y(Math.max(-ylim, Math.min(ylim, d.excess))).toFixed(1)}" r="7" fill="var(--bg)" stroke="var(--or)" stroke-width="2.5" style="cursor:pointer"/>`; return `<circle data-i="${i}" cx="${x(d.n_pairs).toFixed(1)}" cy="${y(Math.max(-ylim, Math.min(ylim, d.excess))).toFixed(1)}" r="${h ? 7 : unit === "qb" ? 5 : 3.6}" fill="${h ? "var(--or)" : den || outside ? "rgba(251,79,20,.75)" : "rgba(214,226,242,.5)"}" stroke="${h ? "#fff" : "none"}" stroke-width="1.5" style="cursor:pointer"/>`; }).join("");
-    const labs = U.filter(d => hiSet.has(keyOf(d))).map(d => { const cx = x(d.n_pairs), cy = y(Math.max(-ylim, Math.min(ylim, d.excess))); return { d, cx, cy, ly: cy, right: cx < W * .72 }; }).sort((a, b) => a.cy - b.cy);
-    [true, false].forEach(side => { let last = -1e9; labs.filter(l => l.right === side).forEach(l => { l.ly = Math.max(l.cy, last + 16); last = l.ly; }); });
-    labs.forEach(l => { const tx = l.cx + (l.right ? 11 : -11); if (Math.abs(l.ly - l.cy) > 3) s += `<line x1="${l.cx}" y1="${l.cy}" x2="${tx}" y2="${l.ly}" stroke="rgba(255,255,255,.35)"/>`; s += `<text class="lbl halo" x="${tx + (l.right ? 3 : -3)}" y="${l.ly + 4}" text-anchor="${l.right ? "start" : "end"}">${keyOf(l.d)} ${sg(l.d.excess, 1)}</text>`; });
-    funSvg.innerHTML = s;
-    funSvg.querySelectorAll("circle").forEach(c => { const d = U[+c.dataset.i], kk = keyOf(d); c.onmousemove = e => showTip(e, `<b>${kk}</b>${NOTES[kk] ? `<br>${NOTES[kk]}` : ""}<br>Momentum index ${sg(d.excess, 2)} pts (${sg(d.z, 1)} SE)<br>Overall vs expected ${sg(d.level, 1)} pts<br>${d.n_pairs.toLocaleString()} play pairs${d.games ? `, ${d.games} starts` : ""}`); c.onmouseleave = hideTip; c.onclick = () => { hiSet.has(kk) ? hiSet.delete(kk) : hiSet.add(kk); renderPicks(); drawFun(); }; });
-  };
-  const renderPicks = () => { $("#pickChips").innerHTML = PICKS[unit].map(p => `<button class="chip" data-p="${p}" aria-pressed="${hiSet.has(p)}">${p}</button>`).join(""); $("#pickChips").querySelectorAll(".chip").forEach(b => b.onclick = () => { const p = b.dataset.p; hiSet.has(p) ? hiSet.delete(p) : hiSet.add(p); b.setAttribute("aria-pressed", hiSet.has(p)); drawFun(); }); $("#whoList").innerHTML = (unit === "qb" ? D.qbs.concat(small) : units()).map(d => `<option value="${keyOf(d)}">`).join(""); };
-  chipRow($("#whoChips"), [["qb", "Quarterbacks"], ["team", "Team-seasons"]], "qb", k => { unit = k; hiSet = new Set(k === "team" ? ["DEN 2025", "NE 2007"] : OUT); statsHTML(); renderPicks(); drawFun(); });
+  /* ---------- funnels: quarterbacks and teams ---------- */
   const norm = t => t.toLowerCase().replace(/[^a-z0-9]/g, "");
   const small = D.qbs_small || [];
-  const findQB = q => { const all = [...D.qbs.map(d => [d, false]), ...small.map(d => [d, true])]; const hit = all.find(([d]) => { const n = d.passer_player_name, last = norm(n.split(".").slice(1).join("")), init = n[0].toLowerCase(); return norm(n) === q || (q.endsWith(last) && q.startsWith(init)) || q === last; }); return hit || null; };
-  const findTeam = q => { const m = q.match(/^([a-z]{2,3})(\d{4})$/) || q.match(/^(\d{4})([a-z]{2,3})$/); if (!m) return null; const [t, y] = isNaN(+m[1]) ? [m[1], +m[2]] : [m[2], +m[1]]; return D.team_seasons.find(d => d.posteam.toLowerCase() === t && d.season === y) || null; };
-  const runFind = raw => {
-    const q = norm(raw); if (q.length < 3) { $("#findMsg").textContent = ""; return; }
-    const team = findTeam(q);
-    if (team) { if (unit !== "team") $("#whoChips").querySelector('[data-k="team"]').click(); hiSet.add(`${team.posteam} ${team.season}`); renderPicks(); drawFun(); $("#findMsg").innerHTML = `<b>${team.posteam} ${team.season}</b>: momentum index ${sg(team.excess, 2)} pts, ${Math.abs(team.z) > 1.96 ? "outside" : "inside"} the chance zone.`; return; }
-    const hit = findQB(q);
-    if (hit) { const [d, isSmall] = hit; if (unit !== "qb") $("#whoChips").querySelector('[data-k="qb"]').click(); if (isSmall && !extra.includes(d)) extra.push(d); hiSet.add(d.passer_player_name); renderPicks(); drawFun();
-      $("#findMsg").innerHTML = `<b>${d.passer_player_name}</b>: ${d.games} starts, momentum index ${sg(d.excess, 2)} pts (${sg(d.z, 1)} SE), ${Math.abs(d.z) > 1.96 ? "outside" : "inside"} the chance zone.${isSmall ? " Fewer than 50 starts, so he's a hollow dot and isn't counted in the 96." : ""}`; return; }
-    $("#findMsg").textContent = "No match yet. Try a last name (Nix, Brady) or a team and year (DEN 2015).";
+  const NOTES = { "DEN 2015": "Super Bowl 50 champions", "DEN 2013": "record-setting Manning offense", "NE 2007": "16–0 regular season", "ARI 2010": "streakiest of all 893, went 5–11", "BUF 2021": "steadiest of all 893, went 11–6", "DEN 2025": "17–1 in one-score games since October", "E.Manning": "the league's streakiest reputation, inside the funnel", "M.Ryan": "steadier than chance", "T.Romo": "streakier than chance", "D.Anderson": "streakiest of all 96", "R.Tannehill": "streakier than chance", "B.Purdy": "steadiest by the most points", "J.Herbert": "steadier than chance", "N.Foles": "steadier than chance", "J.Flacco": "steadier than chance" };
+  const funnel = o => {
+    const svg = $("#" + o.p + "Svg"), team = o.p === "team";
+    let hiSet = new Set(o.defaults), extra = [];
+    const keyOf = d => team ? `${d.posteam} ${d.season}` : d.passer_player_name;
+    const units = () => team ? D.team_seasons : D.qbs.concat(extra);
+    const draw = () => {
+      const U = units(), W = svg.clientWidth, H = svg.clientHeight, m = { l: 46, r: 16, t: 14, b: 36 }, logx = !team;
+      const xs = U.map(d => d.n_pairs), xmin = Math.min(...xs) * .95, xmax = Math.max(...xs) * 1.03, tx = v => logx ? Math.log(v) : v;
+      const x = v => m.l + (tx(v) - tx(xmin)) / (tx(xmax) - tx(xmin)) * (W - m.l - m.r), ylim = team ? 13 : 6.5, y = v => m.t + (ylim - v) / (2 * ylim) * (H - m.t - m.b);
+      const ks = U.map(d => d.null_sd * Math.sqrt(d.n_pairs)).sort((a, b) => a - b), k = ks[Math.floor(ks.length / 2)];
+      let up = "", dn = "";
+      for (let i = 0; i <= 60; i++) { const v = logx ? Math.exp(tx(xmin) + i / 60 * (tx(xmax) - tx(xmin))) : xmin + i / 60 * (xmax - xmin), sd = 1.96 * k / Math.sqrt(v); up += `${i ? "L" : "M"}${x(v).toFixed(1)},${y(sd).toFixed(1)}`; dn = `L${x(v).toFixed(1)},${y(-sd).toFixed(1)}` + dn; }
+      let s = `<path d="${up}${dn}Z" fill="rgba(124,196,255,.09)" stroke="rgba(124,196,255,.4)"/>`;
+      const step = team ? 5 : 2;
+      for (let v = -Math.floor(ylim / step) * step; v <= ylim; v += step) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="rgba(255,255,255,${v === 0 ? .4 : .07})"/><text x="${m.l - 6}" y="${y(v) + 4}" text-anchor="end">${sg(v, 0)}</text>`;
+      s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 6}" text-anchor="middle">${team ? "plays in the season" : "plays in the career, log scale"}</text><text class="lbl" x="${m.l + 4}" y="${m.t + 10}">Streaky: good follows good</text><text class="lbl" x="${m.l + 4}" y="${H - m.b - 6}">Steady: bounces back</text><text x="${W - m.r - 6}" y="${y(0) - 8}" text-anchor="end" fill="var(--ice)">chance zone</text>`;
+      s += U.map((d, i) => { const kk = keyOf(d), h = hiSet.has(kk), den = team && d.posteam === "DEN", outside = Math.abs(d.z) > 1.96, sm = !team && d.games < 50, cx = x(d.n_pairs).toFixed(1), cy = y(Math.max(-ylim, Math.min(ylim, d.excess))).toFixed(1);
+        if (sm) return `<circle data-i="${i}" cx="${cx}" cy="${cy}" r="7" fill="var(--bg)" stroke="var(--or)" stroke-width="2.5" style="cursor:pointer"/>`;
+        return `<circle data-i="${i}" cx="${cx}" cy="${cy}" r="${h ? 7 : team ? 3.6 : 5}" fill="${h ? "var(--or)" : den ? "rgba(251,79,20,.75)" : (!team && outside) ? "rgba(251,79,20,.75)" : "rgba(214,226,242,.5)"}" stroke="${h ? "#fff" : "none"}" stroke-width="1.5" style="cursor:pointer"/>`; }).join("");
+      const labs = U.filter(d => hiSet.has(keyOf(d))).map(d => { const cx = x(d.n_pairs), cy = y(Math.max(-ylim, Math.min(ylim, d.excess))); return { d, cx, cy, ly: cy, right: cx < W * .72 }; }).sort((a, b) => a.cy - b.cy);
+      [true, false].forEach(side => { let last = -1e9; labs.filter(l => l.right === side).forEach(l => { l.ly = Math.max(l.cy, last + 16); last = l.ly; }); });
+      labs.forEach(l => { const t2 = l.cx + (l.right ? 11 : -11); if (Math.abs(l.ly - l.cy) > 3) s += `<line x1="${l.cx}" y1="${l.cy}" x2="${t2}" y2="${l.ly}" stroke="rgba(255,255,255,.35)"/>`; s += `<text class="lbl halo" x="${t2 + (l.right ? 3 : -3)}" y="${l.ly + 4}" text-anchor="${l.right ? "start" : "end"}">${keyOf(l.d)} ${sg(l.d.excess, 1)}</text>`; });
+      svg.innerHTML = s;
+      svg.querySelectorAll("circle").forEach(c => { const d = U[+c.dataset.i], kk = keyOf(d); c.onmousemove = e => showTip(e, `<b>${kk}</b>${NOTES[kk] ? `<br>${NOTES[kk]}` : ""}<br>Momentum index ${sg(d.excess, 2)} pts (${sg(d.z, 1)} SE)<br>${Math.abs(d.z) > 1.96 ? "Outside" : "Inside"} the chance zone<br>${d.n_pairs.toLocaleString()} play pairs${d.games ? `, ${d.games} starts` : ""}`); c.onmouseleave = hideTip; c.onclick = () => { hiSet.has(kk) ? hiSet.delete(kk) : hiSet.add(kk); picks(); draw(); }; });
+    };
+    const picks = () => { const el = $("#" + o.p + "Picks"); el.innerHTML = o.picks.map(p => `<button class="chip" data-p="${p}" aria-pressed="${hiSet.has(p)}">${p}</button>`).join(""); el.querySelectorAll(".chip").forEach(b => b.onclick = () => { const p = b.dataset.p; hiSet.has(p) ? hiSet.delete(p) : hiSet.add(p); b.setAttribute("aria-pressed", hiSet.has(p)); draw(); }); };
+    $("#" + o.p + "List").innerHTML = (team ? D.team_seasons : D.qbs.concat(small)).map(d => `<option value="${keyOf(d)}">`).join("");
+    const msg = $("#" + o.p + "Msg");
+    const find = raw => {
+      const q = norm(raw); if (q.length < 3) { msg.textContent = ""; return; }
+      if (team) {
+        const m = q.match(/^([a-z]{2,3})(\d{4})$/) || q.match(/^(\d{4})([a-z]{2,3})$/); let d = null;
+        if (m) { const [t, yy] = isNaN(+m[1]) ? [m[1], +m[2]] : [m[2], +m[1]]; d = D.team_seasons.find(r => r.posteam.toLowerCase() === t && r.season === yy) || null; }
+        if (d) { hiSet.add(keyOf(d)); picks(); draw(); msg.innerHTML = `<b>${keyOf(d)}</b>: momentum index ${sg(d.excess, 2)} pts, ${Math.abs(d.z) > 1.96 ? "outside" : "inside"} the chance zone.`; }
+        else msg.textContent = "Try a team and year, like DEN 2015 or NE 2007.";
+        return;
+      }
+      const all = [...D.qbs.map(d => [d, false]), ...small.map(d => [d, true])];
+      const hit = all.find(([d]) => { const n = d.passer_player_name, last = norm(n.split(".").slice(1).join("")), init = n[0].toLowerCase(); return norm(n) === q || (q.endsWith(last) && q.startsWith(init)) || q === last; });
+      if (hit) { const [d, isSmall] = hit; if (isSmall && !extra.includes(d)) extra.push(d); hiSet.add(d.passer_player_name); picks(); draw();
+        msg.innerHTML = `<b>${d.passer_player_name}</b>: ${d.games} starts, momentum index ${sg(d.excess, 2)} pts (${sg(d.z, 1)} SE), ${Math.abs(d.z) > 1.96 ? "outside" : "inside"} the chance zone.${isSmall ? " Under 50 starts, so he's a hollow dot and isn't counted in the 96." : ""}`; }
+      else msg.textContent = "Try a last name, like Nix, Brady or Purdy.";
+    };
+    $("#" + o.p + "Search").oninput = e => find(e.target.value);
+    $("#" + o.p + "Search").onkeydown = e => { if (e.key === "Enter") find(e.target.value); };
+    $("#" + o.p + "Stats").innerHTML = o.stats.map(([k, v, sub, cls]) => `<div class="stat"><div class="k">${k}</div><div class="v ${cls || ""}" style="${v.length > 14 ? "font-size:21px;line-height:1.15" : ""}">${v}</div><div class="small">${sub}</div></div>`).join("");
+    picks(); observe(svg, draw);
   };
-  $("#whoSearch").oninput = e => runFind(e.target.value);
-  $("#whoSearch").onkeydown = e => { if (e.key === "Enter") runFind(e.target.value); };
-  statsHTML(); renderPicks(); observe(funSvg, drawFun);
+  const QR = D.qb_rel, TR = D.team_rel, nOutT = D.team_seasons.filter(d => Math.abs(d.z) > 1.96).length;
+  funnel({ p: "qb", defaults: ["T.Romo", "D.Anderson", "R.Tannehill", "B.Purdy", "J.Herbert", "M.Ryan", "N.Foles", "J.Flacco"], picks: ["T.Romo", "B.Purdy", "J.Herbert", "M.Ryan", "E.Manning", "T.Brady", "P.Manning", "P.Mahomes"],
+    stats: [["Outside the chance zone", `${Math.round(QR.share_outside_95 * D.qbs.length)} of ${D.qbs.length}`, `luck alone gives about ${Math.round(.05 * D.qbs.length)}`, "or"], ["Streaky", "Romo, Tannehill, Anderson", "good follows good, bad follows bad"], ["Steady", "Purdy, Herbert, Ryan, Foles, Flacco", "they bounce back after a bad play", "ice"]] });
+  funnel({ p: "team", defaults: ["DEN 2025", "NE 2007", "ARI 2010", "BUF 2021"], picks: ["DEN 2025", "DEN 2015", "DEN 2013", "NE 2007", "KC 2019", "ARI 2010", "BUF 2021"],
+    stats: [["Outside the chance zone", `${nOutT} of ${D.team_seasons.length}`, `about ${(nOutT / D.team_seasons.length * 100).toFixed(0)}%, where luck gives 5%`, "or"], ["Momentum index, year to year", "r = " + TR.yoy_corr_momentum.toFixed(2), "barely repeats"], ["Offense quality, year to year", "r = " + S.offense_yoy.toFixed(2), "a real trait, for scale", "ice"]] });
 
   /* ---------- chapter 8 Broncos ---------- */
   const B = D.broncos, den25 = D.team_seasons.find(d => d.posteam === "DEN" && d.season === 2025);
