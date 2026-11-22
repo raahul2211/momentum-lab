@@ -1,0 +1,64 @@
+{
+ "games": 309,
+ "cover_on_hot": {
+  "coef": 0.0562,
+  "lo": -0.0931,
+  "hi": 0.2055,
+  "p": 0.4607
+ },
+ "cover_on_hot_ctrl_season": {
+  "coef": 0.0626,
+  "lo": -0.1021,
+  "hi": 0.2273,
+  "p": 0.4564
+ },
+ "win_on_hot_given_spread": {
+  "coef": 0.0063,
+  "p": 0.6199
+ },
+ "by_last4_wins": [
+  {
+   "w4": 0,
+   "n": 3,
+   "win_rate": 0.0,
+   "expected": 0.3805,
+   "avg_vs_spread": -6.3333
+  },
+  {
+   "w4": 1,
+   "n": 48,
+   "win_rate": 0.4167,
+   "expected": 0.4062,
+   "avg_vs_spread": -0.3125
+  },
+  {
+   "w4": 2,
+   "n": 147,
+   "win_rate": 0.4898,
+   "expected": 0.4728,
+   "avg_vs_spread": -0.0578
+  },
+  {
+   "w4": 3,
+   "n": 272,
+   "win_rate": 0.4853,
+   "expected": 0.5108,
+   "avg_vs_spread": -0.5312
+  },
+  {
+   "w4": 4,
+   "n": 148,
+   "win_rate": 0.5743,
+   "expected": 0.54,
+   "avg_vs_spread": 1.2635
+  }
+ ],
+ "champs_last4_wins": {
+  "1": 2,
+  "2": 6,
+  "3": 10,
+  "4": 9
+ },
+ "champs_hot_mean": 2.8333,
+ "all_playoff_teams_hot_mean": 2.2418
+}

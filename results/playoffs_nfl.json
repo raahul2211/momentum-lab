@@ -1,0 +1,310 @@
+{
+ "n_team_seasons": 861,
+ "seasons": "1999-2025, regular-season plays only",
+ "tiers": [
+  {
+   "tier": "Missed",
+   "n": 525,
+   "mean_excess": 0.00058,
+   "median_excess": -0.00011,
+   "mean_z": 0.01658,
+   "share_streaky": 0.03238,
+   "share_steady": 0.03048
+  },
+  {
+   "tier": "Playoffs",
+   "n": 282,
+   "mean_excess": -0.00117,
+   "median_excess": -0.00061,
+   "mean_z": -0.03998,
+   "share_streaky": 0.02837,
+   "share_steady": 0.03546
+  },
+  {
+   "tier": "SB loser",
+   "n": 27,
+   "mean_excess": 0.00092,
+   "median_excess": -0.00288,
+   "mean_z": 0.04157,
+   "share_streaky": 0.0,
+   "share_steady": 0.03704
+  },
+  {
+   "tier": "Champion",
+   "n": 27,
+   "mean_excess": -0.00245,
+   "median_excess": -0.00047,
+   "mean_z": -0.07418,
+   "share_streaky": 0.03704,
+   "share_steady": 0.03704
+  }
+ ],
+ "playoff_vs_missed": {
+  "diff": -0.00169,
+  "lo": -0.00604,
+  "hi": 0.00273,
+  "p": 0.444,
+  "n1": 336,
+  "n0": 525
+ },
+ "champ_vs_rest": {
+  "diff": -0.00245,
+  "lo": -0.01505,
+  "hi": 0.00991,
+  "p": 0.6922,
+  "n1": 27,
+  "n0": 834
+ },
+ "champ_vs_other_playoff": {
+  "diff": -0.00146,
+  "lo": -0.01422,
+  "hi": 0.01087,
+  "p": 0.81355,
+  "n1": 27,
+  "n0": 309
+ },
+ "corr_index_wpct": {
+  "rho": -0.04419,
+  "p": 0.19515
+ },
+ "corr_level_wpct": {
+  "rho": 0.36588,
+  "p": 0.0
+ },
+ "playoffs_given_quality": {
+  "coef_per_sd": 0.04833,
+  "lo": -0.16255,
+  "hi": 0.25921,
+  "odds_ratio_per_sd": 1.04952,
+  "p": 0.65312
+ },
+ "po_wins_corr": {
+  "rho": 0.04317,
+  "p": 0.43031
+ },
+ "sb_win_given_quality": {
+  "coef_per_sd": 0.01215,
+  "lo": -0.3954,
+  "hi": 0.41969,
+  "odds_ratio_per_sd": 1.01222,
+  "p": 0.95341
+ },
+ "next_year_playoffs": {
+  "coef_per_sd": -0.06176,
+  "lo": -0.20876,
+  "hi": 0.08525,
+  "odds_ratio_per_sd": 0.94011,
+  "p": 0.40977
+ },
+ "next_year_n": 829,
+ "pooled_post": {
+  "excess_pts": -0.81092,
+  "lo": -1.67253,
+  "hi": 0.0507,
+  "raw_pts": 3.96476,
+  "plays": 38549,
+  "games": 309
+ },
+ "pooled_reg": {
+  "excess_pts": 0.00051,
+  "lo": -0.20945,
+  "hi": 0.21048,
+  "raw_pts": 4.62029,
+  "plays": 862332,
+  "games": 6964
+ },
+ "champions": [
+  {
+   "team": "NE",
+   "season": 2014,
+   "excess": -0.06791,
+   "z": -2.27259,
+   "reg_wpct": 0.75
+  },
+  {
+   "team": "TB",
+   "season": 2002,
+   "excess": -0.05513,
+   "z": -1.84676,
+   "reg_wpct": 0.75
+  },
+  {
+   "team": "SEA",
+   "season": 2025,
+   "excess": -0.03903,
+   "z": -1.29204,
+   "reg_wpct": 0.82353
+  },
+  {
+   "team": "BAL",
+   "season": 2000,
+   "excess": -0.03577,
+   "z": -1.25029,
+   "reg_wpct": 0.75
+  },
+  {
+   "team": "LA",
+   "season": 1999,
+   "excess": -0.03492,
+   "z": -1.05503,
+   "reg_wpct": 0.8125
+  },
+  {
+   "team": "TB",
+   "season": 2020,
+   "excess": -0.03342,
+   "z": -1.0538,
+   "reg_wpct": 0.6875
+  },
+  {
+   "team": "KC",
+   "season": 2022,
+   "excess": -0.03131,
+   "z": -1.06438,
+   "reg_wpct": 0.82353
+  },
+  {
+   "team": "PIT",
+   "season": 2008,
+   "excess": -0.02771,
+   "z": -0.89426,
+   "reg_wpct": 0.75
+  },
+  {
+   "team": "SEA",
+   "season": 2013,
+   "excess": -0.02586,
+   "z": -0.82558,
+   "reg_wpct": 0.8125
+  },
+  {
+   "team": "LA",
+   "season": 2021,
+   "excess": -0.01322,
+   "z": -0.42912,
+   "reg_wpct": 0.70588
+  },
+  {
+   "team": "PIT",
+   "season": 2005,
+   "excess": -0.01182,
+   "z": -0.38143,
+   "reg_wpct": 0.6875
+  },
+  {
+   "team": "KC",
+   "season": 2023,
+   "excess": -0.01046,
+   "z": -0.34843,
+   "reg_wpct": 0.64706
+  },
+  {
+   "team": "GB",
+   "season": 2010,
+   "excess": -0.00771,
+   "z": -0.25083,
+   "reg_wpct": 0.625
+  },
+  {
+   "team": "DEN",
+   "season": 2015,
+   "excess": -0.00047,
+   "z": -0.01641,
+   "reg_wpct": 0.75
+  },
+  {
+   "team": "NE",
+   "season": 2003,
+   "excess": -0.00031,
+   "z": -0.01,
+   "reg_wpct": 0.875
+  },
+  {
+   "team": "PHI",
+   "season": 2024,
+   "excess": 0.0058,
+   "z": 0.20688,
+   "reg_wpct": 0.82353
+  },
+  {
+   "team": "KC",
+   "season": 2019,
+   "excess": 0.00729,
+   "z": 0.23009,
+   "reg_wpct": 0.75
+  },
+  {
+   "team": "NE",
+   "season": 2001,
+   "excess": 0.01247,
+   "z": 0.40405,
+   "reg_wpct": 0.6875
+  },
+  {
+   "team": "IND",
+   "season": 2006,
+   "excess": 0.01349,
+   "z": 0.42617,
+   "reg_wpct": 0.75
+  },
+  {
+   "team": "NE",
+   "season": 2004,
+   "excess": 0.01586,
+   "z": 0.54391,
+   "reg_wpct": 0.875
+  },
+  {
+   "team": "NE",
+   "season": 2018,
+   "excess": 0.02046,
+   "z": 0.65127,
+   "reg_wpct": 0.6875
+  },
+  {
+   "team": "NE",
+   "season": 2016,
+   "excess": 0.02368,
+   "z": 0.82363,
+   "reg_wpct": 0.875
+  },
+  {
+   "team": "BAL",
+   "season": 2012,
+   "excess": 0.0297,
+   "z": 0.99711,
+   "reg_wpct": 0.625
+  },
+  {
+   "team": "NYG",
+   "season": 2007,
+   "excess": 0.03393,
+   "z": 1.14803,
+   "reg_wpct": 0.625
+  },
+  {
+   "team": "NO",
+   "season": 2009,
+   "excess": 0.04764,
+   "z": 1.5734,
+   "reg_wpct": 0.8125
+  },
+  {
+   "team": "PHI",
+   "season": 2017,
+   "excess": 0.05164,
+   "z": 1.64675,
+   "reg_wpct": 0.8125
+  },
+  {
+   "team": "NYG",
+   "season": 2011,
+   "excess": 0.06684,
+   "z": 2.33681,
+   "reg_wpct": 0.5625
+  }
+ ],
+ "playoff_rank_note": {
+  "n_playoff": 336
+ }
+}
