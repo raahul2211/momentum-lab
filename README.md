@@ -1,4 +1,4 @@
-# The field remembers. The team doesn't.
+# MomentumLab: It's the field, not the feeling
 
 A momentum study and entry for The Side Quest's momentum challenge, by Raahul Narayanan, MPH.
 
