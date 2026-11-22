@@ -213,6 +213,11 @@ summary{cursor:pointer;font:700 17px "Barlow Condensed"}
 .call.hero{margin-top:22px;padding:20px 22px}
 .call.hero h3{font-size:clamp(22px,2.4vw,28px)}
 .navscore{position:fixed;right:16px;bottom:16px;z-index:30;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.35);backdrop-filter:blur(6px);font:700 15px "Barlow Condensed";color:var(--ink);background:rgba(10,35,67,.92);border:1px solid rgba(251,79,20,.5);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.dek{font:700 clamp(20px,2.4vw,27px)/1.25 "Barlow Condensed";color:var(--or);margin:-4px 0 14px;max-width:46ch}
+.me{grid-template-columns:auto minmax(0,1fr) auto!important;align-items:start!important}
+.dog{width:180px;border-radius:14px;border:3px solid var(--line);display:block}
+.dog+figcaption{font-size:13px;color:var(--mute);margin-top:6px;max-width:180px}
+@media(max-width:860px){.me{grid-template-columns:minmax(0,1fr)!important}}
 footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1px solid var(--line)}
 @media(max-width:860px){.cointop{grid-template-columns:minmax(0,1fr)!important}.grid2,.eq{grid-template-columns:minmax(0,1fr)}.defs{grid-template-columns:minmax(0,1fr)}.map{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.tile{font-size:0}.wfrow{grid-template-columns:minmax(0,1fr) 60px}.wfrow .track{grid-column:1/-1;grid-row:2}.games{grid-template-columns:repeat(3,minmax(0,1fr))}.readout,.score{grid-template-columns:minmax(0,1fr)}.map{grid-template-columns:minmax(0,1fr)}.lane .name{width:40px;font-size:15px}.tiles{left:42px}.try{grid-template-columns:minmax(0,1fr) 64px}.try svg{grid-column:1/-1;grid-row:2}}
@@ -221,14 +226,15 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 </head>
 <body>
 <nav class="nav"><div class="wrap">
-<a class="brand" href="#top">Momentum <b>Lab</b></a>
+<a class="brand" href="#top">The coin doesn't <b>remember</b></a>
 <a href="#define">1 Coin flip</a><a href="#shuffle">2 Shuffle</a><a href="#who">3 Streaky?</a><a href="#broncos">4 Broncos</a><a href="#impostors">5 Impostors</a><a href="#test">6 Can we see it</a><a href="#every">7 Every test</a><a href="#pauses">8 Pauses</a><a href="#college">9 College</a><a href="#verdict">Verdict</a><a href="#method">Method</a><a href="#about">About</a>
 </div></nav>
 
 <section class="band" id="top"><div class="wrap">
 <div class="by"><img class="ava" src="raahul.jpg" alt="">By <a href="https://www.linkedin.com/in/raahul-n" style="color:var(--ink);font-weight:600;text-decoration-color:var(--or);text-underline-offset:3px">Raahul Narayanan, MPH</a> · An entry for The Side Quest's "Can you find momentum?" challenge · About 12 minutes to read, 20 if you play with everything</div>
-<h1>The momentum you feel isn't in the next play</h1>
-<p class="lede">I'm a Broncos fan, so one-score games and "momentum swings" are my weekly cardio. I tested 1.7 million NFL and college plays to see if momentum is real. Short version: a good play does make the next one easier, by leaving a better down and spot. The part we feel, success feeding itself beyond that, doesn't show up. Before you read on, make a call. Every chapter has one.</p>
+<h1>The coin doesn't remember</h1>
+<p class="dek">I tested 1.7 million football plays for momentum. The kind you see is real. The kind you feel isn't.</p>
+<p class="lede">I'm a Broncos fan, so one-score games and "momentum swings" are my weekly cardio. I wanted to know if momentum is real or just a story we tell after the fact. Before you read on, make a call. There's one in every chapter, and a scorecard in the corner.</p>
 <div class="call hero" data-call="hero"></div>
 <div class="score">
 <div><div class="k">Plays tested, NFL 1999–2026 and college 2014–2021</div><div class="v dig">1.7M</div><div class="s">every snap, scored against its situation</div></div>
@@ -279,10 +285,7 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <h2>Shuffle two famous momentum shifts and random orders look just as hot</h2>
 <p class="doing"><b>The question:</b> if we keep every drive exactly as it happened and only change the order, does a famous momentum shift still look special? <b>Try it:</b> shuffle a few times, then 1,000.</p>
 <div class="note" style="margin-bottom:16px"><b>Why these two games.</b> Super Bowl XLVII is one of the first Super Bowls I really remember. I was 11. The lights went out in the Superdome with the Ravens up 28–6, and when they came back on, the 49ers scored 17 straight. It's the first time I remember feeling momentum change hands in real time. The Broncos game is the recent one: down 19–0 to the Giants going into the 4th quarter in October 2025, Denver scored 33 in that quarter alone and won 33–32. As a fan, it's the most momentum I've ever felt. If momentum is real, it should show up in games like these.</div>
-<div class="call quiz" id="quiz"><div class="row" style="justify-content:space-between;align-items:baseline"><h3 style="margin:0"><span style="color:var(--or)" id="qzNum">Make the call:</span> which row is the real game?</h3><span class="small" id="qzScore">Rounds right: 0 of 0</span></div>
-<p class="small" id="qzSub" style="margin:6px 0 4px"></p><div id="qzRows"></div>
-<div class="row" style="margin-top:8px"><button class="btn" id="qzA">A is the real game</button><button class="btn" id="qzB">B is the real game</button><button class="btn ghost" id="qzNext">New round</button></div>
-<p class="guide" id="qzOut">Each tile is one drive. Orange scored more points than a typical drive from that starting spot would; blue scored fewer. Both rows hold the exact same drives: one is the real order, the other is shuffled within each half. If momentum lived in the order, the real game would jump out.</p></div>
+<div class="call" data-call="shuffle"></div>
 <div class="board">
 <div class="chips" id="gameChips" role="group" aria-label="Game"></div>
 <div class="fig" id="wpFig" style="min-height:200px"><svg id="wpSvg" role="img" aria-label="Win probability through the game"></svg></div>
@@ -520,10 +523,11 @@ footer{padding:24px max(5vw,16px);color:var(--dim);font-size:13.5px;border-top:1
 <img class="photo" src="raahul.jpg" alt="Raahul Narayanan">
 <div>
 <h2 style="margin-bottom:6px">About me</h2>
-<p>I'm Raahul Narayanan, MPH, a data analyst at the University of Pennsylvania with a background in biostatistics research from the University of Washington and Penn. I love numbers and I love sports, and momentum is where the two have always argued in my head.</p>
-<p>I've followed the Broncos since Peyton Manning arrived in 2012, and one of the first Super Bowls I remember is the one where the lights went out. Every week Denver plays another one-score game I swear is decided by momentum, so I went in wanting to find it. The coin flip I learned about in high school stats won.</p>
-<p class="small" id="links">Code, pre-registration and every result file are in the project repo.</p>
+<p>I'm Raahul Narayanan, MPH. I grew up in the Bay Area, studied public health and anthropology at the University of Washington, and did my MPH at Penn, where I'm now a data analyst on the Public Health and Wellbeing team. My background is biostatistics research, which mostly means I've spent years asking one question: is this pattern real, or is it a coin that got lucky?</p>
+<p>Football is where that question gets personal. I've been a Broncos fan since Peyton Manning arrived in 2012, Super Bowl XLVII at 11 was my first lesson in momentum, and this team's one-score games have taken years off my life. My co-analyst is Truffle, a rescue pup from ACCT Philly who already owns a jersey and has no opinion on the hot hand.</p>
+<p class="small" id="links" style="margin-top:4px">Code, pre-registration and every result file are in the project repo.</p>
 </div>
+<figure style="margin:0"><img class="dog" src="truffle.jpg" alt="Truffle the dog in a Broncos jersey"><figcaption>Truffle, Broncos Country's newest member. Momentum index: unmeasured. Snack index: very high.</figcaption></figure>
 </div></section>
 
 <footer><div class="wrap">Every chart and computed figure loads from the analysis repo's results files; the few numbers in the prose were checked against the same files.</div></footer>
@@ -593,6 +597,8 @@ fetch("data.json").then(r => r.json()).then(D => {
         r: `All ${Math.round(one.reject * 30)}. Even a tiny +0.5 gets caught ${Math.round(half.reject * 30)} of 30 times. So when the real answer comes back zero, it's a real zero.` },
       every: { n: 7, q: "After a gutsy 4th-down conversion, is the next play better than after a routine 3rd-down conversion?", o: ["Clearly better", "A little better", "No difference"], a: 2,
         r: `No difference: <b>${sg(big.est, 2)}</b> points, 95% range ${sg(big.ci[0], 1)} to ${sg(big.ci[1], 1)}. The sideline goes nuts; the next snap doesn't care.` },
+      shuffle: { q: "Denver scored 33 points in the 4th quarter against the Giants. Shuffle Denver's drives into a random order 1,000 times. How often do you get a stretch just as hot?", o: ["Almost never", "About 1 in 3 times", "Almost every time"], a: 1,
+        r: "About 37% of the time. A team that has a great half has great drives to stack, wherever they land. Check it yourself below with \"Shuffle 1,000 times.\" The 49ers' run after the blackout is even more ordinary: about 3 in 4 shuffles match it." },
       qbsteady: { q: "Whose next play improves most after a bad play, beyond what chance gives? Think steadiest, not best.", o: ["Patrick Mahomes", "Josh Allen", "Brock Purdy", "Aaron Rodgers"], a: 2,
         r: `Brock Purdy: <b>${sg(Q["B.Purdy"].excess, 1)}</b> points, the steadiest coin of all 96. Justin Herbert (${sg(Q["J.Herbert"].excess, 1)}) and Nick Foles (${sg(Q["N.Foles"].excess, 1)}) are next. Allen is ${sg(Q["J.Allen"].excess, 1)}, Mahomes ${sg(Q["P.Mahomes"].excess, 1)}, Rodgers ${sg(Q["A.Rodgers"].excess, 1)}, all inside chance.` },
       team1: { q: "The 2007 Patriots went 16–0 in the regular season. Did they play with momentum?", o: ["Yes, way above chance", "A little, but inside chance", "No, they were steady"], a: 1,
@@ -616,29 +622,7 @@ fetch("data.json").then(r => r.json()).then(D => {
         el.classList.add("done"); window.recordCall(id, ok);
       });
     });
-    const qn = document.getElementById("qzNum"); if (qn) qn.textContent = `Make the call, ${numOf(document.getElementById("quiz"))} of ${TOTAL}:`;
     upd();
-  }
-
-  /* ---------- hero quiz ---------- */
-  {
-    const QG = [{ g: D.giants, f: "DEN", t: "Denver's drives against the Giants, Oct 19 2025, the 33-point 4th quarter" }, { g: D.sb47, f: "SF", t: "The 49ers' drives in Super Bowl XLVII, the blackout game. One row is the real order; the other is the same drives shuffled within each half" }];
-    let round = 1, realRow = 0, answered = false, right = 0, played = 0;
-    const tileCol = v => { const a = Math.min(1, Math.abs(v) / 5); return v >= 0 ? `rgba(251,79,20,${.3 + .7 * a})` : `rgba(59,143,217,${.3 + .7 * a})`; };
-    const draw = () => {
-      const Q = QG[round % 2], ds = Q.g.drives.filter(d => d.posteam === Q.f), real = ds.map(d => d.poe), half = ds.map(d => d.qtr <= 2 ? 1 : 2);
-      const shuf = real.slice(); [1, 2].forEach(h => { const idx = half.map((x, i) => x === h ? i : -1).filter(i => i >= 0); const v = idx.map(i => real[i]); for (let i = v.length - 1; i > 0; i--) { const k = Math.floor(Math.random() * (i + 1)); [v[i], v[k]] = [v[k], v[i]]; } idx.forEach((i, t) => shuf[i] = v[t]); });
-      realRow = Math.random() < .5 ? 0 : 1; answered = false;
-      const rows = realRow === 0 ? [real, shuf] : [shuf, real], h2 = half.indexOf(2);
-      $("#qzSub").textContent = Q.t + ". First half, then second half.";
-      $("#qzRows").innerHTML = rows.map((r, k) => `<div class="qrow" id="qr${k}"><div class="nm">${"AB"[k]}</div><div class="qtiles">${r.map((v, i) => (i === h2 ? '<i class="qt gap"></i>' : "") + `<i class="qt" style="background:${tileCol(v)}" title="${sg(v, 1)} pts vs expected"></i>`).join("")}</div></div>`).join("");
-      $("#qzOut").innerHTML = "Each tile is one drive. Orange scored more points than a typical drive from that starting spot would; blue scored fewer. Both rows hold the exact same drives: one is the real order, the other is shuffled within each half. If momentum lived in the order, the real game would jump out.";
-    };
-    const pick = k => { if (answered) return; answered = true; played++; if (k === realRow) right++; window.recordCall && window.recordCall("shuffle", k === realRow); $("#qr" + realRow).classList.add("real"); $("#qr" + realRow + " .nm").textContent = "Real";
-      $("#qzScore").textContent = `Rounds right: ${right} of ${played}`;
-      $("#qzOut").innerHTML = (k === realRow ? "<b>Nice call.</b> " : "<b>That one was the shuffle.</b> ") + "Play a few more rounds. If momentum lived in the order, you'd spot the real game every time. Same drives, same total: only the order changed, and the order is the one thing momentum claims matters."; };
-    $("#qzA").onclick = () => pick(0); $("#qzB").onclick = () => pick(1); $("#qzNext").onclick = () => { round++; draw(); };
-    draw();
   }
 
   /* ---------- chapter 3 shuffle ---------- */
