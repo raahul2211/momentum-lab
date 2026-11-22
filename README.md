@@ -1,6 +1,8 @@
 # MomentumLab: It's the field, not the feeling
 
 A momentum study and entry for The Side Quest's momentum challenge, by Raahul Narayanan, MPH.
+Interactive page: `docs/index.html` (serve the `docs` folder, or turn on GitHub Pages from `main` → `/docs`).
+
 
 **Answer.** We tested 1.7 million NFL and college plays with every control the challenge asked for. Two things get called momentum. Field momentum, a good play leaving you a better down and spot, is real and explains almost all of the "success follows success" pattern. Felt momentum, success feeding itself beyond the spot, isn't in the next play or the next drive. A successful play is followed by a successful play 4.3 percentage points more often than a failed one (2019–2025, tested only after the rules were committed). The situation it leaves you in explains 3.9 points, who was better that half explains 0.45, and what's left for momentum is **−0.02 (95% range −0.41 to +0.37)**. Our test catches planted momentum of 0.5 points 80% of the time, so this is a measured zero, not a blind spot.
 
