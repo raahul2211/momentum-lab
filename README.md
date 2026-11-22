@@ -1,4 +1,4 @@
-# The coin doesn't remember
+# The field remembers. The team doesn't.
 
 A momentum study and entry for The Side Quest's momentum challenge, by Raahul Narayanan, MPH.
 
